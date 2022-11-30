@@ -18,7 +18,7 @@
 
 	<div class = "categories">
 		<ul class = "categories__list">
-			<li class = "categories__item"><button class = "categories__button">добыча</button></li>	
+			<li class = "categories__item"><button class = "categories__button" (click)="onGatherOpen()">добыча</button></li>	
 			<li class = "categories__item"><button class = "categories__button">переработка</button></li>	
 			<li class = "categories__item"><button class = "categories__button">ритэйл</button></li>	
 			<li class = "categories__item"><button class = "categories__button">сервисы</button></li>	
@@ -28,6 +28,16 @@
 	</div>
 	<div class = "competitors">
 		конкуренты тут
+	</div>
+
+	<div class = "creating-edition">
+		<h3>{{modalType}}</h3>	
+		<select name="" id="">
+			<option value="apple">яблоки</option>
+			<option value="iron">железо</option>
+			<option value="oil">нефть</option>
+		</select>
+		<span *ngIf = "creatingCost > 0" class = 'creating-edition__creating-cost'>{{creatingCost}}$</span>
 	</div>
 
 </div>
