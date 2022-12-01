@@ -11,7 +11,7 @@ export class LobbyComponent implements OnInit {
   constructor(private router: Router) { }
 
   loadGame() {
-    this.router.navigate(['game'])
+    this.router.navigate(['game', 1])
   }
 
   ngOnInit(): void {
