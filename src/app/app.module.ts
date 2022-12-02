@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { GameComponent } from './game/game.component';
+import { BusinessUnitComponent } from './game/business-unit/business-unit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LobbyComponent,
-    GameComponent
+    GameComponent,
+    BusinessUnitComponent,
   ],
   imports: [
     BrowserModule,
