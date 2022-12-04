@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MarketService } from './services/market.service';
 
 @Component({
   selector: 'app-game',
@@ -11,8 +12,11 @@ export class GameComponent implements OnInit {
   modalType: string = '';
   creatingCost : number = 1;
   gameId : number | null = null
+  
 
-  constructor(private route : ActivatedRoute) { }
+  constructor(private route : ActivatedRoute, private marketService: MarketService) { }
+
+
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;

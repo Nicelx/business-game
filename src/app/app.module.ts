@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { GameComponent } from './game/game.component';
 import { BusinessUnitComponent } from './game/business-unit/business-unit.component';
+import { MarketService } from './game/services/market.service';
+import { PriceInfoComponent } from './game/price-info/price-info.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,13 @@ import { BusinessUnitComponent } from './game/business-unit/business-unit.compon
     LobbyComponent,
     GameComponent,
     BusinessUnitComponent,
+    PriceInfoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MarketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
