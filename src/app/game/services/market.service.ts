@@ -1,11 +1,15 @@
 import { Market } from "../interfaces/game.interfaces";
 
 export class MarketService {
+	constructor() {
+		setTimeout(this.updateMarket, 1000);
+	}
+
 	amplifiers = {
-		apples: 0,
+		apples: 1,
 		iron: 0,
 	};
-	market = {
+	market: Market = {
 		apples: 3,
 		iron: 20,
 	};
@@ -16,17 +20,18 @@ export class MarketService {
 		}
 	}
 
-	updateMarket(amplifier: { apples: number; iron: number }) {
-		for (let type in amplifier) {
-			console.log(type);
+	updateMarket() {
+		for (let type in this.amplifiers) {
+			this.updatePrice(this.market[type])
 		}
 	}
 
-	private updatePrice(amplifierValue: number, price: number): number {
+	private updatePrice(amplifierValue: number, price: number, propName: string): void {
 		let newPrice: number = 0;
 		if (amplifierValue > 0) {
 			newPrice = price + Number((price * amplifierValue) / 100);
-			return newPrice;
+			this.market[propName] = newPrice;
+			return;
 		}
 		if (amplifierValue < 0) {
 			newPrice = price - Number((price * amplifierValue) / 100);
