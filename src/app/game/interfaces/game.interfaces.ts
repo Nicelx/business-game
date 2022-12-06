@@ -10,6 +10,8 @@ export interface BusinessUnit {
 }
 
 export interface Market {
-	'apples': number;
-	'iron': number
+	apples: number;
+	iron: number
 }
+
+export type marketKey = keyof Market;

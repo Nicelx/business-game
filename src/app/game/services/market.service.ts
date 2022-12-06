@@ -1,18 +1,29 @@
 import { Market } from "../interfaces/game.interfaces";
+import { marketKey } from "../interfaces/game.interfaces";
 
 export class MarketService {
 	constructor() {
 		setTimeout(this.updateMarket, 1000);
 	}
+	
+	// amplifiers = {
+	// 	apples: 1,
+	// 	iron: 0,
+	// };
+	// market: Market = {
+	// 	apples: 3,
+	// 	iron: 20,
+	// };
 
-	amplifiers = {
-		apples: 1,
-		iron: 0,
-	};
-	market: Market = {
-		apples: 3,
-		iron: 20,
-	};
+
+	//
+
+	market2 = [
+		{name: 'apples', price: 3, amlifier : 0},
+		{name: 'apples', price: 3, amlifier : 0}
+	]
+	marketKeys = Object.keys(this.market);
+	amlifiersKeys = Object.keys(this.amplifiers);
 
 	public getPrices(): Market {
 		return {
@@ -21,12 +32,14 @@ export class MarketService {
 	}
 
 	updateMarket() {
-		for (let type in this.amplifiers) {
-			this.updatePrice(this.market[type])
+		for (let propNameMarket: marketKey in this.marketKeys) {
+			for (propNameAmlifiers: marketKey in this.marketKeys) {
+
+			}
 		}
 	}
 
-	private updatePrice(amplifierValue: number, price: number, propName: string): void {
+	private updatePrice(propName : marketKey, amplifierValue: number, price: number, ): void {
 		let newPrice: number = 0;
 		if (amplifierValue > 0) {
 			newPrice = price + Number((price * amplifierValue) / 100);
@@ -35,9 +48,10 @@ export class MarketService {
 		}
 		if (amplifierValue < 0) {
 			newPrice = price - Number((price * amplifierValue) / 100);
-			return newPrice;
+			this.market[propName] = newPrice;
+			return;
 		}
-		return newPrice;
+		return;
 	}
 
 	public increaseAmplifier(type: string, amount: number) {
