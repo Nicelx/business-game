@@ -9,9 +9,9 @@ export interface BusinessUnit {
 	type: string;
 }
 
-export interface Market {
-	apples: number;
-	iron: number
-}
+// export interface Market {
+// 	apples: number;
+// 	iron: number
+// }
 
-export type marketKey = keyof Market;
+// export type marketKey = keyof Market;
