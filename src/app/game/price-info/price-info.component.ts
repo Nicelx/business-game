@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Market } from './../interfaces/game.interfaces';
+// import { Market } from './../interfaces/game.interfaces';
 import { MarketService } from './../services/market.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { MarketService } from './../services/market.service';
   styleUrls: ['./price-info.component.css']
 })
 export class PriceInfoComponent implements OnInit {
-  market: Market  = {
+  market  = {
     apples: 0,
     iron: 0
   }
@@ -16,7 +16,7 @@ export class PriceInfoComponent implements OnInit {
   constructor(private marketService: MarketService) { }
 
   ngOnInit(): void {
-    this.market = this.marketService.getPrices();
+    // this.market = this.marketService.getPrices();
   }
 
   updateMarket() {
