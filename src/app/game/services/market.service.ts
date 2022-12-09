@@ -1,11 +1,9 @@
-// import { Market } from "../interfaces/game.interfaces";
-// import { marketKey } from "../interfaces/game.interfaces";
-
 interface MarketPiece {
 	name: string;
 	price: number,
-	amlifier: number
+	amlifier?: number
 }
+
 
 export class MarketService {
 	constructor() {
@@ -17,18 +15,20 @@ export class MarketService {
 		{name: 'apples', price: 3, amplifier : 0},
 		{name: 'iron', price: 20, amplifier : 0}
 	]
-	// marketKeys = Object.keys(this.market);
-	// amlifiersKeys = Object.keys(this.amplifiers);
 
 	public getPrices() {
-		return {
-			...this.market
+		const result: MarketPiece[] = [];
+		for (let item:MarketPiece in this.market) {
+			result.push({
+				item.name,
+				item.price
+			})
 		}
+		return result;
 	}
 
 	updateMarket() {
 		for (const [index, value] of this.market.entries()) {
-			// this.updatePrice(marketPosition: MarketPiece[])
 			this.market[index].price =+ value.price * value.amplifier/100;
 		}
 	}
