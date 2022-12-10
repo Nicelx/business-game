@@ -1,35 +1,37 @@
-interface MarketPiece {
+export interface MarketPiece {
 	name: string;
 	price: number,
-	amlifier?: number
+	amplifier?: number
 }
 
 
 export class MarketService {
 	constructor() {
-		setTimeout(this.updateMarket, 1000);
+		// setTimeout(this.updateMarket, 1000);
 	}
 	
 
-	market = [
+	private market2: MarketPiece[] = [
 		{name: 'apples', price: 3, amplifier : 0},
-		{name: 'iron', price: 20, amplifier : 0}
+		{name: 'iron', price: 20, amplifier : 1}
 	]
 
 	public getPrices() {
-		const result: MarketPiece[] = [];
-		for (let item:MarketPiece in this.market) {
-			result.push({
-				item.name,
-				item.price
-			})
-		}
-		return result;
+		return [
+			...this.market2
+		]
 	}
 
 	updateMarket() {
-		for (const [index, value] of this.market.entries()) {
-			this.market[index].price =+ value.price * value.amplifier/100;
+		console.log(this.market2);
+		for (const [index, value] of this.market2.entries()) {
+			// console.log('index', index)
+			// console.log('value', value)
+			if (value.amplifier == undefined) return;
+			this.market2[index].price =+ value.price * value.amplifier/100;
+			// console.log('1', this.market[index].price);
+			// console.log('12', this.market);
+			// console.log('2', value.price * value.amplifier/100)
 		}
 	}
 

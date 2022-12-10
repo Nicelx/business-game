@@ -1,5 +1,10 @@
 <div class="price-info">
-	apples: {{market.apples}}
-	iron: {{market.iron}}
+	<ul class="price-info__price-list">
+		<li *ngFor="let item of market" class="price-info__list-item">
+			<span  class="price-info__item">
+				{{ item.name }} = {{ item.price }}$
+			</span>
+		</li>
+	</ul>
 	<button (click)="updateMarket()">Update</button>
 </div>
