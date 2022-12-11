@@ -8,11 +8,12 @@ export interface MarketPiece {
 export class MarketService {
 	constructor() {
 		// setTimeout(this.updateMarket, 1000);
+		this.updateMarket();
 	}
 	
 
 	private market2: MarketPiece[] = [
-		{name: 'apples', price: 3, amplifier : 0},
+		{name: 'apples', price: 3, amplifier : 0, set price(value) {console.log(this)}},
 		{name: 'iron', price: 20, amplifier : 1}
 	]
 

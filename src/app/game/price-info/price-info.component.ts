@@ -15,8 +15,8 @@ export class PriceInfoComponent implements OnInit {
     this.market = this.marketService.getPrices();
   }
 
-  updateMarket() {
-    this.marketService.updateMarket();
-  }
+  // updateMarket() {
+  //   this.marketService.updateMarket();
+  // }
 
 }
