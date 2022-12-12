@@ -7,7 +7,7 @@ import { MarketPiece, MarketService } from './../services/market.service';
   styleUrls: ['./price-info.component.css']
 })
 export class PriceInfoComponent implements OnInit {
-  market:MarketPiece[]  = []
+  market:MarketPiece[]|null  = null
 
   constructor(private marketService: MarketService) { }
 
@@ -15,8 +15,8 @@ export class PriceInfoComponent implements OnInit {
     this.market = this.marketService.getPrices();
   }
 
-  // updateMarket() {
-  //   this.marketService.updateMarket();
-  // }
+  updateMarket() {
+    this.marketService.updateMarket();
+  }
 
 }

@@ -12,28 +12,23 @@ export class MarketService {
 	}
 	
 
-	private market2: MarketPiece[] = [
-		{name: 'apples', price: 3, amplifier : 0, set price(value) {console.log(this)}},
+	private market: MarketPiece[] = [
+		{name: 'apples', price: 3, amplifier : 0},
 		{name: 'iron', price: 20, amplifier : 1}
 	]
 
 	public getPrices() {
 		return [
-			...this.market2
+			...this.market
 		]
 	}
 
 	updateMarket() {
-		console.log(this.market2);
-		for (const [index, value] of this.market2.entries()) {
-			// console.log('index', index)
-			// console.log('value', value)
-			if (value.amplifier == undefined) return;
-			this.market2[index].price =+ value.price * value.amplifier/100;
-			// console.log('1', this.market[index].price);
-			// console.log('12', this.market);
-			// console.log('2', value.price * value.amplifier/100)
-		}
+		this.market.forEach((marketPiece: MarketPiece, index) => {
+			if (marketPiece.amplifier == undefined) return;
+			this.market[index].price = (this.market[index].price + marketPiece.price * (marketPiece.amplifier/100)).toFixed(2);
+		})
+
 	}
 
 	// private updatePrice(marketPiece: MarketPiece): void {
