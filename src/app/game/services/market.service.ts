@@ -1,7 +1,7 @@
 export interface MarketPiece {
 	name: string;
 	price: number;
-	amplifier?: number;
+	amplifier: number;
 }
 
 export class MarketService {
@@ -41,16 +41,8 @@ export class MarketService {
 	// }
 
 	public increaseAmplifier(type: string, amount: number) {
-		// switch (type) {
-		// 	case "apples":
-		// 		this.amplifiers.apples += amount;
-		// 		return;
-		// 	case "iron":
-		// 		this.amplifiers.iron += amount;
-		// 		return;
-		// 	default:
-		// 		return;
-		// }
-		// this.amplifiers;
+		let marketPiece = this.market.find(element => element.name === type);
+		if (!marketPiece) return;
+		marketPiece.amplifier =+ amount;
 	}
 }
