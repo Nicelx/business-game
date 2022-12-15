@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MarketService } from './services/market.service';
+import { PlayerDataService } from './services/player-data.service';
+import { PlayerData } from './interfaces/game.interfaces';
 
 @Component({
   selector: 'app-game',
@@ -12,9 +14,8 @@ export class GameComponent implements OnInit {
   modalType: string = '';
   creatingCost : number = 1;
   gameId : number | null = null
-  
 
-  constructor(private route : ActivatedRoute, private marketService: MarketService) { }
+  constructor(private route : ActivatedRoute, private marketService: MarketService, private playerService: PlayerDataService) { }
 
 
 

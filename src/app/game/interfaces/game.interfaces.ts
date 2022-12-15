@@ -1,6 +1,7 @@
 export interface PlayerData {
-	money: number;
 	playerId: number;
+	playerName : string;
+	money: number;
 	businessUnits: BusinessUnit[];
 }
 

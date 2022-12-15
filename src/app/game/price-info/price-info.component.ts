@@ -11,7 +11,12 @@ export class PriceInfoComponent implements OnInit {
 	marketPrices: MarketPiece[] | null = null;
 	// private subscription : Subscription;
 
-	constructor(private marketService: MarketService) {}
+	constructor(private marketService: MarketService) {
+		setInterval(() => {
+			this.marketService.updateMarket();
+			this.marketPrices = this.marketService.getPrices();
+		}, 1000);
+	}
 
 	ngOnInit(): void {
 		this.marketPrices = this.marketService.getPrices();
@@ -22,9 +27,5 @@ export class PriceInfoComponent implements OnInit {
 
 	updateMarket() {
 		this.marketService.updateMarket();
-		setInterval(() => {
-			this.marketService.updateMarket();
-      this.marketPrices = this.marketService.getPrices();
-		}, 1000);
 	}
 }
