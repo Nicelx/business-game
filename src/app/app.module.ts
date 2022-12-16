@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { BusinessUnitComponent } from './game/business-unit/business-unit.component';
 import { MarketService } from './game/services/market.service';
 import { PriceInfoComponent } from './game/price-info/price-info.component';
+import { GameHeaderComponent } from './game/game-header/game-header.component';
+import { PlayerDataService } from './game/services/player-data.service';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,13 @@ import { PriceInfoComponent } from './game/price-info/price-info.component';
     GameComponent,
     BusinessUnitComponent,
     PriceInfoComponent,
+    GameHeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [MarketService],
+  providers: [MarketService,PlayerDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
