@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BusinessUnit, PlayerData } from "./../interfaces/game.interfaces";
+import { MarketService } from "./market.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class PlayerDataService {
-	constructor() {}
+	constructor(private marketService: MarketService) {}
 
 	playersData: PlayerData[] = [
 		{ playerId: 0, playerName: "player", money: 0, businessUnits: [{
@@ -24,5 +25,9 @@ export class PlayerDataService {
 		const player = this.playersData.find((item) => item.playerId === playerId);
 		if (!player) throw new Error('Player doesnt exist');
 		return player;
+	}
+
+	updatePlayerData() {
+		
 	}
 }

@@ -12,6 +12,10 @@ export class MarketService {
 		{ name: "apples", price: 3, amplifier: 0 },
 		{ name: "iron", price: 20, amplifier: 1 },
 	];
+	private retailMarket: MarketPiece[] = [
+		{ name: "apples", price: 5, amplifier: 0 },
+		{ name: "iron", price: 20, amplifier: 1 },
+	]
 
 	public getPrices() {
 		return [...this.market];
