@@ -5,17 +5,18 @@ export interface MarketPiece {
 }
 
 export class MarketService {
-	constructor() {
-	}
-	
+	constructor() {}
+
 	private market: MarketPiece[] = [
+		{ name: "salary", price: 1, amplifier: 0 },
+		{ name: "rent", price: 1, amplifier: 0 },
 		{ name: "apples", price: 3, amplifier: 0 },
 		{ name: "iron", price: 20, amplifier: 1 },
 	];
 	private retailMarket: MarketPiece[] = [
 		{ name: "apples", price: 5, amplifier: 0 },
 		{ name: "iron", price: 20, amplifier: 1 },
-	]
+	];
 
 	public getPrices() {
 		return [...this.market];
@@ -23,7 +24,7 @@ export class MarketService {
 
 	updateMarket() {
 		if (this.market == undefined) {
-			console.log('market = undefined')
+			console.log("market = undefined");
 			return;
 		}
 		this.market.forEach((marketPiece: MarketPiece, index) => {
@@ -45,8 +46,8 @@ export class MarketService {
 	// }
 
 	public increaseAmplifier(type: string, amount: number) {
-		let marketPiece = this.market.find(element => element.name === type);
+		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
-		marketPiece.amplifier =+ amount;
+		marketPiece.amplifier = +amount;
 	}
 }
