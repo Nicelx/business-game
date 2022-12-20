@@ -1,3 +1,21 @@
+const values = {
+	'apples': {
+		incomeCoefficient : 2,
+		expenseCoefficient: 2,
+		buildingCost: 100,
+	},
+	'rent': {
+		incomeCoefficient: 2,
+		expenseCoefficient: 0.8,
+		buildingCost: 300, 
+	},
+	'iron': {
+		incomeCoefficient: 10,
+		expenseCoefficient: 10,
+		buildingCost: 250,
+	}
+}
+
 export class BusinessUnitsService {
 
 	static calculateIncome() {
@@ -12,5 +30,11 @@ export class BusinessUnitsService {
 		let income = sellingPrice*incomeModifier* incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient
 		return income - expense;
+	}
+
+
+
+	static buildUnit() {
+
 	}
 }
