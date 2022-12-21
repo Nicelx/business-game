@@ -10,6 +10,8 @@ export interface BusinessUnit {
 	type: string;
 }
 
+export type unitType = "apples" | "iron" | "salary" | "retn"
+
 // export interface Market {
 // 	apples: number;
 // 	iron: number

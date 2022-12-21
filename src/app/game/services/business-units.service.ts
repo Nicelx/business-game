@@ -1,3 +1,5 @@
+import { unitType } from "../interfaces/game.interfaces";
+
 const values = {
 	'apples': {
 		incomeCoefficient : 2,
@@ -34,7 +36,8 @@ export class BusinessUnitsService {
 
 
 
-	static buildUnit() {
-
+	static buildUnit(type: unitType) {
+		if (!values[type]) return;
+		return values[type].buildingCost;
 	}
 }
