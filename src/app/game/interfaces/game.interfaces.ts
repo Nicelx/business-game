@@ -7,10 +7,12 @@ export interface PlayerData {
 
 export interface BusinessUnit {
 	unitId : number;
-	type: string;
+	type: unitType;
+	sellingType: sellingType
 }
 
-export type unitType = "apples" | "iron" | "salary" | "retn"
+export type unitType = "apples" | "iron" | "salary" | "rent"
+export type sellingType = "retail" | "market"
 
 // export interface Market {
 // 	apples: number;

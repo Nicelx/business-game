@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BusinessUnit, PlayerData } from "./../interfaces/game.interfaces";
+import { BusinessUnitsService } from "./business-units.service";
 import { MarketService } from "./market.service";
 
 @Injectable({
@@ -27,7 +28,11 @@ export class PlayerDataService {
 		return player;
 	}
 
-	updatePlayerData() {
-		
+	updatePlayerMoney() {
+		const playerRef = this.playersData[0];
+		if (!playerRef) return;
+		playerRef.businessUnits.forEach(unit => {
+			console.log('income', BusinessUnitsService.calculateIncome(unit.type)
+		})
 	}
 }

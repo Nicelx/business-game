@@ -1,4 +1,5 @@
 import { unitType } from "../interfaces/game.interfaces";
+import { MarketService } from "./market.service";
 
 const values = {
 	'apples': {
@@ -19,25 +20,40 @@ const values = {
 }
 
 export class BusinessUnitsService {
+	constructor(private marketService: MarketService) {
 
-	static calculateIncome() {
+	}
+
+
+	public calculateIncome(unitType: unitType) {
 		// prior calculation. must be flexible and simple formula. i want it operate with parameters and constant only!!!
-		const sellingPrice = 1;
-		const incomeModifier = 1; // traits, bonuses
-		const expenseModifier = 1; // traits, bonuses
-		const incomeCoefficient = 1; // determine unit type difference of gross production
-		const expenseCoefficient = 1;
-		const supplyPrice = 1*1*1; // sum of different supply values;
+		let sellingPrice = 1;
+		let incomeModifier = 1; // traits, bonuses
+		let expenseModifier = 1; // traits, bonuses
+		let incomeCoefficient = 1; // determine unit type difference of gross production
+		let expenseCoefficient = 1;
+		let supplyPrice = 1*1*1; // sum of different supply values;
+		//
+
+
+
+		let prices = this.marketService.getPrices();
+		let retailPrices = this.marketService.getRetailPrices();
+
+		sellingPrice
 
 		let income = sellingPrice*incomeModifier* incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient
+
+
+
 		return income - expense;
 	}
 
 
 
-	static buildUnit(type: unitType) {
-		if (!values[type]) return;
-		return values[type].buildingCost;
+	public buildUnit(type: unitType) {
+		// if (!values[type]) return;
+		// return values[type].buildingCost;
 	}
 }

@@ -1,5 +1,7 @@
+import { unitType } from "../interfaces/game.interfaces";
+
 export interface MarketPiece {
-	name: string;
+	name: unitType;
 	price: number;
 	amplifier: number;
 }
@@ -20,6 +22,10 @@ export class MarketService {
 
 	public getPrices() {
 		return [...this.market];
+	}
+
+	public getRetailPrices() {
+		return [...this.retailMarket]
 	}
 
 	updateMarket() {
