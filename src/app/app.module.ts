@@ -11,6 +11,7 @@ import { MarketService } from './game/services/market.service';
 import { PriceInfoComponent } from './game/price-info/price-info.component';
 import { GameHeaderComponent } from './game/game-header/game-header.component';
 import { PlayerDataService } from './game/services/player-data.service';
+import { BusinessUnitsService } from './game/services/business-units.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { PlayerDataService } from './game/services/player-data.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [MarketService,PlayerDataService],
+  providers: [MarketService,PlayerDataService, BusinessUnitsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

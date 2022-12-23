@@ -7,12 +7,15 @@ import { MarketService } from "./market.service";
 	providedIn: "root",
 })
 export class PlayerDataService {
-	constructor(private marketService: MarketService) {}
+	constructor(private marketService: MarketService, private businessUnitsService : BusinessUnitsService) {
+		
+	}
 
 	playersData: PlayerData[] = [
 		{ playerId: 0, playerName: "player", money: 0, businessUnits: [{
 			unitId: 0,
-			type: 'apples'
+			type: 'apples',
+			sellingType: 'retail',
 		}] },
 	];
 
@@ -32,7 +35,7 @@ export class PlayerDataService {
 		const playerRef = this.playersData[0];
 		if (!playerRef) return;
 		playerRef.businessUnits.forEach(unit => {
-			console.log('income', BusinessUnitsService.calculateIncome(unit.type)
+			console.log('income', this.businessUnitsService.calculateIncome(unit))
 		})
 	}
 }

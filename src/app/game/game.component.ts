@@ -15,7 +15,9 @@ export class GameComponent implements OnInit {
   creatingCost : number = 1;
   gameId : number | null = null
 
-  constructor(private route : ActivatedRoute, private marketService: MarketService, private playerService: PlayerDataService) { }
+  constructor(private route : ActivatedRoute, private marketService: MarketService, private playerService: PlayerDataService) {
+      playerService.updatePlayerMoney();
+   }
 
 
 
@@ -28,5 +30,7 @@ export class GameComponent implements OnInit {
     this.isModalVisible = true
     this.modalType = 'Добыча'
   }
+
+
 
 }
