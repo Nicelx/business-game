@@ -4,28 +4,23 @@ export interface MarketPiece {
 	name: unitType;
 	price: number;
 	amplifier: number;
+	productionPrice?: number;
+	retailPrice?: number;
+	retailAmplifier?: number;
 }
 
 export class MarketService {
 	constructor() {}
 
 	private market: MarketPiece[] = [
-		{ name: "salary", price: 1, amplifier: 0 },
-		{ name: "rent", price: 1, amplifier: 0 },
-		{ name: "apples", price: 3, amplifier: 0 },
-		{ name: "iron", price: 20, amplifier: 1 },
-	];
-	private retailMarket: MarketPiece[] = [
-		{ name: "apples", price: 5, amplifier: 0 },
-		{ name: "iron", price: 20, amplifier: 1 },
+		{ name: "salary", price: 1, amplifier: 0  },
+		{ name: "rent", price: 1, amplifier: 0, },
+		{ name: "apples", price: 3, amplifier: 0, productionPrice: 1, retailAmplifier: 0 },
+		{ name: "iron", price: 20, amplifier: 1 , productionPrice: 5},
 	];
 
 	public getPrices() {
 		return [...this.market];
-	}
-
-	public getRetailPrices() {
-		return [...this.retailMarket]
 	}
 
 	updateMarket() {
