@@ -15,7 +15,7 @@ export class MarketService {
 	private market: MarketPiece[] = [
 		{ name: "salary", price: 1, amplifier: 0  },
 		{ name: "rent", price: 1, amplifier: 0, },
-		{ name: "apples", price: 3, amplifier: 0, productionPrice: 1, retailAmplifier: 0 },
+		{ name: "apples", price: 3, amplifier: 0, productionPrice: 1, retailAmplifier: 0, retailPrice: 5 },
 		{ name: "iron", price: 20, amplifier: 1 , productionPrice: 5},
 	];
 

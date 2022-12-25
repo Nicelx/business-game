@@ -35,6 +35,7 @@ export class PlayerDataService {
 		const playerRef = this.playersData[0];
 		if (!playerRef) return;
 		playerRef.businessUnits.forEach(unit => {
+			console.log(unit);
 			console.log('income', this.businessUnitsService.calculateIncome(unit))
 		})
 	}

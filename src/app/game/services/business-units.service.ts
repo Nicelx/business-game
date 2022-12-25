@@ -39,22 +39,29 @@ export class BusinessUnitsService {
 		const { sellingType, type } = unit;
 
 		const findedMarketPiece = prices.find((marketPiece) => {
-			marketPiece.name === unit.type;
+			return marketPiece.name === unit.type;
 		});
+
+		console.log(sellingType);
 
 		if (!findedMarketPiece) return
 
 		if (sellingType === "market") {
 				sellingPrice = findedMarketPiece.price;
+				supplyPrice = findedMarketPiece.productionPrice || 1;
 		}
 
-		if (sellingType === "retail") {
-			sellingPrice = findedMarketPiece?  findedMarketPiece.retailPrice : 1
+		if (sellingType === "retail") { 
+			sellingPrice =  findedMarketPiece.retailPrice || 1;
+			supplyPrice = findedMarketPiece.price || 1;
 		}
 
 		let income = sellingPrice * incomeModifier * incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
 
+
+		console.log(sellingPrice)
+		console.log(supplyPrice);
 		return income - expense;
 	}
 
