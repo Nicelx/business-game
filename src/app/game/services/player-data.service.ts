@@ -18,6 +18,8 @@ export class PlayerDataService {
 			sellingType: 'retail',
 		}] },
 	];
+	moneyChanges : number = 0;
+	
 
 	addBusinessUnit(unit: BusinessUnit, playerId: number) {
 		const player = this.getPlayer(playerId);
@@ -31,12 +33,22 @@ export class PlayerDataService {
 		return player;
 	}
 
+	public getMainPlayer() {
+		return {
+			...this.playersData[0]
+		}
+	}
+
 	updatePlayerMoney() {
-		const playerRef = this.playersData[0];
-		if (!playerRef) return;
-		playerRef.businessUnits.forEach(unit => {
-			console.log(unit);
-			console.log('income', this.businessUnitsService.calculateIncome(unit))
-		})
+		this.playersData.forEach(player => {
+			let moneyChange = 0;
+			player.businessUnits.forEach(bizUnit => {
+				let income = this.businessUnitsService.calculateIncome(bizUnit);
+				if (income === undefined) return;
+				moneyChange += income;
+			})			
+			player.money += moneyChange;
+		})		
+		
 	}
 }

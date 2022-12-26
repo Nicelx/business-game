@@ -65,7 +65,7 @@ export class BusinessUnitsService {
 		return income - expense;
 	}
 
-	public buildUnit(type: unitType) {
+	public getBuildingCost(type: unitType) {
 		// if (!values[type]) return;
 		// return values[type].buildingCost;
 	}
