@@ -20,13 +20,6 @@ export class PlayerDataService {
 	];
 	moneyChanges : number = 0;
 	
-
-	addBusinessUnit(unit: BusinessUnit, playerId: number) {
-		const player = this.getPlayer(playerId);
-		if (!player) return;
-		player.businessUnits.push(unit);
-	}
-
 	getPlayer(playerId: number) {
 		const player = this.playersData.find((item) => item.playerId === playerId);
 		if (!player) throw new Error('Player doesnt exist');
@@ -50,5 +43,9 @@ export class PlayerDataService {
 			player.money += moneyChange;
 		})		
 		
+	}
+
+	public addBusinessUnit(unit: BusinessUnit, playerId: number) {
+		this.playersData[playerId].businessUnits.push(unit);
 	}
 }

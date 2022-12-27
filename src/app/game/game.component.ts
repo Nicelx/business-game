@@ -31,6 +31,9 @@ export class GameComponent implements OnInit {
     this.modalType = 'Добыча'
   }
 
+  onGatherAdd() {
+    this.playerService.addBusinessUnit({unitId: 0, sellingType: 'retail', type: 'apples'}, 0)
+  }
 
 
 }
