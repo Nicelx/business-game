@@ -14,6 +14,12 @@ export class GameComponent implements OnInit {
   modalType: string = '';
   creatingCost : number = 1;
   gameId : number | null = null
+  activePlayer: PlayerData = {
+    playerId: 0,
+	playerName : '',
+	money: 0,
+	businessUnits: []
+  }
 
   constructor(private route : ActivatedRoute, private marketService: MarketService, private playerService: PlayerDataService) {
       playerService.updatePlayerMoney();
@@ -33,6 +39,7 @@ export class GameComponent implements OnInit {
 
   onGatherAdd() {
     this.playerService.addBusinessUnit({unitId: 0, sellingType: 'retail', type: 'apples'}, 0)
+    this.marketService.changeAmplifier('apples', 1)
   }
 
 

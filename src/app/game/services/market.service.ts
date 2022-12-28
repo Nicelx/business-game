@@ -16,7 +16,7 @@ export class MarketService {
 		{ name: "salary", price: 1, amplifier: 0  },
 		{ name: "rent", price: 1, amplifier: 0, },
 		{ name: "apples", price: 3, amplifier: 0, productionPrice: 1, retailAmplifier: 0, retailPrice: 5 },
-		{ name: "iron", price: 20, amplifier: 1 , productionPrice: 5},
+		{ name: "iron", price: 20, amplifier: 0 , productionPrice: 5},
 	];
 
 	public getPrices() {
@@ -39,14 +39,8 @@ export class MarketService {
 		});
 	}
 
-	// private updatePrice(marketPiece: MarketPiece): void {
 
-	// 		marketPiece.price = marketPiece.price + Number((marketPiece.price * marketPiece.amplifier) / 100);
-
-	// 	return;
-	// }
-
-	public increaseAmplifier(type: string, amount: number) {
+	public changeAmplifier(type: string, amount: number) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
 		marketPiece.amplifier = +amount;

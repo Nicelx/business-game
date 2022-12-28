@@ -2,8 +2,10 @@
 <div>
 	<app-price-info></app-price-info>
 
-	<div class ="business">
-		
+	<div  class ="business">
+		<app-business-unit *ngFor="let item of activePlayer.businessUnits">
+			{{item.type}}
+		</app-business-unit>
 	</div>
 
 	<div class = "categories">
