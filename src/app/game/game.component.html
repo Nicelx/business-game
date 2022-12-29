@@ -2,37 +2,39 @@
 <div>
 	<app-price-info></app-price-info>
 
-	<div  class ="business">
-		<app-business-unit *ngFor="let item of activePlayer.businessUnits">
-			{{item.type}}
-		</app-business-unit>
+	<div class="business" *ngFor="let businessUnit of activePlayer.businessUnits" >
+		<app-business-unit [bizUnit] = "businessUnit"></app-business-unit>
+		<!-- <p>{{businessUnit.type}}</p> -->
 	</div>
 
-	<div class = "categories">
-		<ul class = "categories__list">
+	<div class="categories">
+		<ul class="categories__list">
 			<button (click)="onGatherAdd()">добавить биз юнит</button>
-			<li class = "categories__item"><button class = "categories__button" (click)="onGatherOpen()">добыча
-			</button></li>	
-			<li class = "categories__item"><button class = "categories__button">переработка</button></li>	
-			<li class = "categories__item"><button class = "categories__button">ритэйл</button></li>	
-			<li class = "categories__item"><button class = "categories__button">сервисы</button></li>	
-			<li class = "categories__item"><button class = "categories__button">удалить</button></li>	
-
+			<li class="categories__item">
+				<button class="categories__button" (click)="onGatherOpen()">добыча</button>
+			</li>
+			<li class="categories__item">
+				<button class="categories__button">переработка</button>
+			</li>
+			<li class="categories__item"><button class="categories__button">ритэйл</button></li>
+			<li class="categories__item"><button class="categories__button">сервисы</button></li>
+			<li class="categories__item"><button class="categories__button">удалить</button></li>
 		</ul>
 	</div>
-	<div class = "competitors">
-		id = {{gameId}}
+	<div class="competitors">
+		id = {{ gameId }}
 		конкуренты тут
 	</div>
 
-	<div class = "creating-edition">
-		<h3>{{modalType}}</h3>	
+	<div class="creating-edition">
+		<h3>{{ modalType }}</h3>
 		<select name="" id="">
 			<option value="apple">яблоки</option>
 			<option value="iron">железо</option>
 			<option value="oil">нефть</option>
 		</select>
-		<span *ngIf = "creatingCost > 0" class = 'creating-edition__creating-cost'>{{creatingCost}}$</span>
+		<span *ngIf="creatingCost > 0" class="creating-edition__creating-cost"
+			>{{ creatingCost }}$</span
+		>
 	</div>
-
 </div>
