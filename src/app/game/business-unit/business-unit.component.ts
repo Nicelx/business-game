@@ -11,6 +11,8 @@ export class BusinessUnitComponent implements OnInit {
 		unitId: 0,
 		type: "apples",
 		sellingType: "retail",
+		earned: 0,
+		incomePerTick: 0
 	};
 
 	constructor() {}

@@ -16,6 +16,8 @@ export class PlayerDataService {
 			unitId: 0,
 			type: 'apples',
 			sellingType: 'retail',
+			earned: 0,
+			incomePerTick: 0,
 		}] },
 	];
 	moneyChanges : number = 0;
@@ -35,12 +37,16 @@ export class PlayerDataService {
 	updatePlayerMoney() {
 		this.playersData.forEach(player => {
 			let moneyChange = 0;
-			player.businessUnits.forEach(bizUnit => {
+			player.businessUnits.forEach((bizUnit, index) => {
 				let income = this.businessUnitsService.calculateIncome(bizUnit);
 				if (income === undefined) return;
+				// console.log('income type = ', typeof income);
+				
 				moneyChange += income;
+				bizUnit.incomePerTick = +income.toFixed(2);
+				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 			})			
-			player.money += moneyChange;
+			player.money = +(player.money + moneyChange).toFixed(2);
 		})		
 		
 	}

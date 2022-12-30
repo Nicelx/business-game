@@ -8,7 +8,9 @@ export interface PlayerData {
 export interface BusinessUnit {
 	unitId : number;
 	type: unitType;
-	sellingType: sellingType
+	sellingType: sellingType;
+	earned: number;
+	incomePerTick: number;
 }
 
 export type unitType = "apples" | "iron" | "salary" | "rent"
