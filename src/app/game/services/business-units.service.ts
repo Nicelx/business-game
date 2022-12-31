@@ -7,16 +7,19 @@ const values = {
 		incomeCoefficient: 2,
 		expenseCoefficient: 2,
 		buildingCost: 100,
+		amplifierWeight : 1000
 	},
 	rent: {
 		incomeCoefficient: 2,
 		expenseCoefficient: 0.8,
 		buildingCost: 300,
+		amplifierWeight : 900
 	},
 	iron: {
 		incomeCoefficient: 10,
 		expenseCoefficient: 10,
 		buildingCost: 250,
+		amplifierWeight : 1200
 	},
 };
 
@@ -68,5 +71,9 @@ export class BusinessUnitsService {
 	public getBuildingCost(type: unitType) {
 		// if (!values[type]) return;
 		// return values[type].buildingCost;
+	}
+
+	public getAmplifierWeight(type : unitType) {
+		return values[keyof type]
 	}
 }
