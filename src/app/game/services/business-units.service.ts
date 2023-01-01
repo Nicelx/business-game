@@ -21,6 +21,9 @@ const values = {
 		buildingCost: 250,
 		amplifierWeight : 1200
 	},
+	salary: {
+
+	}
 };
 
 @Injectable()
@@ -73,7 +76,8 @@ export class BusinessUnitsService {
 		// return values[type].buildingCost;
 	}
 
-	public getAmplifierWeight(type : unitType) {
-		return values[keyof type]
+	public getAmplifierWeight(type : keyof unitType) {
+		const weight = values[type].amplifierWeight;
+		return weight;
 	}
 }
