@@ -13,6 +13,7 @@ export class GameHeaderComponent implements OnInit {
 		playerName: "",
 		money: 0,
 		businessUnits: [],
+		playerIncomePerTick: 0
 	};
 
 	constructor(private playerService: PlayerDataService) {

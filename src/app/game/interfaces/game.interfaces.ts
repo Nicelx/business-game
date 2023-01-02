@@ -3,6 +3,7 @@ export interface PlayerData {
 	playerName : string;
 	money: number;
 	businessUnits: BusinessUnit[];
+	playerIncomePerTick: number;
 }
 
 export interface BusinessUnit {

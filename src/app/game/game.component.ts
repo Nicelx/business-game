@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
 		playerName: "",
 		money: 0,
 		businessUnits: [],
+		playerIncomePerTick: 0
 	};
 
 	constructor(

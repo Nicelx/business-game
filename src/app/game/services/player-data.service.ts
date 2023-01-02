@@ -7,48 +7,56 @@ import { MarketService } from "./market.service";
 	providedIn: "root",
 })
 export class PlayerDataService {
-	constructor(private marketService: MarketService, private businessUnitsService : BusinessUnitsService) {
-		
-	}
+	constructor(
+		private marketService: MarketService,
+		private businessUnitsService: BusinessUnitsService
+	) {}
 
 	playersData: PlayerData[] = [
-		{ playerId: 0, playerName: "player", money: 0, businessUnits: [{
-			unitId: 0,
-			type: 'apples',
-			sellingType: 'retail',
-			earned: 0,
-			incomePerTick: 0,
-		}] },
+		{
+			playerId: 0,
+			playerName: "player",
+			money: 0,
+			businessUnits: [
+				{
+					unitId: 0,
+					type: "apples",
+					sellingType: "retail",
+					earned: 0,
+					incomePerTick: 0,
+				},
+			],
+			playerIncomePerTick: 0
+		},
 	];
-	moneyChanges : number = 0;
-	
+	moneyChanges: number = 0;
+
 	getPlayer(playerId: number) {
 		const player = this.playersData.find((item) => item.playerId === playerId);
-		if (!player) throw new Error('Player doesnt exist');
+		if (!player) throw new Error("Player doesnt exist");
 		return player;
 	}
 
 	public getMainPlayer() {
 		return {
-			...this.playersData[0]
-		}
+			...this.playersData[0],
+		};
 	}
 
 	updatePlayerMoney() {
-		this.playersData.forEach(player => {
+		this.playersData.forEach((player) => {
 			let moneyChange = 0;
 			player.businessUnits.forEach((bizUnit, index) => {
 				let income = this.businessUnitsService.calculateIncome(bizUnit);
 				if (income === undefined) return;
-				// console.log('income type = ', typeof income);
-				
+
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
-			})			
+			});
 			player.money = +(player.money + moneyChange).toFixed(2);
-		})		
-		
+			player.playerIncomePerTick = +moneyChange.toFixed(2)
+		});
 	}
 
 	public addBusinessUnit(unit: BusinessUnit, playerId: number) {

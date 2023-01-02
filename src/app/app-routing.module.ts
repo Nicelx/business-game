@@ -5,7 +5,7 @@ import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   { path: "", component : AppComponent, pathMatch: "full" },
-  {path: 'game/:gameId', component: GameComponent }
+  {path: 'game/:gameId', pathMatch: 'full', component: GameComponent }
 ]; 
 
 @NgModule({

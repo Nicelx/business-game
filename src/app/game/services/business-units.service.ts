@@ -48,8 +48,6 @@ export class BusinessUnitsService {
 			return marketPiece.name === unit.type;
 		});
 
-		console.log(sellingType);
-
 		if (!findedMarketPiece) return
 
 		if (sellingType === "market") {
@@ -65,9 +63,6 @@ export class BusinessUnitsService {
 		let income = sellingPrice * incomeModifier * incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
 
-
-		console.log(sellingPrice)
-		console.log(supplyPrice);
 		return income - expense;
 	}
 
@@ -77,7 +72,7 @@ export class BusinessUnitsService {
 	}
 
 	public getAmplifierWeight(type : keyof unitType) {
-		const weight = values[type].amplifierWeight;
-		return weight;
+		// const weight = values[type].amplifierWeight;
+		// return weight;
 	}
 }
