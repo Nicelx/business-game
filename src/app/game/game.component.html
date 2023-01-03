@@ -25,7 +25,9 @@
 		конкуренты тут
 	</div>
 
-	<div class="creating-edition">
+	<app-creation-model *ngIf = "isModalVisible"></app-creation-model>
+
+	<!-- <div class="creating-edition">
 		<h3>{{ modalType }}</h3>
 		<select name="" id="">
 			<option value="apple">яблоки</option>
@@ -35,5 +37,5 @@
 		<span *ngIf="creatingCost > 0" class="creating-edition__creating-cost"
 			>{{ creatingCost }}$</span
 		>
-	</div>
+	</div> -->
 </div>

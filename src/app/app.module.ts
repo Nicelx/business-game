@@ -12,6 +12,7 @@ import { PriceInfoComponent } from './game/price-info/price-info.component';
 import { GameHeaderComponent } from './game/game-header/game-header.component';
 import { PlayerDataService } from './game/services/player-data.service';
 import { BusinessUnitsService } from './game/services/business-units.service';
+import { CreationModelComponent } from './game/creation-model/creation-model.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BusinessUnitsService } from './game/services/business-units.service';
     BusinessUnitComponent,
     PriceInfoComponent,
     GameHeaderComponent,
+    CreationModelComponent,
   ],
   imports: [
     BrowserModule,
