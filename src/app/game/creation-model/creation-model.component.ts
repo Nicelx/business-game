@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MarketService } from '../services/market.service';
+import { PlayerDataService } from '../services/player-data.service';
 import { PlayerData } from './../interfaces/game.interfaces';
 
 @Component({
@@ -10,7 +12,7 @@ export class CreationModelComponent implements OnInit {
 
   activePlayer: PlayerData | null = null;
 
-  constructor() { }
+  constructor(private playerService: PlayerDataService, private marketService: MarketService) { }
 
   ngOnInit(): void {
   }

@@ -8,7 +8,6 @@
 
 	<div class="categories">
 		<ul class="categories__list">
-			<button (click)="onGatherAdd()">добавить биз юнит</button>
 			<li class="categories__item">
 				<button class="categories__button" (click)="onGatherOpen()">добыча</button>
 			</li>
@@ -27,15 +26,4 @@
 
 	<app-creation-model *ngIf = "isModalVisible"></app-creation-model>
 
-	<!-- <div class="creating-edition">
-		<h3>{{ modalType }}</h3>
-		<select name="" id="">
-			<option value="apple">яблоки</option>
-			<option value="iron">железо</option>
-			<option value="oil">нефть</option>
-		</select>
-		<span *ngIf="creatingCost > 0" class="creating-edition__creating-cost"
-			>{{ creatingCost }}$</span
-		>
-	</div> -->
 </div>

@@ -8,22 +8,16 @@ import { PlayerDataService } from "../services/player-data.service";
 	styleUrls: ["./game-header.component.css"],
 })
 export class GameHeaderComponent implements OnInit {
-	player: PlayerData = {
-		playerId: 0,
-		playerName: "",
-		money: 0,
-		businessUnits: [],
-		playerIncomePerTick: 0
-	};
+	player: PlayerData | null = null;
 
 	constructor(private playerService: PlayerDataService) {
-    setInterval(() => {
-      this.playerService.updatePlayerMoney();
-      this.player = playerService.getMainPlayer();
+		setInterval(() => {
+			this.playerService.updatePlayerMoney();
+			this.player = playerService.getMainPlayer();
 		}, 1000);
 	}
 
 	ngOnInit(): void {
-		// this.player = this.playerService.getPlayer(0);
+		this.player = this.playerService.getPlayer(0);
 	}
 }
