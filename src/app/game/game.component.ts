@@ -40,5 +40,8 @@ export class GameComponent implements OnInit {
 		this.isModalVisible = true;
 		this.modalType = "Добыча";
 	}
+	onClose() {
+		this.isModalVisible = false;
+	}
 
 }

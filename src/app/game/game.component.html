@@ -24,6 +24,6 @@
 		конкуренты тут
 	</div>
 
-	<app-creation-model *ngIf = "isModalVisible"></app-creation-model>
+	<app-creation-model *ngIf = "isModalVisible" (close)="onClose()"></app-creation-model>
 
 </div>

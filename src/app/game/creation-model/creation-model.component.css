@@ -1,0 +1,40 @@
+.create-model {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	width: 400px;
+	height: 350px;
+	background-color: salmon;
+	color: white;
+	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	padding: 25px 20px 20px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.create-model__title {
+}
+
+.create-model__close {
+	position: absolute;
+	cursor: pointer;
+	top: 5px;
+	right: 15px;
+	width: 36px;
+}
+.create-model__close-icon:before,
+.create-model__close-icon:before {
+	width: 100px;
+	height: 2px;
+	background-color: black;
+}
+
+.create-model__close-icon:before {
+	transform: rotate(45deg);
+}
+.create-model__close-icon:after {
+	transform: rotate(-45deg);
+}
