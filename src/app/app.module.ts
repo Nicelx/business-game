@@ -13,6 +13,7 @@ import { GameHeaderComponent } from './game/game-header/game-header.component';
 import { PlayerDataService } from './game/services/player-data.service';
 import { BusinessUnitsService } from './game/services/business-units.service';
 import { CreationModelComponent } from './game/creation-model/creation-model.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CreationModelComponent } from './game/creation-model/creation-model.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [MarketService,PlayerDataService, BusinessUnitsService],
   bootstrap: [AppComponent]
