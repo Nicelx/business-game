@@ -1,6 +1,6 @@
 <div class = 'create-model'>
 	<h2 class = 'create-model__title'>Building business unit</h2>
-	<select [(ngModel)] = 'options'>
+	<select #selection (change)="onOptionSelected(selection.value)">
 		<option value=""></option>
 		<option value="apples">Apples</option>
 		<option value="iron">Iron</option>
