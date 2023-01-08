@@ -15,6 +15,11 @@ export interface BusinessUnit {
 }
 
 export type unitType = "apples" | "iron" | "salary" | "rent"
+export const isUnitType = (value: string) => {
+	if (value === 'apples' || value === 'iron' || value === 'salary' || value === 'rent') return true;
+	else return false;
+}
+
 export type sellingType = "retail" | "market"
 
 // export interface Market {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MarketService } from '../services/market.service';
 import { PlayerDataService } from '../services/player-data.service';
-import { PlayerData, unitType } from './../interfaces/game.interfaces';
+import { isUnitType, PlayerData, unitType } from './../interfaces/game.interfaces';
 // import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
@@ -14,9 +14,6 @@ export class CreationModelComponent implements OnInit {
   activePlayer: PlayerData | null = null;
   selectedType: unitType = 'apples';
 
-  // optionForm = new FormGroup({
-
-  // })
   
   @Output() close: EventEmitter<any> = new EventEmitter();
 
@@ -35,10 +32,10 @@ export class CreationModelComponent implements OnInit {
 		this.marketService.changeAmplifier("apples", 1);
   }
 
-  onOptionSelected(value: string) {
-    if (typeof this.selectedType )
-    this.selectedType = value;
-    console.log(this.selectedType);
+  onOptionSelected(value: string | unitType) {
+    if (!isUnitType(value)) return;
+      this.selectedType = value;
+    console.log('typeof = ', typeof this.selectedType);
   }
 
 }
