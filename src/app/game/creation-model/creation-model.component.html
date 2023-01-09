@@ -1,11 +1,10 @@
 <div class = 'create-model'>
 	<h2 class = 'create-model__title'>Building business unit</h2>
 	<select #selection (change)="onOptionSelected(selection.value)">
-		<option value=""></option>
 		<option value="apples">Apples</option>
 		<option value="iron">Iron</option>
 	</select>
-	<span>creation cost: </span>
+	<span>creation cost: {{buildingCost}}</span>
 	<button (click)="onCreate()">Build</button>
 	<div class = 'create-model__close' (click)="onModalCancel()">
 		<span>Cancel</span>	

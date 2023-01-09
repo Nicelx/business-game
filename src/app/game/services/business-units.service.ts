@@ -22,7 +22,10 @@ const values = {
 		amplifierWeight : 1200
 	},
 	salary: {
-
+		incomeCoefficient: 0,
+		expenseCoefficient: 0,
+		buildingCost: 0,
+		amplifierWeight : 0
 	}
 };
 
@@ -67,8 +70,9 @@ export class BusinessUnitsService {
 	}
 
 	public getBuildingCost(type: unitType) {
-		// if (!values[type]) return;
-		// return values[type].buildingCost;
+		if (!values[type]) return 0;
+		return values[type].buildingCost;
+
 	}
 
 	public getAmplifierWeight(type : keyof unitType) {
