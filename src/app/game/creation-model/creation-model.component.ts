@@ -39,7 +39,9 @@ export class CreationModelComponent implements OnInit {
 			},
 			0
 		);
-		this.marketService.changeAmplifier("apples", 1);
+		this.marketService.changeAmplifier(this.selectedType, 1);
+		console.log(this.playerService.getMainPlayer())
+
 	}
 
 	onOptionSelected(value: unitType | string) {
@@ -47,5 +49,10 @@ export class CreationModelComponent implements OnInit {
 			return
 		this.selectedType = value;
 		this.buildingCost = this.businessUnitService.getBuildingCost(value);
+	}
+
+	onSellingTypeSelection(value: string) {
+		if (!(value === 'retail' || value === "market")) return;
+		this.sellingType = value;
 	}
 }

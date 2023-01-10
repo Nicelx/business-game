@@ -1,0 +1,22 @@
+.business-unit {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	background-color: darkolivegreen;
+	color: white;
+	border-radius: 3px;
+	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	align-items: center;
+}
+.business-unit__statistic-block {
+	display: flex;
+	gap: 10px;
+}
+
+.business-unit__income--red {
+	color: red;
+}
+.business-unit__income--green {
+	color: green;
+}

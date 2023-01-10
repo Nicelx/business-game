@@ -4,6 +4,11 @@
 		<option value="apples">Apples</option>
 		<option value="iron">Iron</option>
 	</select>
+	<br>
+	<select #sellingTypeSelection (change)="onSellingTypeSelection(sellingTypeSelection.value)">
+		<option value="retail">Retail</option>
+		<option value="market">Market</option>
+	</select>
 	<span>creation cost: {{buildingCost}}</span>
 	<button (click)="onCreate()">Build</button>
 	<div class = 'create-model__close' (click)="onModalCancel()">
