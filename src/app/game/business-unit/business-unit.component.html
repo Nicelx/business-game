@@ -2,11 +2,8 @@
 	<h3 class="business-unit__header">{{ businessUnit.type }} - {{ businessUnit.sellingType }}</h3>
 	<div class="business-unit__statistic-block">
 		<span
-			class="business-unit__income {{
-				businessUnit.earned > 0
-					? 'business-unit__income--green'
-					: 'business-unit__income--red'
-			}}"
+			class = ""
+			[ngClass]="checkColorClass()"
 			>earned = {{ businessUnit.earned }}</span
 		>
 		<span class="business-unit__income">income = {{ businessUnit.incomePerTick }}</span>

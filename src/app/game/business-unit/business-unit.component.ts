@@ -12,10 +12,15 @@ export class BusinessUnitComponent implements OnInit {
 		type: "apples",
 		sellingType: "retail",
 		earned: 0,
-		incomePerTick: 0
+		incomePerTick: 0,
 	};
 
 	constructor() {}
+
+	checkColorClass() {
+		if (this.businessUnit.incomePerTick > 0) return "business-unit__income--red";
+		else return "business-unit__income--green";
+	}
 
 	ngOnInit(): void {}
 }

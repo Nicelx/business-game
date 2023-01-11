@@ -6,7 +6,7 @@
 	color: white;
 	border-radius: 3px;
 	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
-	padding: 10px;
+	padding: 5px 8px;
 	align-items: center;
 }
 .business-unit__statistic-block {
@@ -15,8 +15,9 @@
 }
 
 .business-unit__income--red {
-	color: red;
+	text-shadow:2px 2px 3px red;
 }
 .business-unit__income--green {
+	text-shadow:2px 2px 2px green;
 	color: green;
 }
