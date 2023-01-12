@@ -36,13 +36,24 @@ export class MarketService {
 					marketPiece.price * (marketPiece.amplifier / 100)
 				).toFixed(2)
 			);
+			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier)
+			// retail
+			if (marketPiece.retailPrice && marketPiece.retailAmplifier ) {
+				this.market[index].retailAmplifier = this.fadeAmplifier(marketPiece.retailAmplifier)
+				this.market[index].retailPrice = Number(marketPiece.retailPrice + marketPiece.retailPrice * (marketPiece.retailAmplifier / 100))
+			}
 		});
 	}
 
+	fadeAmplifier(amplifier: number) {
+		return amplifier * 0.99;
+	}
 
-	public changeAmplifier(type: string, amount: number) {
+
+	public changeAmplifier(type: string, amount: number, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
-		marketPiece.amplifier = +amount;
+		if (sellingType === 'retail') marketPiece.amplifier = +amount;
+		else marketPiece.retailAmplifier = +amount;
 	}
 }

@@ -20,7 +20,11 @@ export class CreationModelComponent implements OnInit {
 
 	constructor(private playerService: PlayerDataService, private marketService: MarketService, private businessUnitService: BusinessUnitsService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.selectedType = 'apples';
+		this.sellingType = 'retail';
+		this.buildingCost = this.businessUnitService.getBuildingCost('apples');
+	}
 
 	onModalCancel() {
 		this.close.emit(true);
@@ -39,7 +43,7 @@ export class CreationModelComponent implements OnInit {
 			},
 			0
 		);
-		this.marketService.changeAmplifier(this.selectedType, 1);
+		this.marketService.changeAmplifier(this.selectedType, 1, this.sellingType);
 		console.log(this.playerService.getMainPlayer())
 
 	}

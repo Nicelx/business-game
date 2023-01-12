@@ -17,9 +17,14 @@ export class BusinessUnitComponent implements OnInit {
 
 	constructor() {}
 
-	checkColorClass() {
-		if (this.businessUnit.incomePerTick > 0) return "business-unit__income--red";
-		else return "business-unit__income--green";
+	checkEarnedColorClass() {
+		if (this.businessUnit.earned > 0) return "business-unit__income--green";
+		else return "business-unit__income--red";
+	}
+
+	checkIncomeColorClass() {
+		if (this.businessUnit.incomePerTick > 0) return "business-unit__income--green";
+		else return "business-unit__income--red";
 	}
 
 	ngOnInit(): void {}

@@ -3,9 +3,9 @@
 	<div class="business-unit__statistic-block">
 		<span
 			class = ""
-			[ngClass]="checkColorClass()"
-			>earned = {{ businessUnit.earned }}</span
+			[ngClass]="checkEarnedColorClass()"
+			>earned: {{ businessUnit.earned }}</span
 		>
-		<span class="business-unit__income">income = {{ businessUnit.incomePerTick }}</span>
+		<span class="business-unit__income" [ngClass] = "checkIncomeColorClass()">income: {{ businessUnit.incomePerTick }}</span>
 	</div>
 </div>
