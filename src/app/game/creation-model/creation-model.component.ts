@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { MarketService } from "../services/market.service";
 import { PlayerDataService } from "../services/player-data.service";
 import { PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
-// import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { BusinessUnitsService } from './../services/business-units.service';
 
 @Component({

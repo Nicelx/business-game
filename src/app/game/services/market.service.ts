@@ -13,10 +13,17 @@ export class MarketService {
 	constructor() {}
 
 	private market: MarketPiece[] = [
-		{ name: "salary", price: 1, amplifier: 0  },
-		{ name: "rent", price: 1, amplifier: 0, },
-		{ name: "apples", price: 3, amplifier: 0, productionPrice: 1, retailAmplifier: 0, retailPrice: 5 },
-		{ name: "iron", price: 20, amplifier: 0 , productionPrice: 5},
+		{ name: "salary", price: 1, amplifier: 0 },
+		{ name: "rent", price: 1, amplifier: 0 },
+		{
+			name: "apples",
+			price: 3,
+			amplifier: 0,
+			productionPrice: 1,
+			retailAmplifier: 0,
+			retailPrice: 5,
+		},
+		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5 },
 	];
 
 	public getPrices() {
@@ -36,11 +43,18 @@ export class MarketService {
 					marketPiece.price * (marketPiece.amplifier / 100)
 				).toFixed(2)
 			);
-			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier)
+			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier);
 			// retail
-			if (marketPiece.retailPrice && marketPiece.retailAmplifier ) {
-				this.market[index].retailAmplifier = this.fadeAmplifier(marketPiece.retailAmplifier)
-				this.market[index].retailPrice = Number(marketPiece.retailPrice + marketPiece.retailPrice * (marketPiece.retailAmplifier / 100))
+			if (marketPiece.retailPrice && marketPiece.retailAmplifier) {
+				this.market[index].retailAmplifier = this.fadeAmplifier(
+					marketPiece.retailAmplifier
+				);
+				this.market[index].retailPrice = Number(
+					(
+						marketPiece.retailPrice +
+						marketPiece.retailPrice * (-marketPiece.retailAmplifier / 100)
+					).toFixed(2)
+				);
 			}
 		});
 	}
@@ -49,11 +63,13 @@ export class MarketService {
 		return amplifier * 0.99;
 	}
 
-
 	public changeAmplifier(type: string, amount: number, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
-		if (sellingType === 'retail') marketPiece.amplifier = +amount;
-		else marketPiece.retailAmplifier = +amount;
+		// retail is increasing retailAmpl and decreaseing amplifier
+		if (sellingType === "retail") {
+			marketPiece.retailAmplifier = +amount;
+			marketPiece.amplifier = +amount;
+		} else marketPiece.amplifier = +amount;
 	}
 }
