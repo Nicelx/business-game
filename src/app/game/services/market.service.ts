@@ -49,18 +49,26 @@ export class MarketService {
 				this.market[index].retailAmplifier = this.fadeAmplifier(
 					marketPiece.retailAmplifier
 				);
-				this.market[index].retailPrice = Number(
-					(
-						marketPiece.retailPrice +
-						marketPiece.retailPrice * (-marketPiece.retailAmplifier / 100)
-					).toFixed(2)
-				);
+				this.market[index].retailPrice =
+					marketPiece.retailPrice +
+					marketPiece.retailPrice * (-marketPiece.retailAmplifier / 100);
+					console.log('before', this.market[index])
+					this.prosperMarket(this.market[index]);
+					console.log('after', this.market[index])
 			}
 		});
 	}
 
 	fadeAmplifier(amplifier: number) {
 		return amplifier * 0.99;
+	}
+
+	// gradually increasing retail price aka inflation.
+	prosperMarket(piece: MarketPiece) {
+		if (!piece.retailAmplifier || !piece.retailPrice) return;
+		if (piece.retailAmplifier > 0) {
+			piece.retailPrice += piece.retailPrice * 0.003;
+		}
 	}
 
 	public changeAmplifier(type: string, amount: number, sellingType: string) {
