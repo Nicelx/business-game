@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { MarketPiece, MarketService } from "./../services/market.service";
-import { interval } from "rxjs";
 
 @Component({
 	selector: "app-price-info",
@@ -9,7 +8,7 @@ import { interval } from "rxjs";
 })
 export class PriceInfoComponent implements OnInit {
 	marketPrices: MarketPiece[] | null = null;
-	// private subscription : Subscription;
+	retailPrices: MarketPiece[] | null = null;
 
 	constructor(private marketService: MarketService) {
 		
@@ -19,19 +18,16 @@ export class PriceInfoComponent implements OnInit {
 		setInterval(() => {
 			this.marketService.updateMarket();
 			this.marketPrices = this.marketService.getPrices();
+			this.retailPrices = this.marketService.getRetailPricesOnly();
 		}, 1000);
-
-		// this.marketPrices = this.marketService.getPrices();
-		// let time = interval(1000);
-		// console.log(time);
-		// this.subscription = time.subscribe(this.marketService.updateMarket);
+		
 	}
 
 	updateMarket() {
 		this.marketService.updateMarket();
 	}
 
-	isRetailPriceExist(piece: MarketPiece) {
-		return piece.retailPrice
-	}
+	// isRetailPriceExist(piece: MarketPiece) {
+	// 	return piece.retailPrice
+	// }
 }

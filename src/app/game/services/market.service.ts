@@ -30,6 +30,14 @@ export class MarketService {
 		return [...this.market];
 	}
 
+	public getRetailPricesOnly() {
+		let retailPieces = []
+		retailPieces = this.market.filter(marketPiece => {
+			return marketPiece.retailPrice;
+		})
+		return retailPieces;
+	}
+
 	updateMarket() {
 		if (this.market == undefined) {
 			console.log("market = undefined");
@@ -66,7 +74,7 @@ export class MarketService {
 	// gradually increasing retail price aka inflation.
 	prosperMarket(piece: MarketPiece) {
 		if (!piece.retailAmplifier || !piece.retailPrice) return;
-		if (piece.retailAmplifier > 0) {
+		if (piece.retailAmplifier >= 0) {
 			piece.retailPrice += piece.retailPrice * 0.003;
 		}
 	}
