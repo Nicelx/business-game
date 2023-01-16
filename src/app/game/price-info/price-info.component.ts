@@ -26,8 +26,4 @@ export class PriceInfoComponent implements OnInit {
 	updateMarket() {
 		this.marketService.updateMarket();
 	}
-
-	// isRetailPriceExist(piece: MarketPiece) {
-	// 	return piece.retailPrice
-	// }
 }

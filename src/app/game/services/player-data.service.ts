@@ -62,4 +62,12 @@ export class PlayerDataService {
 	public addBusinessUnit(unit: BusinessUnit, playerId: number) {
 		this.playersData[playerId].businessUnits.push(unit);
 	}
+
+	public deleteBusinessUnit(unitId: number) {
+		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
+			if (bizUnit.unitId === unitId) {
+				this.playersData[0].businessUnits.splice(index, 1);
+			}
+		})
+	}
 }
