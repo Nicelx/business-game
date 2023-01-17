@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BusinessUnit } from "../interfaces/game.interfaces";
+import { PlayerDataService } from './../services/player-data.service';
 
 @Component({
 	selector: "app-business-unit",
@@ -15,7 +16,7 @@ export class BusinessUnitComponent implements OnInit {
 		incomePerTick: 0,
 	};
 
-	constructor() {}
+	constructor(private playerService: PlayerDataService) {}
 
 	checkEarnedColorClass() {
 		if (this.businessUnit.earned > 0) return "business-unit__income--green";
@@ -28,4 +29,8 @@ export class BusinessUnitComponent implements OnInit {
 	}
 
 	ngOnInit(): void {}
+
+	deleteUnit() {
+		this.playerService.deleteBusinessUnit(this.businessUnit.unitId);
+	}
 }

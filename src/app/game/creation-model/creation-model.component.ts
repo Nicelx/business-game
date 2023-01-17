@@ -32,9 +32,11 @@ export class CreationModelComponent implements OnInit {
 	onCreate() {
 		if (!this.sellingType) return;
 		if (!this.selectedType) return;
+		const id = Math.floor(Math.random() * 1000000);
+
 		this.playerService.addBusinessUnit(
 			{
-				unitId: 0,
+				unitId: id,
 				sellingType: this.sellingType,
 				type: this.selectedType,
 				earned: 0,

@@ -8,4 +8,5 @@
 		>
 		<span class="business-unit__income" [ngClass] = "checkIncomeColorClass()">income: {{ businessUnit.incomePerTick }}</span>
 	</div>
+	<span (click)="deleteUnit()" class = "business-unit__close">X</span>
 </div>

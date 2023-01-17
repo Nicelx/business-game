@@ -31,10 +31,10 @@ export class MarketService {
 	}
 
 	public getRetailPricesOnly() {
-		let retailPieces = []
-		retailPieces = this.market.filter(marketPiece => {
+		let retailPieces = [];
+		retailPieces = this.market.filter((marketPiece) => {
 			return marketPiece.retailPrice;
-		})
+		});
 		return retailPieces;
 	}
 
@@ -60,9 +60,7 @@ export class MarketService {
 				this.market[index].retailPrice =
 					marketPiece.retailPrice +
 					marketPiece.retailPrice * (-marketPiece.retailAmplifier / 100);
-					console.log('before', this.market[index])
-					this.prosperMarket(this.market[index]);
-					console.log('after', this.market[index])
+				this.prosperMarket(this.market[index]);
 			}
 		});
 	}
@@ -87,5 +85,15 @@ export class MarketService {
 			marketPiece.retailAmplifier = +amount;
 			marketPiece.amplifier = +amount;
 		} else marketPiece.amplifier = +amount;
+	}
+
+	public decreaseAmplifier(type: string, sellingType: string) {
+		let marketPiece = this.market.find((element) => element.name === type);
+		if (!marketPiece) return;
+		
+		marketPiece.amplifier = -0.6;
+		if (sellingType === "retail") {
+			marketPiece.retailAmplifier = -0.6;
+		}
 	}
 }
