@@ -67,7 +67,7 @@ export class PlayerDataService {
 		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
 			if (bizUnit.unitId === unitId) {
 				this.playersData[0].businessUnits.splice(index, 1);
-				this.marketService.changeAmplifier(bizUnit.type, -0.8)
+				this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType )
 			}
 		})
 	}
