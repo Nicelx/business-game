@@ -1,5 +1,15 @@
 import { unitType } from "../interfaces/game.interfaces";
 
+export interface RetailPiece {
+	name: unitType;
+	retailPrice: number;
+	retailAmplifier: number;
+}
+
+export interface ProdPiece {
+	name: unitType;
+}
+
 export interface MarketPiece {
 	name: unitType;
 	price: number;
@@ -23,7 +33,9 @@ export class MarketService {
 			retailAmplifier: 0,
 			retailPrice: 5,
 		},
-		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5 },
+		{ name: "iron", price: 20, amplifier: 0, 
+		productionPrice: 5 
+	},
 	];
 
 	public getPrices() {
