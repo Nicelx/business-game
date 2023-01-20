@@ -2,31 +2,51 @@ import { BusinessUnit, unitType } from "../interfaces/game.interfaces";
 import { MarketService } from "./market.service";
 import { Injectable } from "@angular/core";
 
+export interface ProductionNeeds {
+	type: unitType;
+	amount: number;
+	amplifierEffect: number;
+}
+
+export interface Value {
+	[key: unitType] : ProductionNeeds 
+}
+
 const values = {
 	apples: {
 		incomeCoefficient: 2,
 		expenseCoefficient: 2,
 		buildingCost: 100,
-		amplifierWeight : 1000
+		amplifierWeight: 1000,
+		production: [
+			{
+				type : "salary",
+				amount: 1,
+				amplifierEffect: 1,
+			},
+		],
 	},
 	rent: {
 		incomeCoefficient: 2,
 		expenseCoefficient: 0.8,
 		buildingCost: 300,
-		amplifierWeight : 900
+		amplifierWeight: 900,
+		production: [],
 	},
 	iron: {
 		incomeCoefficient: 10,
 		expenseCoefficient: 10,
 		buildingCost: 250,
-		amplifierWeight : 1200
+		amplifierWeight: 1200,
+		production: [],
 	},
 	salary: {
 		incomeCoefficient: 0,
 		expenseCoefficient: 0,
 		buildingCost: 0,
-		amplifierWeight : 0
-	}
+		amplifierWeight: 0,
+		production: [],
+	},
 };
 
 @Injectable()
@@ -51,15 +71,15 @@ export class BusinessUnitsService {
 			return marketPiece.name === unit.type;
 		});
 
-		if (!findedMarketPiece) return
+		if (!findedMarketPiece) return;
 
 		if (sellingType === "market") {
-				sellingPrice = findedMarketPiece.price;
-				supplyPrice = findedMarketPiece.productionPrice || 1;
+			sellingPrice = findedMarketPiece.price;
+			// supplyPrice = findedMarketPiece.productionPrice || 1;
 		}
 
-		if (sellingType === "retail") { 
-			sellingPrice =  findedMarketPiece.retailPrice || 1;
+		if (sellingType === "retail") {
+			sellingPrice = findedMarketPiece.retailPrice || 1;
 			supplyPrice = findedMarketPiece.price || 1;
 		}
 
@@ -72,10 +92,21 @@ export class BusinessUnitsService {
 	public getBuildingCost(type: unitType) {
 		if (!values[type]) return 0;
 		return values[type].buildingCost;
-
 	}
 
-	public getAmplifierWeight(type : keyof unitType) {
+	calculateProduction(type: unitType) {
+		let sumCalc = 0;
+		values[type].production.forEach(prodNeeds => {
+			this.marketService.getSinglePrice(prodNeeds.type)
+
+		})
+	}
+
+	public getProductionValues(type: unitType) {
+		return values[type].production;
+	}
+
+	public getAmplifierWeight(type: keyof unitType) {
 		// const weight = values[type].amplifierWeight;
 		// return weight;
 	}

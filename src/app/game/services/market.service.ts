@@ -42,6 +42,12 @@ export class MarketService {
 		return [...this.market];
 	}
 
+	public getSinglePrice(type: unitType) {
+		let findedPiece = this.market.find(piece => piece.name === type);
+		if (!findedPiece) return;
+		return findedPiece.price;
+	}
+
 	public getRetailPricesOnly() {
 		let retailPieces = [];
 		retailPieces = this.market.filter((marketPiece) => {
