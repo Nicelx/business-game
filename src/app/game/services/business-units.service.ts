@@ -8,9 +8,9 @@ export interface ProductionNeeds {
 	amplifierEffect: number;
 }
 
-export interface Value {
-	[key: unitType] : ProductionNeeds 
-}
+// export interface Value {
+// 	[key: unitType] : ProductionNeeds 
+// }
 
 const values = {
 	apples: {
@@ -20,7 +20,7 @@ const values = {
 		amplifierWeight: 1000,
 		production: [
 			{
-				type : "salary",
+				type : "salary" as unitType,
 				amount: 1,
 				amplifierEffect: 1,
 			},
@@ -76,6 +76,7 @@ export class BusinessUnitsService {
 		if (sellingType === "market") {
 			sellingPrice = findedMarketPiece.price;
 			// supplyPrice = findedMarketPiece.productionPrice || 1;
+			supplyPrice = this.calculateProduction(unit.type);
 		}
 
 		if (sellingType === "retail") {
@@ -97,9 +98,16 @@ export class BusinessUnitsService {
 	calculateProduction(type: unitType) {
 		let sumCalc = 0;
 		values[type].production.forEach(prodNeeds => {
-			this.marketService.getSinglePrice(prodNeeds.type)
-
+			let p = this.marketService.getSinglePrice(prodNeeds.type)!
+			if (p) {
+				sumCalc += p;
+				this.marketService.changeAmplifier(prodNeeds.type, prodNeeds.amplifierEffect, 'market')
+				
+			}
 		})
+		console.log('sumCalc ' ,sumCalc)
+		console.log(this.marketService.getPrices())
+		return sumCalc;
 	}
 
 	public getProductionValues(type: unitType) {
