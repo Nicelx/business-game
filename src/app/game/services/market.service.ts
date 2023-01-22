@@ -100,7 +100,7 @@ export class MarketService {
 		if (!marketPiece) return;
 		// retail is increasing retailAmpl and decreaseing amplifier
 		if (sellingType === "retail") {
-			marketPiece.retailAmplifier += amount;
+			if (marketPiece.retailAmplifier) marketPiece.retailAmplifier += amount;
 			marketPiece.amplifier += amount;
 		} else marketPiece.amplifier += amount;
 	}
