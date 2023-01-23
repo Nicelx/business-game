@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BusinessUnit, PlayerData } from "./../interfaces/game.interfaces";
+import { BusinessUnit, PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./business-units.service";
 import { MarketService } from "./market.service";
 
@@ -59,8 +59,10 @@ export class PlayerDataService {
 		});
 	}
 
-	public addBusinessUnit(unit: BusinessUnit, playerId: number) {
+	public addBusinessUnit(unit: BusinessUnit, playerId: number, type: unitType, sellingType: sellingType) {
 		this.playersData[playerId].businessUnits.push(unit);
+		this.marketService.changeAmplifier(type, 1, sellingType);
+
 	}
 
 	public deleteBusinessUnit(unitId: number) {

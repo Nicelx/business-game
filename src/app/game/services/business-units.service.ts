@@ -101,7 +101,7 @@ export class BusinessUnitsService {
 			let p = this.marketService.getSinglePrice(prodNeeds.type)!
 			if (p) {
 				sumCalc += p;
-				this.marketService.changeAmplifier(prodNeeds.type, prodNeeds.amplifierEffect, 'market')
+				// this.marketService.changeAmplifier(prodNeeds.type, prodNeeds.amplifierEffect, 'market')
 				
 			}
 		})

@@ -42,9 +42,9 @@ export class CreationModelComponent implements OnInit {
 				earned: 0,
 				incomePerTick: 0,
 			},
-			0
+			0, this.selectedType, this.sellingType
 		);
-		this.marketService.changeAmplifier(this.selectedType, 1, this.sellingType);
+		// need outsource it .addBusinessUnit()
 		console.log(this.playerService.getMainPlayer())
 
 	}
