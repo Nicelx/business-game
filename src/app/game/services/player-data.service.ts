@@ -63,6 +63,16 @@ export class PlayerDataService {
 		this.playersData[playerId].businessUnits.push(unit);
 		this.marketService.changeAmplifier(type, 1, sellingType);
 
+		if (sellingType === 'retail') {
+			// this.marketService.changeAmplifier(type, -1, 'retail')
+			return;
+		}
+
+		let needs = this.businessUnitsService.getprodNeeds(type);
+		if (!needs) return;
+		needs.forEach(need => {
+			this.marketService.changeAmplifier(need.type, need.amplifierEffect, 'market')
+		})
 	}
 
 	public deleteBusinessUnit(unitId: number) {

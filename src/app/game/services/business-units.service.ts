@@ -24,6 +24,11 @@ const values = {
 				amount: 1,
 				amplifierEffect: 1,
 			},
+			{
+				type : "rent" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
 		],
 	},
 	rent: {
@@ -101,13 +106,15 @@ export class BusinessUnitsService {
 			let p = this.marketService.getSinglePrice(prodNeeds.type)!
 			if (p) {
 				sumCalc += p;
-				// this.marketService.changeAmplifier(prodNeeds.type, prodNeeds.amplifierEffect, 'market')
-				
 			}
 		})
 		console.log('sumCalc ' ,sumCalc)
 		console.log(this.marketService.getPrices())
 		return sumCalc;
+	}
+
+	public getprodNeeds(type: unitType):ProductionNeeds[] {
+		return [...values[type].production];
 	}
 
 	public getProductionValues(type: unitType) {
