@@ -108,8 +108,6 @@ export class BusinessUnitsService {
 				sumCalc += p;
 			}
 		})
-		console.log('sumCalc ' ,sumCalc)
-		console.log(this.marketService.getPrices())
 		return sumCalc;
 	}
 

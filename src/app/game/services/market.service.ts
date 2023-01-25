@@ -1,4 +1,6 @@
 import { unitType } from "../interfaces/game.interfaces";
+import { BusinessUnitsService } from "./business-units.service";
+import { Injectable } from '@angular/core';
 
 export interface RetailPiece {
 	name: unitType;
@@ -19,8 +21,9 @@ export interface MarketPiece {
 	retailAmplifier?: number;
 }
 
+@Injectable()
 export class MarketService {
-	constructor() {}
+	constructor(private businessUnitsService: BusinessUnitsService) {}
 
 	private market: MarketPiece[] = [
 		{ name: "salary", price: 1, amplifier: 0 },
@@ -33,9 +36,7 @@ export class MarketService {
 			retailAmplifier: 0,
 			retailPrice: 5,
 		},
-		{ name: "iron", price: 20, amplifier: 0, 
-		productionPrice: 5 
-	},
+		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5 },
 	];
 
 	public getPrices() {
@@ -43,7 +44,7 @@ export class MarketService {
 	}
 
 	public getSinglePrice(type: unitType) {
-		let findedPiece = this.market.find(piece => piece.name === type);
+		let findedPiece = this.market.find((piece) => piece.name === type);
 		if (!findedPiece) return;
 		return findedPiece.price;
 	}
@@ -77,7 +78,7 @@ export class MarketService {
 				);
 				this.market[index].retailPrice =
 					marketPiece.retailPrice +
-					marketPiece.retailPrice * (-marketPiece.retailAmplifier / 100);
+					marketPiece.retailPrice * (marketPiece.retailAmplifier / 100);
 				this.prosperMarket(this.market[index]);
 			}
 		});
@@ -95,20 +96,32 @@ export class MarketService {
 		}
 	}
 
-	public changeAmplifier(type: string, amount: number, sellingType: string) {
+	public changeAmplifier(type: unitType, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
 		// retail is increasing retailAmpl and decreaseing amplifier
+
 		if (sellingType === "retail") {
-			if (marketPiece.retailAmplifier) marketPiece.retailAmplifier += amount;
-			marketPiece.amplifier += amount;
-		} else marketPiece.amplifier += amount;
+			if (marketPiece.retailAmplifier !== undefined) marketPiece.retailAmplifier -= 1;
+			marketPiece.amplifier += 1;
+		}
+
+		if (sellingType === "market") {
+			marketPiece.amplifier += 1;
+			let needs = this.businessUnitsService.getprodNeeds(type);
+			if (!needs) return;
+			needs.forEach((need) => {
+				// this.marketService.changeAmplifier(need.type, need.amplifierEffect, 'market')
+				if (!marketPiece) return;
+				marketPiece.amplifier += need.amplifierEffect
+			});
+		}
 	}
 
 	public decreaseAmplifier(type: string, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
-		
+
 		marketPiece.amplifier = -0.6;
 		if (sellingType === "retail") {
 			marketPiece.retailAmplifier = -0.6;
