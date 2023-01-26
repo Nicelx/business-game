@@ -61,7 +61,20 @@ export class PlayerDataService {
 
 	public addBusinessUnit(unit: BusinessUnit, playerId: number, type: unitType, sellingType: sellingType) {
 		this.playersData[playerId].businessUnits.push(unit);
-		this.marketService.changeAmplifier(type, sellingType);
+		
+		if (sellingType === 'retail') {
+			this.marketService.changeAmplifier(type, sellingType, -1);
+			this.marketService.changeAmplifier(type, 'market' as unitType, 1);
+		}
+
+		
+		
+
+		// ok move logic here totally
+
+
+
+
 		// this.marketService.changeAmplifier(type, 1, sellingType);
 
 		// if (sellingType === 'retail') {
