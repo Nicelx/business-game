@@ -62,27 +62,24 @@ export class PlayerDataService {
 	public addBusinessUnit(unit: BusinessUnit, playerId: number, type: unitType, sellingType: sellingType) {
 		this.playersData[playerId].businessUnits.push(unit);
 		
+		this.marketService.changeAmplifier(type, sellingType, -1);
+
 		if (sellingType === 'retail') {
-			this.marketService.changeAmplifier(type, sellingType, -1);
-			this.marketService.changeAmplifier(type, 'market' as unitType, 1);
+			this.marketService.changeAmplifier(type, 'market', 1);
+			return;
 		}
 
+		if (sellingType === 'market') {
+			let needs = this.businessUnitsService.getprodNeeds(type);
+
+			// this.marketService.changeAmplifier(type, sellingType)
+
+		}
 		
+
 		
 
-		// ok move logic here totally
 
-
-
-
-		// this.marketService.changeAmplifier(type, 1, sellingType);
-
-		// if (sellingType === 'retail') {
-		// 	this.marketService.changeAmplifier(type, -1, 'retail')
-		// 	return;
-		// }
-
-		// let needs = this.businessUnitsService.getprodNeeds(type);
 		// if (!needs) return;
 		// needs.forEach(need => {
 		// 	this.marketService.changeAmplifier(need.type, need.amplifierEffect, 'market')

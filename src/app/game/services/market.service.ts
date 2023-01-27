@@ -102,23 +102,11 @@ export class MarketService {
 
 		if (sellingType === "retail") {
 			if (marketPiece.retailAmplifier !== undefined) marketPiece.retailAmplifier += amount;
-			marketPiece.amplifier += 1;
 		}
 
 		if (sellingType === 'market') {
 			marketPiece.amplifier +=amount;
 		}
-
-		// if (sellingType === "market") {
-		// 	marketPiece.amplifier += 1;
-		// 	let needs = this.businessUnitsService.getprodNeeds(type);
-		// 	if (!needs) return;
-		// 	needs.forEach((need) => {
-		// 		// this.marketService.changeAmplifier(need.type, need.amplifierEffect, 'market')
-		// 		if (!marketPiece) return;
-		// 		marketPiece.amplifier += need.amplifierEffect
-		// 	});
-		// }
 	}
 
 	public decreaseAmplifier(type: string, sellingType: string) {
