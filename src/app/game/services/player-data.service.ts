@@ -26,7 +26,7 @@ export class PlayerDataService {
 					incomePerTick: 0,
 				},
 			],
-			playerIncomePerTick: 0
+			playerIncomePerTick: 0,
 		},
 	];
 	moneyChanges: number = 0;
@@ -55,43 +55,42 @@ export class PlayerDataService {
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 			});
 			player.money = +(player.money + moneyChange).toFixed(2);
-			player.playerIncomePerTick = +moneyChange.toFixed(2)
+			player.playerIncomePerTick = +moneyChange.toFixed(2);
 		});
 	}
 
-	public addBusinessUnit(unit: BusinessUnit, playerId: number, type: unitType, sellingType: sellingType) {
+	public addBusinessUnit(
+		unit: BusinessUnit,
+		playerId: number,
+		type: unitType,
+		sellingType: sellingType
+	) {
 		this.playersData[playerId].businessUnits.push(unit);
-		
+
 		this.marketService.changeAmplifier(type, sellingType, -1);
 
-		if (sellingType === 'retail') {
-			this.marketService.changeAmplifier(type, 'market', 1);
+		if (sellingType === "retail") {
+			this.marketService.changeAmplifier(type, "market", 1);
 			return;
 		}
 
-		if (sellingType === 'market') {
+		if (sellingType === "market") {
 			let needs = this.businessUnitsService.getprodNeeds(type);
 
-			// this.marketService.changeAmplifier(type, sellingType)
-
+			if (!needs) return;
+			needs.forEach((need) => {
+				console.log(need);
+				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
+			});
 		}
-		
-
-		
-
-
-		// if (!needs) return;
-		// needs.forEach(need => {
-		// 	this.marketService.changeAmplifier(need.type, need.amplifierEffect, 'market')
-		// })
 	}
 
 	public deleteBusinessUnit(unitId: number) {
 		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
 			if (bizUnit.unitId === unitId) {
 				this.playersData[0].businessUnits.splice(index, 1);
-				this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType )
+				this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType);
 			}
-		})
+		});
 	}
 }

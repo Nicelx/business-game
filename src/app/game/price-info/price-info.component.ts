@@ -14,12 +14,14 @@ export class PriceInfoComponent implements OnInit {
 		
 	}
 
+	speed = 100;
+
 	ngOnInit(): void {
 		setInterval(() => {
 			this.marketService.updateMarket();
 			this.marketPrices = this.marketService.getPrices();
 			this.retailPrices = this.marketService.getRetailPricesOnly();
-		}, 1000);
+		}, this.speed);
 		
 	}
 

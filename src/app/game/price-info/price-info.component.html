@@ -10,7 +10,7 @@
 	<ul class="price-info__retail-price-list">
 		<li *ngFor="let item of retailPrices" class="price-info__list-item">
 			<span class="price-info__item">
-				{{ item.name }} = {{ item.retailPrice?.toFixed(2) }}$
+				{{ item.name }} = {{ item.retailPrice?.toFixed(2) }} -- {{item.retailAmplifier}}$
 			</span>
 		</li>
 	</ul>
