@@ -63,12 +63,9 @@ export class MarketService {
 		}
 		this.market.forEach((marketPiece: MarketPiece, index) => {
 			if (marketPiece.amplifier == undefined) return;
-			this.market[index].price = Number(
-				(
-					this.market[index].price +
-					marketPiece.price * (marketPiece.amplifier / 100)
-				).toFixed(2)
-			);
+			this.market[index].price =
+				this.market[index].price + marketPiece.price * (marketPiece.amplifier / 100);
+
 			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier);
 			// retail
 			if (marketPiece.retailPrice && marketPiece.retailAmplifier) {
@@ -79,7 +76,6 @@ export class MarketService {
 					marketPiece.retailPrice +
 					marketPiece.retailPrice * (marketPiece.retailAmplifier / 100);
 				this.prosperMarket(this.market[index]);
-				console.log("after prosperMarket", this.market[index]);
 			}
 		});
 		this.correction();
@@ -101,8 +97,8 @@ export class MarketService {
 
 	// we need balance rent and salary, to stop them infinitely growing.
 	correction() {
-		this.market[0].price -= this.market[0].price * 0.005;
-		this.market[1].price -= this.market[1].price * 0.005;
+		this.market[0].price -= this.market[0].price * 0.003;
+		this.market[1].price -= this.market[1].price * 0.003;
 	}
 
 	public changeAmplifier(type: unitType, sellingType: string, amount: number) {

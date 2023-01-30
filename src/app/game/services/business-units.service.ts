@@ -9,7 +9,7 @@ export interface ProductionNeeds {
 }
 
 // export interface Value {
-// 	[key: unitType] : ProductionNeeds 
+// 	[key: unitType] : ProductionNeeds
 // }
 
 const values = {
@@ -20,12 +20,12 @@ const values = {
 		amplifierWeight: 1000,
 		production: [
 			{
-				type : "salary" as unitType,
+				type: "salary" as unitType,
 				amount: 1,
 				amplifierEffect: 1,
 			},
 			{
-				type : "rent" as unitType,
+				type: "rent" as unitType,
 				amount: 1,
 				amplifierEffect: 1,
 			},
@@ -102,16 +102,16 @@ export class BusinessUnitsService {
 
 	calculateProduction(type: unitType) {
 		let sumCalc = 0;
-		values[type].production.forEach(prodNeeds => {
-			let p = this.marketService.getSinglePrice(prodNeeds.type)!
+		values[type].production.forEach((prodNeeds) => {
+			let p = this.marketService.getSinglePrice(prodNeeds.type)!;
 			if (p) {
 				sumCalc += p;
 			}
-		})
+		});
 		return sumCalc;
 	}
 
-	public getprodNeeds(type: unitType):ProductionNeeds[] {
+	public getprodNeeds(type: unitType): ProductionNeeds[] {
 		return [...values[type].production];
 	}
 
@@ -119,8 +119,10 @@ export class BusinessUnitsService {
 		return values[type].production;
 	}
 
-	public getAmplifierWeight(type: keyof unitType) {
-		// const weight = values[type].amplifierWeight;
-		// return weight;
+	public getAmplifierWeight(type: keyof unitType): number {
+		if (type === "apples" || type === "rent" || type === "iron" || type === "salary") {
+			const weight = values[type].amplifierWeight;
+			return weight;
+		} else return 1;
 	}
 }
