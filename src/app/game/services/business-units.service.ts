@@ -35,7 +35,7 @@ const values = {
 		incomeCoefficient: 2,
 		expenseCoefficient: 0.8,
 		buildingCost: 300,
-		amplifierWeight: 900,
+		amplifierWeight: 15000,
 		production: [],
 	},
 	iron: {
@@ -49,7 +49,7 @@ const values = {
 		incomeCoefficient: 0,
 		expenseCoefficient: 0,
 		buildingCost: 0,
-		amplifierWeight: 0,
+		amplifierWeight: 10000,
 		production: [],
 	},
 };
@@ -119,9 +119,10 @@ export class BusinessUnitsService {
 		return values[type].production;
 	}
 
-	public getAmplifierWeight(type: keyof unitType): number {
+	static getAmplifierWeight(type: unitType): number {
 		if (type === "apples" || type === "rent" || type === "iron" || type === "salary") {
 			const weight = values[type].amplifierWeight;
+			console.log('weight' ,weight);
 			return weight;
 		} else return 1;
 	}
