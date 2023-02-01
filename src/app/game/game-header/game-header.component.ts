@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GAME_SPEED } from "src/app/constants";
 import { PlayerData } from "../interfaces/game.interfaces";
 import { PlayerDataService } from "../services/player-data.service";
 
@@ -14,7 +15,7 @@ export class GameHeaderComponent implements OnInit {
 		setInterval(() => {
 			this.playerService.updatePlayerMoney();
 			this.player = playerService.getMainPlayer();
-		}, 1000);
+		}, GAME_SPEED);
 	}
 
 	ngOnInit(): void {

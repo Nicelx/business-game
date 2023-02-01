@@ -122,7 +122,6 @@ export class BusinessUnitsService {
 	static getAmplifierWeight(type: unitType): number {
 		if (type === "apples" || type === "rent" || type === "iron" || type === "salary") {
 			const weight = values[type].amplifierWeight;
-			console.log('weight' ,weight);
 			return weight;
 		} else return 1;
 	}

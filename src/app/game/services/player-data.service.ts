@@ -65,7 +65,12 @@ export class PlayerDataService {
 		type: unitType,
 		sellingType: sellingType
 	) {
+		let buildingCost = this.businessUnitsService.getBuildingCost(type);
+		if (buildingCost > this.playersData[playerId].money) return;
+
+
 		this.playersData[playerId].businessUnits.push(unit);
+		this.playersData[playerId].money -=buildingCost;
 
 		this.marketService.changeAmplifier(type, sellingType, -1);
 

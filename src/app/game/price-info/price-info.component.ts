@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MarketPiece, MarketService } from "./../services/market.service";
+import { GAME_SPEED } from './../../constants';
 
 @Component({
 	selector: "app-price-info",
@@ -14,14 +15,13 @@ export class PriceInfoComponent implements OnInit {
 		
 	}
 
-	speed = 100;
 
 	ngOnInit(): void {
 		setInterval(() => {
 			this.marketService.updateMarket();
 			this.marketPrices = this.marketService.getPrices();
 			this.retailPrices = this.marketService.getRetailPricesOnly();
-		}, this.speed);
+		}, GAME_SPEED);
 		
 	}
 
