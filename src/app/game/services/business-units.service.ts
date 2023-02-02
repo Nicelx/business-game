@@ -30,6 +30,18 @@ const values = {
 				amplifierEffect: 1,
 			},
 		],
+		retail: [
+			{
+				type: "salary" as unitType,
+				amount: 0.1,
+				amplifierEffect: 0.1,
+			},
+			{
+				type: "rent" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+		]
 	},
 	rent: {
 		incomeCoefficient: 2,
@@ -37,6 +49,7 @@ const values = {
 		buildingCost: 300,
 		amplifierWeight: 15000,
 		production: [],
+		retail:[]
 	},
 	iron: {
 		incomeCoefficient: 10,
@@ -44,6 +57,7 @@ const values = {
 		buildingCost: 250,
 		amplifierWeight: 1200,
 		production: [],
+		retail:[]
 	},
 	salary: {
 		incomeCoefficient: 0,
@@ -51,6 +65,7 @@ const values = {
 		buildingCost: 0,
 		amplifierWeight: 10000,
 		production: [],
+		retail:[]
 	},
 };
 
@@ -113,6 +128,9 @@ export class BusinessUnitsService {
 
 	public getprodNeeds(type: unitType): ProductionNeeds[] {
 		return [...values[type].production];
+	}
+	public getRetailNeeds(type: unitType): ProductionNeeds[] {
+		return [...values[type].retail];
 	}
 
 	public getProductionValues(type: unitType) {
