@@ -101,7 +101,9 @@ export class BusinessUnitsService {
 
 		if (sellingType === "retail") {
 			sellingPrice = findedMarketPiece.retailPrice || 1;
-			supplyPrice = findedMarketPiece.price || 1;
+			console.log(this.calculateRetailProduction(unit.type))
+			supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(unit.type);
+			console.log('supply price for retail', supplyPrice)
 		}
 
 		let income = sellingPrice * incomeModifier * incomeCoefficient;
@@ -120,7 +122,18 @@ export class BusinessUnitsService {
 		values[type].production.forEach((prodNeeds) => {
 			let p = this.marketService.getSinglePrice(prodNeeds.type)!;
 			if (p) {
-				sumCalc += p;
+				sumCalc += p * prodNeeds.amount;
+			}
+		});
+		return sumCalc;
+	}
+
+	calculateRetailProduction(type: unitType) {
+		let sumCalc = 0;
+		values[type].retail.forEach((prodNeeds) => {
+			let p = this.marketService.getSinglePrice(prodNeeds.type)!;
+			if (p) {
+				sumCalc += p * prodNeeds.amount;
 			}
 		});
 		return sumCalc;
