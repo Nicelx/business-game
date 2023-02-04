@@ -106,10 +106,16 @@ export class BusinessUnitsService {
 			console.log('supply price for retail', supplyPrice)
 		}
 
-		let income = sellingPrice * incomeModifier * incomeCoefficient;
+		let revenue = sellingPrice * incomeModifier * incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
+		let income = revenue - expense;
 
-		return income - expense;
+		return revenue - expense;
+		return {
+			revenue: revenue,
+			expense: expense,
+			income: income
+		}
 	}
 
 	public getBuildingCost(type: unitType) {
