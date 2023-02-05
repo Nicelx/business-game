@@ -14,6 +14,7 @@ export class BusinessUnitComponent implements OnInit {
 		sellingType: "retail",
 		earned: 0,
 		incomePerTick: 0,
+		expensePerTick: 0
 	};
 
 	constructor(private playerService: PlayerDataService) {}

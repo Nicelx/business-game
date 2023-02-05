@@ -110,7 +110,7 @@ export class BusinessUnitsService {
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
 		let income = revenue - expense;
 
-		return revenue - expense;
+		// return revenue - expense;
 		return {
 			revenue: revenue,
 			expense: expense,

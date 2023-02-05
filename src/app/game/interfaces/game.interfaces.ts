@@ -12,6 +12,7 @@ export interface BusinessUnit {
 	sellingType: sellingType;
 	earned: number;
 	incomePerTick: number;
+	expensePerTick: number;
 }
 
 export type unitType = "apples" | "iron" | "salary" | "rent"

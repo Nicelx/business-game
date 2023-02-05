@@ -24,6 +24,7 @@ export class PlayerDataService {
 					sellingType: "retail",
 					earned: 0,
 					incomePerTick: 0,
+					expensePerTick: 0,
 				},
 			],
 			playerIncomePerTick: 0,
@@ -47,7 +48,9 @@ export class PlayerDataService {
 		this.playersData.forEach((player) => {
 			let moneyChange = 0;
 			player.businessUnits.forEach((bizUnit, index) => {
-				let income = this.businessUnitsService.calculateIncome(bizUnit);
+				const incomeObj = this.businessUnitsService.calculateIncome(bizUnit);
+				if (!incomeObj) return;
+				let {income} = incomeObj;
 				if (income === undefined) return;
 
 				moneyChange += income;
