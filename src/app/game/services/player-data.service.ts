@@ -25,6 +25,7 @@ export class PlayerDataService {
 					earned: 0,
 					incomePerTick: 0,
 					expensePerTick: 0,
+					revenuePerTick: 0,
 				},
 			],
 			playerIncomePerTick: 0,
@@ -50,11 +51,12 @@ export class PlayerDataService {
 			player.businessUnits.forEach((bizUnit, index) => {
 				const incomeObj = this.businessUnitsService.calculateIncome(bizUnit);
 				if (!incomeObj) return;
-				let {income} = incomeObj;
-				if (income === undefined) return;
+				let {income, expense, revenue} = incomeObj;
 
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
+				bizUnit.expensePerTick = +expense.toFixed(2);
+				bizUnit.revenuePerTick = +revenue.toFixed(2);
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 			});
 			player.money = +(player.money + moneyChange).toFixed(2);
