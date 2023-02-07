@@ -1,4 +1,20 @@
 .game-header {
 	height: 48px;
 	background-color: antiquewhite;
+	color: dimgray;
+	font-weight: 900;
+
+	/* text-shadow: 1px 1px 10px white; */
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
+}
+
+.game-header span {
+	margin-left: 20px;
+}
+
+.game-header__money {
+	/* text-shadow: 1px 1px 10px white; */
+	margin-left: 10px;
 }
