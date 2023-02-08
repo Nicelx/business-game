@@ -1,10 +1,10 @@
 <header class ="game-header">
 	<span class = "game-header__money">
-		{{player && player.money}}
+		Balance ${{player && player.money}}
+	</span>
+	<span>
+		Income per tick = ${{player && player.playerIncomePerTick}}
 	</span>
 	<span class = "game-header__nickname">    {{player && player.playerName}}</span>
-	<span>
-		Income per tick = {{player && player.playerIncomePerTick}}
-	</span>
 
 </header>

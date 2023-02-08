@@ -4,17 +4,21 @@
 	color: dimgray;
 	font-weight: 900;
 
-	/* text-shadow: 1px 1px 10px white; */
 	display: flex;
-	/* justify-content: center; */
 	align-items: center;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
 
 .game-header span {
 	margin-left: 20px;
+	text-shadow: 0px 0px 4px rgb(251, 255, 0);
 }
 
 .game-header__money {
-	/* text-shadow: 1px 1px 10px white; */
-	margin-left: 10px;
+	
+}
+
+.game-header__player {
+	margin-right: auto;
 }
