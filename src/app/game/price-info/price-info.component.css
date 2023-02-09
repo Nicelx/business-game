@@ -1,0 +1,11 @@
+.price-info {
+	margin-top: 10px;
+	position: absolute;
+	right: 10px;
+	top: 100px;
+	background-color: antiquewhite;
+	width: 320px;
+}
+.price-info__price-list{
+
+}
