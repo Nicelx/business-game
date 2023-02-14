@@ -16,7 +16,7 @@ const values = {
 	apples: {
 		incomeCoefficient: 2,
 		expenseCoefficient: 2,
-		buildingCost: 100,
+		buildingCost: 25,
 		amplifierWeight: 1000,
 		production: [
 			{
@@ -54,7 +54,7 @@ const values = {
 	iron: {
 		incomeCoefficient: 10,
 		expenseCoefficient: 10,
-		buildingCost: 250,
+		buildingCost: 150,
 		amplifierWeight: 1200,
 		production: [],
 		retail:[]
