@@ -79,7 +79,7 @@ export class MarketService {
 				this.prosperMarket(this.market[index]);
 			}
 		});
-		this.correction();
+		this._correction();
 	}
 
 	fadeAmplifier(amplifier: number) {
@@ -97,7 +97,7 @@ export class MarketService {
 	}
 
 	// we need balance rent and salary, to stop them infinitely growing.
-	correction() {
+	_correction() {
 		this.market[0].price -= this.market[0].price * 0.0008;
 		this.market[1].price -= this.market[1].price * 0.0002;
 	}
@@ -117,11 +117,11 @@ export class MarketService {
 
 	public decreaseAmplifier(type: string, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
-		if (!marketPiece) return;
+		if (marketPiece === undefined) return;
 
 		marketPiece.amplifier = -0.6;
 		if (sellingType === "retail") {
-			marketPiece.retailAmplifier = -0.6;
+			marketPiece.retailAmplifier ? marketPiece.retailAmplifier -= -0.6 : marketPiece.retailAmplifier == 0;
 		}
 	}
 }
