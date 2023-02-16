@@ -71,7 +71,10 @@ export class PlayerDataService {
 		sellingType: sellingType
 	) {
 		let buildingCost = this.businessUnitsService.getBuildingCost(type);
-		if (buildingCost > this.playersData[playerId].money) return;
+		if (buildingCost > this.playersData[playerId].money) {
+			// emit
+			return;
+		}
 
 
 		this.playersData[playerId].businessUnits.push(unit);

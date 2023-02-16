@@ -119,7 +119,7 @@ export class MarketService {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (marketPiece === undefined) return;
 
-		marketPiece.amplifier = -0.6;
+		marketPiece.amplifier -= -0.6;
 		if (sellingType === "retail") {
 			marketPiece.retailAmplifier ? marketPiece.retailAmplifier -= -0.6 : marketPiece.retailAmplifier == 0;
 		}
