@@ -69,13 +69,11 @@ export class PlayerDataService {
 		playerId: number,
 		type: unitType,
 		sellingType: sellingType
-	) {
+	):boolean {
 		let buildingCost = this.businessUnitsService.getBuildingCost(type);
 		if (buildingCost > this.playersData[playerId].money) {
-			// emit
-			return;
+			return false;
 		}
-
 
 		this.playersData[playerId].businessUnits.push(unit);
 		this.playersData[playerId].money -=buildingCost;
@@ -84,18 +82,19 @@ export class PlayerDataService {
 
 		if (sellingType === "retail") {
 			this.marketService.changeAmplifier(type, "market", 1);
-			return;
+			return true;
 		}
 
 		if (sellingType === "market") {
 			let needs = this.businessUnitsService.getprodNeeds(type);
 
-			if (!needs) return;
+			if (!needs) throw new Error('no needs');
 			needs.forEach((need) => {
 				console.log(need);
 				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
 			});
 		}
+		return true
 	}
 
 	public deleteBusinessUnit(unitId: number) {
