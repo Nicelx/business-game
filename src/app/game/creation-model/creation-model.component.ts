@@ -19,7 +19,7 @@ export class CreationModelComponent implements OnInit {
 
 	constructor(private playerService: PlayerDataService, private marketService: MarketService, private businessUnitService: BusinessUnitsService) {}
 
-	isEnoughMoney : boolean | null = null;
+	isEnoughMoney = true;
 	playerMoney = this.playerService.getMainPlayer().money;
 
 	ngOnInit(): void {
