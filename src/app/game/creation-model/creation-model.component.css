@@ -2,7 +2,7 @@
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	align-content: center;
+	align-items: center;
 	width: 400px;
 	height: 350px;
 	background-color: salmon;
@@ -16,6 +16,12 @@
 }
 
 .create-model__title {
+
+}
+
+.create-model__label {
+	margin-bottom: 10px;
+	font: 24px; 
 }
 
 .create-model__close {
@@ -25,6 +31,11 @@
 	right: 15px;
 	width: 36px;
 }
+
+.create-model__cost {
+	margin-top: 8px;
+}
+
 .create-model__close-icon:before,
 .create-model__close-icon:before {
 	width: 100px;

@@ -1,16 +1,19 @@
 <div class = 'create-model'>
 	<h2 class = 'create-model__title'>Building business unit</h2>
+	<label class = "create-model__label" for="">Pick business type</label>
 	<select class = "select" #selection (change)="onOptionSelected(selection.value)">
 		<option selected value="apples">Apples</option>
 		<option value="iron">Iron</option>
 	</select>
 	<br>
-	<select #sellingTypeSelection (change)="onSellingTypeSelection(sellingTypeSelection.value)">
+
+	<label class = "create-model__label" for="">Pick selling way</label>
+	<select class = "select" #sellingTypeSelection (change)="onSellingTypeSelection(sellingTypeSelection.value)">
 		<option selected value="retail">Retail</option>
 		<option value="market">Market</option>
 	</select>
-	<span>creation cost: {{buildingCost}}</span>
-	<button (click)="onCreate()">Build</button>
+	<span class = "create-model__cost" >creation cost: {{buildingCost}}</span>
+	<button class = "game-button" (click)="onCreate()">Build</button>
 	<span *ngIf="!isEnoughMoney">Not enough money to build</span>
 
 	<div class = 'create-model__close' (click)="onModalCancel()">
