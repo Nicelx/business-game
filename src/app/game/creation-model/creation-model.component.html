@@ -12,14 +12,19 @@
 		<option selected value="retail">Retail</option>
 		<option value="market">Market</option>
 	</select>
-	<span class = "create-model__cost" >creation cost: {{buildingCost}}</span>
-	<button class = "game-button" (click)="onCreate()">Build</button>
 	<span *ngIf="!isEnoughMoney">Not enough money to build</span>
+	
+	
+	<div class = "create-model__info-block">
+		<span class = "create-model__players-money">Money ${{playerMoney}}</span>
+		<span class = "create-model__cost" >Cost {{buildingCost}}$</span>
+	</div>
+	
+	<button class = "game-button" (click)="onCreate()">Build</button>
+
 
 	<div class = 'create-model__close' (click)="onModalCancel()">
 		<span>Cancel</span>	
 		<span class = "create-model__close-icon"></span>
 	</div>
-
-	<span class = "create-model__players-money">${{playerMoney}}</span>
 </div>
