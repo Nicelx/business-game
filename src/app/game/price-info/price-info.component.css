@@ -5,7 +5,14 @@
 	top: 100px;
 	background-color: antiquewhite;
 	width: 320px;
+	/* display: grid;
+	grid-template-columns: 100px 100px; */
 }
 .price-info__price-list{
+	list-style-type: none;
+}
 
+.price-info__nav {
+	width: 100%;
+	display: flex;
 }

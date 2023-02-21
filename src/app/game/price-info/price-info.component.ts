@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MarketPiece, MarketService } from "./../services/market.service";
 import { GAME_SPEED } from './../../constants';
+import {sellingType} from '../interfaces/game.interfaces'
 
 @Component({
 	selector: "app-price-info",
@@ -10,9 +11,10 @@ import { GAME_SPEED } from './../../constants';
 export class PriceInfoComponent implements OnInit {
 	marketPrices: MarketPiece[] | null = null;
 	retailPrices: MarketPiece[] | null = null;
+	selectedTab : sellingType = 'market';
 
 	constructor(private marketService: MarketService) {
-		
+				
 	}
 
 
@@ -27,5 +29,9 @@ export class PriceInfoComponent implements OnInit {
 
 	updateMarket() {
 		this.marketService.updateMarket();
+	}
+
+	selectMarket(type: sellingType) {
+		this.selectedTab = type;
 	}
 }
