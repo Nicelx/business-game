@@ -16,3 +16,10 @@
 	width: 100%;
 	display: flex;
 }
+
+.price-info__nav-link--active {
+	transition: .2s ease-in;
+	box-shadow: 0px 4px 8px rgba(0,0,0, 0.3);
+	border-bottom: 1px solid red;
+	transform: scale(1.04);
+}
