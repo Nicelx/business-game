@@ -5,8 +5,8 @@
 	top: 100px;
 	background-color: antiquewhite;
 	width: 320px;
-	/* display: grid;
-	grid-template-columns: 100px 100px; */
+	height: 200px;
+
 }
 .price-info__price-list{
 	list-style-type: none;
@@ -17,9 +17,18 @@
 	display: flex;
 }
 
+.price-info__nav-link {
+	text-transform: uppercase;
+	width: 100%;
+	outline: none;
+	border: none;
+	background-color: lawngreen;
+}
+
 .price-info__nav-link--active {
 	transition: .2s ease-in;
 	box-shadow: 0px 4px 8px rgba(0,0,0, 0.3);
-	border-bottom: 1px solid red;
-	transform: scale(1.04);
+	border-bottom: 2px solid black;
+	/* transform: scale(1.04); */
+	transform: translateY(-2px);
 }
