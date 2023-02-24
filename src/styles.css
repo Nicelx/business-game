@@ -1,3 +1,11 @@
+:root {
+	--dark: #1a1616;
+	--light : #f9e4cb; 
+	--dark-gray: #594036;
+	--main: #c85c1b;
+	--secondary: #bf7d51;
+  }
+
 body {
 	padding: 0;
 	margin: 0;
@@ -8,8 +16,8 @@ body {
 	text-align: center;
 	width: 120px;
 	height: 30px;
-	background-color: dimgray;
-	color: white;
+	background-color: var(--dark-gray);
+	color: var(--light);
 	border-radius: 1px;
 	font-weight: 800;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

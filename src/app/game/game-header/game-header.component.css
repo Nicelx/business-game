@@ -1,7 +1,7 @@
 .game-header {
 	height: 48px;
-	background-color: antiquewhite;
-	color: dimgray;
+	background-color: var(--light);
+	color: var(--dark);
 	font-weight: 900;
 
 	display: flex;
