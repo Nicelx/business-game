@@ -1,14 +1,20 @@
 <div class="business-unit">
-	<h3 class="business-unit__header">{{ businessUnit.type }} - {{ businessUnit.sellingType }}</h3>
-	<div class="business-unit__statistic-block">
-		<span
-			class = ""
-			[ngClass]="checkEarnedColorClass()"
-			>earned: {{ businessUnit.earned }}</span
-		>
-		<span class="business-unit__income" [ngClass] = "checkIncomeColorClass()">income: {{ businessUnit.incomePerTick }}</span>
-		<span class = "business-unit__expenses">expenses: {{businessUnit.expensePerTick}}</span>
-		<span class = "business-unit__expenses">revenue: {{businessUnit.revenuePerTick}}</span>
+	<div class="business-unit__header">
+		<h3>{{ businessUnit.type }}</h3>
+		<h3>{{ businessUnit.sellingType }}</h3>
 	</div>
-	<span (click)="deleteUnit()" class = "business-unit__close">X</span>
+	<div class="business-unit__statistic-block">
+		<span class="" [ngClass]="checkEarnedColorClass()">earned: {{ businessUnit.earned }}</span>
+		<span class="business-unit__income" [ngClass]="checkIncomeColorClass()"
+			>income: {{ businessUnit.incomePerTick }}</span
+		>
+		<span class="business-unit__expenses">expenses: {{ businessUnit.expensePerTick }}</span>
+		<span class="business-unit__expenses">revenue: {{ businessUnit.revenuePerTick }}</span>
+	</div>
+
+	<div class="business-unit__interface-block">
+		<button class="business-unit__interface-button">expand</button>
+		<button class="business-unit__interface-button">remove</button>
+	</div>
+	<span (click)="deleteUnit()" class="business-unit__close">X</span>
 </div>

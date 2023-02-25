@@ -1,21 +1,43 @@
 <div class="price-info">
-	<div class = "price-info__nav">
-		<button class = "price-info__nav-link" [class.price-info__nav-link--active] = "selectedTab === 'market'"  (click)="selectMarket('market')">Market</button>
-		<button class = "price-info__nav-link" [class.price-info__nav-link--active] = "selectedTab === 'retail'"(click)="selectMarket('retail')">Retail</button>
+	<div class="price-info__nav">
+		<button
+			class="price-info__nav-link"
+			[class.price-info__nav-link--active]="selectedTab === 'market'"
+			(click)="selectMarket('market')"
+		>
+			Market
+		</button>
+		<button
+			class="price-info__nav-link"
+			[class.price-info__nav-link--active]="selectedTab === 'retail'"
+			(click)="selectMarket('retail')"
+		>
+			Retail
+		</button>
 	</div>
-	<ul *ngIf = "selectedTab === 'market'"class="price-info__price-list">
+	<ul *ngIf="selectedTab === 'market'" class="price-info__price-list">
 		<li *ngFor="let item of marketPrices" class="price-info__list-item">
-			<span  class="price-info__item">
-				{{ item.name }}  {{ item.price.toFixed(2) }}$ -- {{item.amplifier.toFixed(2)}} 
-			</span>
+			<div class="price-info__item">
+				<span class="price-info__name">
+					{{ item.name }}
+				</span>
+				<span class="price-info__price">
+					{{ item.price.toFixed(2) }}$ -- {{ item.amplifier.toFixed(2) }}
+				</span>
+			</div>
 		</li>
 	</ul>
 
-	<ul *ngIf = "selectedTab === 'retail'" class="price-info__price-list">
+	<ul *ngIf="selectedTab === 'retail'" class="price-info__price-list">
 		<li *ngFor="let item of retailPrices" class="price-info__list-item">
-			<span class="price-info__item">
-				{{ item.name }}  {{ item.retailPrice?.toFixed(2) }}$ -- {{item.retailAmplifier?.toFixed(2)}}
-			</span>
+			<div class="price-info__item">
+				<span class="price-info__name">
+					{{ item.name }}
+				</span>
+				<span class="price-info__price">
+					{{ item.retailPrice?.toFixed(2) }}$ -- {{ item.retailAmplifier?.toFixed(2) }}
+				</span>
+			</div>
 		</li>
 	</ul>
 	<button (click)="updateMarket()">Update</button>
