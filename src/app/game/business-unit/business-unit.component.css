@@ -3,22 +3,21 @@
 	display: flex;
 	flex-direction: column;
 	width: 230px;
-	background-color:  var(--dark);
+	background-color: var(--dark);
 	color: var(--light);
 	border-radius: 3px;
 	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
 	margin: 5px;
 }
-.business-unit__statistic-block {
-	display: flex;
-	gap: 10px;
-}
+
 
 .business-unit__income--red {
-	text-shadow:2px 2px 6px rgba(255, 0, 0, 0.4);
+	text-shadow: 2px 2px 6px rgba(255, 0, 0, 0.4);
+	color: red;
 }
 .business-unit__income--green {
-	text-shadow:2px 2px 6px rgba(7, 255, 102, 0.4);
+	text-shadow: 2px 2px 6px rgba(7, 255, 102, 0.4);
+	color: green;
 }
 
 .business-unit__close {
@@ -27,14 +26,30 @@
 	right: 12px;
 	cursor: pointer;
 }
-
-.business-unit__header {
+.business-unit__header-block {
+	display: flex;
+	align-items: center;
 	box-sizing: border-box;
 	width: 100%;
-	height: 30px;
+	height: 40px;
 	background-color: white;
 	color: var(--dark);
 	border: 1px solid black;
-	padding: 2px;
 	margin: 0;
+	padding: 5px;
 }
+
+.business-unit__header {
+	margin: 3px;
+	padding: 0 5px;
+	border: 1px solid black;
+}
+.business-unit__content-block {
+	display: flex;
+	height: 90px;
+}
+.business-unit__statistic-block {
+	display: flex;
+	flex-direction: column;
+}
+
