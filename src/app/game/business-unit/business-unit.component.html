@@ -7,19 +7,26 @@
 
 	<div class="business-unit__content-block">
 		<div class="business-unit__statistic-block">
-			<span class="" [ngClass]="checkEarnedColorClass()"
+			<span class="business-unit__statistic-item">Amount: {{ 1 }}</span>
+			<span class="business-unit__statistic-item" [ngClass]="checkEarnedColorClass()"
 				>earned: {{ businessUnit.earned }}</span
 			>
-			<span class="business-unit__income" [ngClass]="checkIncomeColorClass()"
+			<span
+				class="business-unit__statistic-item business-unit__income"
+				[ngClass]="checkIncomeColorClass()"
 				>income: {{ businessUnit.incomePerTick }}</span
 			>
-			<span class="business-unit__expenses">expenses: {{ businessUnit.expensePerTick }}</span>
-			<span class="business-unit__expenses">revenue: {{ businessUnit.revenuePerTick }}</span>
+			<span class="business-unit__statistic-item"
+				>expenses: {{ businessUnit.expensePerTick }}</span
+			>
+			<span class="business-unit__statistic-item"
+				>revenue: {{ businessUnit.revenuePerTick }}</span
+			>
 		</div>
 
 		<div class="business-unit__interface-block">
-			<button class="business-unit__interface-button">expand</button>
-			<button class="business-unit__interface-button">remove</button>
+			<button class="business-unit__interface-button">expand</button> {{ 11111 }}$
+			<button class="business-unit__interface-button">remove</button> {{ 11111 }}$
 		</div>
 	</div>
 </div>
