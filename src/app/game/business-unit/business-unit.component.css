@@ -2,14 +2,13 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	width: 250px;
+	width: 270px;
 	background-color: var(--dark);
 	color: var(--light);
 	border-radius: 3px;
 	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
 	margin: 5px;
 }
-
 
 .business-unit__income--red {
 	text-shadow: 2px 2px 6px rgba(255, 0, 0, 0.4);
@@ -18,9 +17,6 @@
 .business-unit__income--green {
 	text-shadow: 2px 2px 6px rgba(7, 255, 102, 0.4);
 	color: green;
-}
-.business-unit__statistic-item {
-	border-bottom:1px solid white ;
 }
 
 .business-unit__close {
@@ -51,19 +47,31 @@
 	display: flex;
 	height: 120px;
 }
+
 .business-unit__statistic-block {
 	display: flex;
 	flex-direction: column;
 	width: 70%;
 }
 .business-unit__statistic-item {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
+	/* border-bottom: 1px solid white; */
+	padding: 1px 4px;
 }
 
-
 .business-unit__interface-block {
+
 	align-self: center;
-	text-align : center;
+	/* justify-items: center; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* text-align : center; */
 	/* width: 100%; */
-	padding: 5px;
+	/* padding: 5px; */
+}
+
+.business-unit__button-block {
+	display: flex;
+	flex-direction: column;
 }
