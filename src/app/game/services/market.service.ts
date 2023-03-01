@@ -115,7 +115,7 @@ export class MarketService {
 		}
 	}
 
-	public decreaseAmplifier(type: string, sellingType: string) {
+	public decreaseAmplifier(type: unitType, sellingType: string) {
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (marketPiece === undefined) return;
 
