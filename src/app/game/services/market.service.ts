@@ -115,13 +115,14 @@ export class MarketService {
 		}
 	}
 
-	public decreaseAmplifier(type: unitType, sellingType: string) {
+	public decreaseAmplifier(type: unitType, sellingType: string, amount? : number) {
+		if (amount === undefined) amount = 1;
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (marketPiece === undefined) return;
 
-		marketPiece.amplifier -= -0.6;
+		marketPiece.amplifier -= -0.6 * amount;
 		if (sellingType === "retail") {
-			marketPiece.retailAmplifier ? marketPiece.retailAmplifier -= -0.6 : marketPiece.retailAmplifier == 0;
+			marketPiece.retailAmplifier ? marketPiece.retailAmplifier -= -0.6 * amount : marketPiece.retailAmplifier == 0;
 		}
 	}
 }

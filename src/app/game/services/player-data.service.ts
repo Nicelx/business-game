@@ -21,6 +21,7 @@ export class PlayerDataService {
 				{
 					unitId: 0,
 					type: "apples",
+					amount: 1,
 					sellingType: "retail",
 					earned: 0,
 					incomePerTick: 0,
@@ -104,7 +105,17 @@ export class PlayerDataService {
 				
 				let amount = bizUnit.amount;
 				
-				this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType);
+				if (bizUnit.sellingType === 'market') {
+					if (Array.isArray(bizUnit.type)) return;
+					this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType, amount);
+				}
+
+				if (bizUnit.sellingType === 'retail') {
+					if (!Array.isArray(bizUnit.type)) return;
+					bizUnit.type.forEach(type => {
+						this.marketService.decreaseAmplifier(type, 'retail')
+					})
+				}
 			}
 		});
 	}

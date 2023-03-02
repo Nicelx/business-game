@@ -1,4 +1,4 @@
-import { BusinessUnit, unitType } from "../interfaces/game.interfaces";
+import { BusinessUnit, sellingType, unitType } from "../interfaces/game.interfaces";
 import { MarketService } from "./market.service";
 import { Injectable } from "@angular/core";
 import { values } from './../../values';
@@ -18,8 +18,8 @@ export class BusinessUnitsService {
 		let sellingPrice: number = 1;
 		let incomeModifier = 1; // traits, bonuses
 		let expenseModifier = 1; // traits, bonuses
-		let incomeCoefficient = 1; // determine unit type difference of gross production
-		let expenseCoefficient = 1;
+		let incomeCoefficient = unit.amount; // determine unit type difference of gross production
+		let expenseCoefficient = unit.amount;
 		let supplyPrice = 1 * 1 * 1; // sum of different supply values;
 		//
 
@@ -36,14 +36,18 @@ export class BusinessUnitsService {
 		if (sellingType === "market") {
 			sellingPrice = findedMarketPiece.price;
 			// supplyPrice = findedMarketPiece.productionPrice || 1;
-			supplyPrice = this.calculateProduction(unit.type);
+			supplyPrice = this.calculateProduction(unit.type as unitType);
 		}
 
 		if (sellingType === "retail") {
+			if (!Array.isArray(unit.type)) return;
+
+			unit.type.forEach(singleType => {
+				
+			})
+
 			sellingPrice = findedMarketPiece.retailPrice || 1;
-			console.log(this.calculateRetailProduction(unit.type))
 			supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(unit.type);
-			console.log('supply price for retail', supplyPrice)
 		}
 
 		let revenue = sellingPrice * incomeModifier * incomeCoefficient;
