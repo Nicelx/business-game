@@ -48,6 +48,7 @@ export class CreationModelComponent implements OnInit {
 				sellingType: this.sellingType,
 				type: this.selectedType,
 				earned: 0,
+				amount: 1,
 				incomePerTick: 0,
 				expensePerTick: 0,
 				revenuePerTick: 0,

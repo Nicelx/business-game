@@ -15,12 +15,12 @@ export class BusinessUnitsService {
 
 	public calculateIncome(unit: BusinessUnit) {
 		// prior calculation. must be flexible and simple formula. i want it operate with parameters and constant only!!!
-		let sellingPrice: number = 1;
+		let sellingPrice: number = 0;
 		let incomeModifier = 1; // traits, bonuses
 		let expenseModifier = 1; // traits, bonuses
 		let incomeCoefficient = unit.amount; // determine unit type difference of gross production
 		let expenseCoefficient = unit.amount;
-		let supplyPrice = 1 * 1 * 1; // sum of different supply values;
+		let supplyPrice = 0; // sum of different supply values;
 		//
 
 		let prices = this.marketService.getPrices();
@@ -43,11 +43,10 @@ export class BusinessUnitsService {
 			if (!Array.isArray(unit.type)) return;
 
 			unit.type.forEach(singleType => {
-				
+				sellingPrice += findedMarketPiece.retailPrice || 1;
+				supplyPrice += (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
 			})
 
-			sellingPrice = findedMarketPiece.retailPrice || 1;
-			supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(unit.type);
 		}
 
 		let revenue = sellingPrice * incomeModifier * incomeCoefficient;

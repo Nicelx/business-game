@@ -9,6 +9,7 @@ import { PlayerDataService } from './../services/player-data.service';
 })
 export class BusinessUnitComponent implements OnInit {
 	@Input("bizUnit") businessUnit: BusinessUnit = {
+		amount: 1,
 		unitId: 0,
 		type: "apples",
 		sellingType: "retail",
