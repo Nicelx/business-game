@@ -16,11 +16,11 @@ export class PlayerDataService {
 		{
 			playerId: 0,
 			playerName: "player",
-			money: 0,
+			money:100,
 			businessUnits: [
 				{
 					unitId: 0,
-					type: "apples",
+					type: ["apples"],
 					amount: 1,
 					sellingType: "retail",
 					earned: 0,

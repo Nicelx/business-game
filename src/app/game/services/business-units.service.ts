@@ -43,8 +43,9 @@ export class BusinessUnitsService {
 			if (!Array.isArray(unit.type)) return;
 
 			unit.type.forEach(singleType => {
-				sellingPrice += findedMarketPiece.retailPrice || 1;
-				supplyPrice += (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
+				sellingPrice = findedMarketPiece.retailPrice || 1;
+				supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
+				console.log('sellingPrice ',sellingPrice, 'supplyPrice = ', supplyPrice);
 			})
 
 		}
