@@ -28,6 +28,17 @@ export class PlayerDataService {
 					expensePerTick: 0,
 					revenuePerTick: 0,
 				},
+				{
+					unitId: 0,
+					type: "apples",
+					amount: 1,
+					sellingType: "market",
+					earned: 0,
+					incomePerTick: 0,
+					expensePerTick: 0,
+					revenuePerTick: 0,
+				},
+
 			],
 			playerIncomePerTick: 0,
 		},

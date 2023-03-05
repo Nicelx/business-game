@@ -14,39 +14,53 @@ export class BusinessUnitsService {
 	constructor(private marketService: MarketService) {}
 
 	public calculateIncome(unit: BusinessUnit) {
+		console.log('calculateIncome', unit);
+		
 		// prior calculation. must be flexible and simple formula. i want it operate with parameters and constant only!!!
-		let sellingPrice: number = 0;
+		let sellingPrice: number = 1;
 		let incomeModifier = 1; // traits, bonuses
 		let expenseModifier = 1; // traits, bonuses
 		let incomeCoefficient = unit.amount; // determine unit type difference of gross production
 		let expenseCoefficient = unit.amount;
-		let supplyPrice = 0; // sum of different supply values;
+		let supplyPrice = 1; // sum of different supply values;
 		//
 
 		let prices = this.marketService.getPrices();
 
 		const { sellingType, type } = unit;
 
+
+		// bug here!!!!!!!!
 		const findedMarketPiece = prices.find((marketPiece) => {
-			return marketPiece.name === unit.type;
+			if (sellingType === 'market') return marketPiece.name === unit.type;
+			if (sellingType === 'retail') {
+				const arr = [...unit.type];
+
+			} return marketPiece.name === unit.type;
 		});
 
 		if (!findedMarketPiece) return;
+
+		console.log('calculateIncomeAfter findedMarketPiece')
 
 		if (sellingType === "market") {
 			sellingPrice = findedMarketPiece.price;
 			// supplyPrice = findedMarketPiece.productionPrice || 1;
 			supplyPrice = this.calculateProduction(unit.type as unitType);
 		}
-
+		console.log(sellingType);
+		
 		if (sellingType === "retail") {
-			if (!Array.isArray(unit.type)) return;
+			// if (!Array.isArray(type)) return;
+			// if (type.length === 0) return;
+			console.log(unit)
 
-			unit.type.forEach(singleType => {
-				sellingPrice = findedMarketPiece.retailPrice || 1;
-				supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
-				console.log('sellingPrice ',sellingPrice, 'supplyPrice = ', supplyPrice);
-			})
+			// unit.type.forEach(singleType => {
+			// 	if (singleType === undefined) return;
+			// 	sellingPrice = findedMarketPiece.retailPrice || 1;
+			// 	supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
+			// 	console.log('sellingPrice ',sellingPrice, 'supplyPrice = ', supplyPrice);
+			// })
 
 		}
 

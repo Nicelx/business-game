@@ -44,7 +44,7 @@ export class CreationModelComponent implements OnInit {
 
 		let selectedTypeToPass;
 
-		if (this.selectedType === "retail" as unitType) {
+		if (this.sellingType === "retail" as sellingType) {
 			selectedTypeToPass = [this.selectedType];
 		} else selectedTypeToPass = this.selectedType;
 
