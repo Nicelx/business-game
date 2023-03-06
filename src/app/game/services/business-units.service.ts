@@ -14,7 +14,7 @@ export class BusinessUnitsService {
 	constructor(private marketService: MarketService) {}
 
 	public calculateIncome(unit: BusinessUnit) {
-		console.log('calculateIncome', unit);
+		// console.log('calculateIncome', unit);
 		
 		// prior calculation. must be flexible and simple formula. i want it operate with parameters and constant only!!!
 		let sellingPrice: number = 1;
@@ -30,30 +30,39 @@ export class BusinessUnitsService {
 		const { sellingType, type } = unit;
 
 
-		// bug here!!!!!!!!
-		const findedMarketPiece = prices.find((marketPiece) => {
-			if (sellingType === 'market') return marketPiece.name === unit.type;
-			if (sellingType === 'retail') {
-				const arr = [...unit.type];
-
-			} return marketPiece.name === unit.type;
-		});
-
-		if (!findedMarketPiece) return;
-
-		console.log('calculateIncomeAfter findedMarketPiece')
+		// console.log('calculateIncomeAfter findedMarketPiece')
 
 		if (sellingType === "market") {
-			sellingPrice = findedMarketPiece.price;
+			const findedMarketPiece = prices.find((marketPiece) => {
+				 return marketPiece.name === unit.type;
+			});
+			if (!findedMarketPiece) throw new Error('findedMarketPiece = false')  
+			sellingPrice = findedMarketPiece?.price;
 			// supplyPrice = findedMarketPiece.productionPrice || 1;
 			supplyPrice = this.calculateProduction(unit.type as unitType);
 		}
-		console.log(sellingType);
 		
 		if (sellingType === "retail") {
-			// if (!Array.isArray(type)) return;
-			// if (type.length === 0) return;
-			console.log(unit)
+			if (!Array.isArray(type)) throw new Error('retail type isnt array');
+			// console.log(unit.type)
+			sellingPrice = 0;
+			supplyPrice = 0;
+
+			type.forEach((singleRetailType) => {
+				if (!singleRetailType) throw new Error('singleRetailType is false');
+				const findedRetailPiece = prices.find((marketPiece) => {
+					return marketPiece.name === singleRetailType;
+				})
+				if (!findedRetailPiece) throw new Error('findedRetailPiece wasnt finded in prices') 
+				if (!findedRetailPiece.retailPrice) throw new Error('findedRetailPiece doesnt have retailPrice')
+				if (!findedRetailPiece.price) throw new Error('findedRetailPiece doesnt have price')
+
+				sellingPrice += findedRetailPiece.retailPrice;
+				supplyPrice += findedRetailPiece.price + this.calculateRetailProduction(singleRetailType)
+				
+				console.log('findedRetailPiece' , findedRetailPiece)
+
+			});
 
 			// unit.type.forEach(singleType => {
 			// 	if (singleType === undefined) return;
