@@ -88,7 +88,7 @@ export class MarketService {
 
 	// gradually increasing retail price aka inflation.
 	prosperMarket(piece: MarketPiece) {
-		if (!piece.retailAmplifier || !piece.retailPrice) return;
+		if (piece.retailAmplifier === undefined || piece.retailPrice=== undefined) return;
 		if (piece.retailAmplifier < 0) {
 			piece.retailPrice += piece.retailPrice * 0.003;
 		} else {

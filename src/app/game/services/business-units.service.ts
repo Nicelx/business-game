@@ -44,7 +44,6 @@ export class BusinessUnitsService {
 		
 		if (sellingType === "retail") {
 			if (!Array.isArray(type)) throw new Error('retail type isnt array');
-			// console.log(unit.type)
 			sellingPrice = 0;
 			supplyPrice = 0;
 
@@ -59,18 +58,7 @@ export class BusinessUnitsService {
 
 				sellingPrice += findedRetailPiece.retailPrice;
 				supplyPrice += findedRetailPiece.price + this.calculateRetailProduction(singleRetailType)
-				
-				console.log('findedRetailPiece' , findedRetailPiece)
-
 			});
-
-			// unit.type.forEach(singleType => {
-			// 	if (singleType === undefined) return;
-			// 	sellingPrice = findedMarketPiece.retailPrice || 1;
-			// 	supplyPrice = (findedMarketPiece.price || 1) + this.calculateRetailProduction(singleType);
-			// 	console.log('sellingPrice ',sellingPrice, 'supplyPrice = ', supplyPrice);
-			// })
-
 		}
 
 		let revenue = sellingPrice * incomeModifier * incomeCoefficient;

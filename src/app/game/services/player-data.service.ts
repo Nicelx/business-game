@@ -94,6 +94,15 @@ export class PlayerDataService {
 
 		if (sellingType === "retail") {
 			this.marketService.changeAmplifier(type, "market", 1);
+
+			let needs = this.businessUnitsService.getRetailNeeds(type);
+
+			if (!needs) throw new Error('no needs');
+			needs.forEach((need) => {
+				console.log(need);
+				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
+			});
+			
 			return true;
 		}
 
@@ -102,7 +111,6 @@ export class PlayerDataService {
 
 			if (!needs) throw new Error('no needs');
 			needs.forEach((need) => {
-				console.log(need);
 				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
 			});
 		}

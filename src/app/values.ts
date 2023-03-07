@@ -1,6 +1,5 @@
 import { unitType } from "./game/interfaces/game.interfaces";
 
-
 export const values = {
 	apples: {
 		incomeCoefficient: 2,
@@ -22,15 +21,20 @@ export const values = {
 		retail: [
 			{
 				type: "salary" as unitType,
-				amount: 0.1,
-				amplifierEffect: 0.1,
+				amount: 0.3,
+				amplifierEffect: 0.3,
 			},
 			{
 				type: "rent" as unitType,
-				amount: 1,
-				amplifierEffect: 1,
+				amount: 0.3,
+				amplifierEffect: 0.3,
 			},
-		]
+			{
+				type: "apples" as unitType,
+				amount: 0.4,
+				amplifierEffect: 0.3,
+			},
+		],
 	},
 	rent: {
 		incomeCoefficient: 2,
@@ -38,7 +42,7 @@ export const values = {
 		buildingCost: 300,
 		amplifierWeight: 15000,
 		production: [],
-		retail:[]
+		retail: [],
 	},
 	iron: {
 		incomeCoefficient: 10,
@@ -46,7 +50,7 @@ export const values = {
 		buildingCost: 150,
 		amplifierWeight: 1200,
 		production: [],
-		retail:[]
+		retail: [],
 	},
 	salary: {
 		incomeCoefficient: 0,
@@ -54,6 +58,6 @@ export const values = {
 		buildingCost: 0,
 		amplifierWeight: 10000,
 		production: [],
-		retail:[]
+		retail: [],
 	},
 };
