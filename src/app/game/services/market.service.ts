@@ -57,10 +57,7 @@ export class MarketService {
 	}
 
 	updateMarket() {
-		if (this.market == undefined) {
-			console.log("market = undefined");
-			return;
-		}
+		if (this.market == undefined) throw new Error('market is undefined');
 		this.market.forEach((marketPiece: MarketPiece, index) => {
 			if (marketPiece.amplifier == undefined) return;
 			let amplifierWeight = BusinessUnitsService.getAmplifierWeight(this.market[index].name);
@@ -69,7 +66,9 @@ export class MarketService {
 
 			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier);
 			// retail
-			if (marketPiece.retailPrice && marketPiece.retailAmplifier) {
+			console.log('update market before retail', marketPiece)
+			if ((marketPiece.retailPrice !== undefined) && (marketPiece.retailAmplifier !== undefined)) {
+				console.log('update market after check')
 				this.market[index].retailAmplifier = this.fadeAmplifier(
 					marketPiece.retailAmplifier
 				);
