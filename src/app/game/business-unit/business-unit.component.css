@@ -79,6 +79,7 @@
 	height: 30px;
 	margin: 2px;
 	border-radius: 4px;
+	cursor: pointer;
 }
 
 .business-unit__interface-money {

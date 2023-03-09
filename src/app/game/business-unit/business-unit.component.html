@@ -7,7 +7,7 @@
 
 	<div class="business-unit__content-block">
 		<div class="business-unit__statistic-block">
-			<span class="business-unit__statistic-item">Amount: {{ 1 }}</span>
+			<span class="business-unit__statistic-item">Amount: {{ businessUnit.amount}}</span>
 			<span class="business-unit__statistic-item" [ngClass]="checkEarnedColorClass()"
 				>earned: {{ businessUnit.earned }}</span
 			>
@@ -26,7 +26,7 @@
 
 		<div class="business-unit__interface-block">
 			<div class="business-unit__button-block">
-				<button class="business-unit__interface-button">expand</button>
+				<button class="business-unit__interface-button" (click)="onExpand()">expand</button>
 				<span class = "business-unit__interface-money"> {{ 11111 }}$ </span>
 			</div>
 			<div class="business-unit__button-block">

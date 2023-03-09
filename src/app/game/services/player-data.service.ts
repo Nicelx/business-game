@@ -137,5 +137,12 @@ export class PlayerDataService {
 				}
 			}
 		});
+	};
+
+	public expandBusinessUnit(unitId: number, playerId : number) {
+		if (unitId === undefined) throw new Error('unitId is undifined')
+
+		this.playersData[playerId].businessUnits[unitId].amount ++;
+		// this.playersData[playerId].
 	}
 }
