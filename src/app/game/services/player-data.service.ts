@@ -76,20 +76,16 @@ export class PlayerDataService {
 		});
 	}
 
-	public addBusinessUnit(
-		unit: BusinessUnit,
-		playerId: number,
-		type: unitType,
-		sellingType: sellingType
-	):boolean {
+	_isEnoughMoneyToBuild(type: unitType, playerId:number) {
 		let buildingCost = this.businessUnitsService.getBuildingCost(type);
 		if (buildingCost > this.playersData[playerId].money) {
 			return false;
 		}
-
-		this.playersData[playerId].businessUnits.push(unit);
 		this.playersData[playerId].money -=buildingCost;
+		return true;
+	}
 
+	_handleAmplifiers(type:unitType, sellingType:sellingType, handleCase: 'add' | 'expand' | 'delete' | 'remove') {
 		this.marketService.changeAmplifier(type, sellingType, -1);
 
 		if (sellingType === "retail") {
@@ -114,6 +110,25 @@ export class PlayerDataService {
 				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
 			});
 		}
+
+
+	}
+
+	public addBusinessUnit(
+		unit: BusinessUnit,
+		playerId: number,
+		type: unitType,
+		sellingType: sellingType
+	):boolean {
+		if (!this._isEnoughMoneyToBuild(type, playerId)) {
+			console.log('not enough monet');
+			return false;
+		}
+
+		this.playersData[playerId].businessUnits.push(unit);
+
+		this._handleAmplifiers(type, sellingType, 'add')
+		
 		return true
 	}
 
