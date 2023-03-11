@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BusinessUnit, PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
-import { BusinessUnitsService } from "./business-units.service";
+import { BusinessUnitsService, ProductionNeeds } from "./business-units.service";
 import { MarketService } from "./market.service";
 
 @Injectable({
@@ -16,7 +16,7 @@ export class PlayerDataService {
 		{
 			playerId: 0,
 			playerName: "player",
-			money:100,
+			money: 100,
 			businessUnits: [
 				{
 					unitId: 0,
@@ -29,7 +29,7 @@ export class PlayerDataService {
 					revenuePerTick: 0,
 				},
 				{
-					unitId: 0,
+					unitId: 1,
 					type: "apples",
 					amount: 1,
 					sellingType: "market",
@@ -38,7 +38,6 @@ export class PlayerDataService {
 					expensePerTick: 0,
 					revenuePerTick: 0,
 				},
-
 			],
 			playerIncomePerTick: 0,
 		},
@@ -63,7 +62,7 @@ export class PlayerDataService {
 			player.businessUnits.forEach((bizUnit, index) => {
 				const incomeObj = this.businessUnitsService.calculateIncome(bizUnit);
 				if (!incomeObj) return;
-				let {income, expense, revenue} = incomeObj;
+				let { income, expense, revenue } = incomeObj;
 
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
@@ -76,41 +75,50 @@ export class PlayerDataService {
 		});
 	}
 
-	_isEnoughMoneyToBuild(type: unitType, playerId:number) {
+	private _isEnoughMoneyToBuild(type: unitType, playerId: number) {
 		let buildingCost = this.businessUnitsService.getBuildingCost(type);
 		if (buildingCost > this.playersData[playerId].money) {
 			return false;
 		}
-		this.playersData[playerId].money -=buildingCost;
+		this.playersData[playerId].money -= buildingCost;
 		return true;
 	}
 
-	_handleAmplifiers(type:unitType, sellingType:sellingType, handleCase: 'add' | 'expand' | 'delete' | 'remove') {
+	private _handleNeedsAmplifiers(needs: ProductionNeeds[]) {
+		if (!needs) throw new Error("no needs");
+
+		needs.forEach((need) => {
+			this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
+		});
+	}
+
+	private _handleAmplifiers(options:
+		{
+			type: unitType,
+			sellingType: sellingType,
+			case: string
+		}
+		// type: unitType,
+		// sellingType: sellingType,
+	) {
 		this.marketService.changeAmplifier(type, sellingType, -1);
 
 		if (sellingType === "retail") {
 			this.marketService.changeAmplifier(type, "market", 1);
 
 			let needs = this.businessUnitsService.getRetailNeeds(type);
+			this._handleNeedsAmplifiers(needs);
 
-			if (!needs) throw new Error('no needs');
-			needs.forEach((need) => {
-				console.log(need);
-				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
-			});
-			
 			return true;
 		}
 
 		if (sellingType === "market") {
 			let needs = this.businessUnitsService.getprodNeeds(type);
-
-			if (!needs) throw new Error('no needs');
-			needs.forEach((need) => {
-				this.marketService.changeAmplifier(need.type, "market", need.amplifierEffect);
-			});
+			this._handleNeedsAmplifiers(needs);
 		}
+	}
 
+	private _handleRemoveAmlifiers() {
 
 	}
 
@@ -119,45 +127,50 @@ export class PlayerDataService {
 		playerId: number,
 		type: unitType,
 		sellingType: sellingType
-	):boolean {
+	): boolean {
 		if (!this._isEnoughMoneyToBuild(type, playerId)) {
-			console.log('not enough monet');
+			console.log("not enough money");
 			return false;
 		}
 
 		this.playersData[playerId].businessUnits.push(unit);
 
-		this._handleAmplifiers(type, sellingType, 'add')
-		
-		return true
+		this._handleAmplifiers(type, sellingType, );
+
+		return true;
 	}
 
 	public deleteBusinessUnit(unitId: number) {
 		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
 			if (bizUnit.unitId === unitId) {
 				this.playersData[0].businessUnits.splice(index, 1);
-				
+
 				let amount = bizUnit.amount;
-				
-				if (bizUnit.sellingType === 'market') {
+
+				if (bizUnit.sellingType === "market") {
 					if (Array.isArray(bizUnit.type)) return;
 					this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType, amount);
 				}
 
-				if (bizUnit.sellingType === 'retail') {
+				if (bizUnit.sellingType === "retail") {
 					if (!Array.isArray(bizUnit.type)) return;
-					bizUnit.type.forEach(type => {
-						this.marketService.decreaseAmplifier(type, 'retail')
-					})
+					bizUnit.type.forEach((type) => {
+						this.marketService.decreaseAmplifier(type, "retail");
+					});
 				}
 			}
 		});
-	};
+	}
 
-	public expandBusinessUnit(unitId: number, playerId : number) {
-		if (unitId === undefined) throw new Error('unitId is undifined')
+	public expandBusinessUnit(bizUnit: BusinessUnit, playerId: number) {
+		const {unitId, type} = bizUnit;
 
-		this.playersData[playerId].businessUnits[unitId].amount ++;
+		if (bizUnit.unitId === undefined) throw new Error("unitId is undifined");
+
+
+		// this._isEnoughMoneyToBuild(type, playerId);
+
+		this.playersData[playerId].businessUnits[unitId].amount++;
 		// this.playersData[playerId].
 	}
 }
