@@ -30,7 +30,7 @@ export class PlayerDataService {
 				},
 				{
 					unitId: 1,
-					type: "apples",
+					type: ["apples"],
 					amount: 1,
 					sellingType: "market",
 					earned: 0,
@@ -92,35 +92,38 @@ export class PlayerDataService {
 		});
 	}
 
-	private _handleAmplifiers(options:
-		{
-			type: unitType,
-			sellingType: sellingType,
-			case: string
+	private _handleAmplifiers(
+		options: {
+			type: unitType[];
+			sellingType: sellingType;
+			case?: string;
 		}
 		// type: unitType,
 		// sellingType: sellingType,
 	) {
-		this.marketService.changeAmplifier(type, sellingType, -1);
+		const { type, sellingType } = options;
 
 		if (sellingType === "retail") {
-			this.marketService.changeAmplifier(type, "market", 1);
+			type.forEach((singleUnitType: unitType) => {
+				this.marketService.changeAmplifier(singleUnitType, sellingType, -1);
 
-			let needs = this.businessUnitsService.getRetailNeeds(type);
-			this._handleNeedsAmplifiers(needs);
+				this.marketService.changeAmplifier(singleUnitType, "market", 1);
+				let needs = this.businessUnitsService.getRetailNeeds(singleUnitType);
+				this._handleNeedsAmplifiers(needs);
+			});
 
 			return true;
 		}
 
 		if (sellingType === "market") {
-			let needs = this.businessUnitsService.getprodNeeds(type);
+			this.marketService.changeAmplifier(type[0], sellingType, -1);
+
+			let needs = this.businessUnitsService.getprodNeeds(type[0]);
 			this._handleNeedsAmplifiers(needs);
 		}
 	}
 
-	private _handleRemoveAmlifiers() {
-
-	}
+	private _handleRemoveAmlifiers() {}
 
 	public addBusinessUnit(
 		unit: BusinessUnit,
@@ -135,7 +138,7 @@ export class PlayerDataService {
 
 		this.playersData[playerId].businessUnits.push(unit);
 
-		this._handleAmplifiers(type, sellingType, );
+		this._handleAmplifiers({ type, sellingType });
 
 		return true;
 	}
@@ -163,10 +166,9 @@ export class PlayerDataService {
 	}
 
 	public expandBusinessUnit(bizUnit: BusinessUnit, playerId: number) {
-		const {unitId, type} = bizUnit;
+		const { unitId, type } = bizUnit;
 
 		if (bizUnit.unitId === undefined) throw new Error("unitId is undifined");
-
 
 		// this._isEnoughMoneyToBuild(type, playerId);
 

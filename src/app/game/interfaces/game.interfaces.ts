@@ -9,7 +9,7 @@ export interface PlayerData {
 export interface BusinessUnit {
 	unitId : number;
 	amount: number
-	type: unitType | unitType[];
+	type: unitType[];
 	sellingType: sellingType;
 	earned: number;
 	incomePerTick: number;

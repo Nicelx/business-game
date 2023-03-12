@@ -34,7 +34,7 @@ export class BusinessUnitComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onExpand() {
-		this.playerService.expandBusinessUnit(this.businessUnit.unitId, 0);
+		this.playerService.expandBusinessUnit(this.businessUnit, 0);
 	}
 
 	deleteUnit() {
