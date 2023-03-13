@@ -75,12 +75,16 @@ export class PlayerDataService {
 		});
 	}
 
-	private _isEnoughMoneyToBuild(type: unitType, playerId: number) {
-		let buildingCost = this.businessUnitsService.getBuildingCost(type);
-		if (buildingCost > this.playersData[playerId].money) {
+	private _isEnoughMoneyToBuild(type: unitType[], playerId: number) {
+		let overallCost = 0;
+		type.forEach((singleType) => {
+			let typeCost = this.businessUnitsService.getBuildingCost(singleType);
+			if (typeCost) overallCost+= typeCost;
+		})
+		if (overallCost > this.playersData[playerId].money) {
 			return false;
 		}
-		this.playersData[playerId].money -= buildingCost;
+		this.playersData[playerId].money -= overallCost;
 		return true;
 	}
 
@@ -98,8 +102,6 @@ export class PlayerDataService {
 			sellingType: sellingType;
 			case?: string;
 		}
-		// type: unitType,
-		// sellingType: sellingType,
 	) {
 		const { type, sellingType } = options;
 
@@ -128,9 +130,9 @@ export class PlayerDataService {
 	public addBusinessUnit(
 		unit: BusinessUnit,
 		playerId: number,
-		type: unitType,
-		sellingType: sellingType
 	): boolean {
+		const {type, sellingType} = unit;
+
 		if (!this._isEnoughMoneyToBuild(type, playerId)) {
 			console.log("not enough money");
 			return false;

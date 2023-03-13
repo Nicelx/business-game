@@ -34,12 +34,12 @@ export class BusinessUnitsService {
 
 		if (sellingType === "market") {
 			const findedMarketPiece = prices.find((marketPiece) => {
-				 return marketPiece.name === unit.type;
+				 return marketPiece.name === unit.type[0];
 			});
 			if (!findedMarketPiece) throw new Error('findedMarketPiece = false')  
 			sellingPrice = findedMarketPiece?.price;
 			// supplyPrice = findedMarketPiece.productionPrice || 1;
-			supplyPrice = this.calculateProduction(unit.type as unitType);
+			supplyPrice = this.calculateProduction(unit.type[0] as unitType);
 		}
 		
 		if (sellingType === "retail") {

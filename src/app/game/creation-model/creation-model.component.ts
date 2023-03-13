@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output, OnChanges } from "@angular/cor
 import { MarketService } from "../services/market.service";
 import { PlayerDataService } from "../services/player-data.service";
 import { PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
-import { BusinessUnitsService } from './../services/business-units.service';
+import { BusinessUnitsService } from "./../services/business-units.service";
 
 @Component({
 	selector: "app-creation-model",
@@ -17,20 +17,23 @@ export class CreationModelComponent implements OnInit {
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
-	constructor(private playerService: PlayerDataService, private marketService: MarketService, private businessUnitService: BusinessUnitsService) {}
+	constructor(
+		private playerService: PlayerDataService,
+		private marketService: MarketService,
+		private businessUnitService: BusinessUnitsService
+	) {}
 
 	isEnoughMoney = true;
 	playerMoney = this.playerService.getMainPlayer().money;
 
 	ngOnInit(): void {
-		this.selectedType = 'apples';
-		this.sellingType = 'retail';
-		this.buildingCost = this.businessUnitService.getBuildingCost('apples');
+		this.selectedType = "apples";
+		this.sellingType = "retail";
+		this.buildingCost = this.businessUnitService.getBuildingCost("apples");
 	}
-	
+
 	ngOnChanges() {
 		this.playerMoney = this.playerService.getMainPlayer().money;
-
 	}
 
 	onModalCancel() {
@@ -42,39 +45,38 @@ export class CreationModelComponent implements OnInit {
 		if (!this.selectedType) return;
 		const id = Math.floor(Math.random() * 1000000);
 
-		let selectedTypeToPass;
+		// let selectedTypeToPass;
 
-		if (this.sellingType === "retail" as sellingType) {
-			selectedTypeToPass = [this.selectedType];
-		} else selectedTypeToPass = this.selectedType;
+		// if (this.sellingType === "retail" as sellingType) {
+		// 	selectedTypeToPass = [this.selectedType];
+		// } else selectedTypeToPass = this.selectedType;
 
 		this.isEnoughMoney = this.playerService.addBusinessUnit(
 			{
 				unitId: id,
 				sellingType: this.sellingType,
-				type: selectedTypeToPass,
+				type: [this.selectedType],
 				earned: 0,
 				amount: 1,
 				incomePerTick: 0,
 				expensePerTick: 0,
 				revenuePerTick: 0,
 			},
-			0, this.selectedType, this.sellingType
+			0
 		);
 		// need outsource it .addBusinessUnit()
-		console.log(this.playerService.getMainPlayer())
-
+		console.log(this.playerService.getMainPlayer());
 	}
 
 	onOptionSelected(value: unitType | string) {
 		if (!(value === "apples" || value === "iron" || value === "salary" || value === "rent"))
-			return
+			return;
 		this.selectedType = value;
 		this.buildingCost = this.businessUnitService.getBuildingCost(value);
 	}
 
 	onSellingTypeSelection(value: string) {
-		if (!(value === 'retail' || value === "market")) return;
+		if (!(value === "retail" || value === "market")) return;
 		this.sellingType = value;
 	}
 }
