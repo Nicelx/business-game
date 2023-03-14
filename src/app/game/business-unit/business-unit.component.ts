@@ -11,7 +11,7 @@ export class BusinessUnitComponent implements OnInit {
 	@Input("bizUnit") businessUnit: BusinessUnit = {
 		amount: 1,
 		unitId: 0,
-		type: "apples",
+		type: ["apples"],
 		sellingType: "retail",
 		earned: 0,
 		incomePerTick: 0,

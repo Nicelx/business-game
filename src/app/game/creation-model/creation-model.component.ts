@@ -45,12 +45,6 @@ export class CreationModelComponent implements OnInit {
 		if (!this.selectedType) return;
 		const id = Math.floor(Math.random() * 1000000);
 
-		// let selectedTypeToPass;
-
-		// if (this.sellingType === "retail" as sellingType) {
-		// 	selectedTypeToPass = [this.selectedType];
-		// } else selectedTypeToPass = this.selectedType;
-
 		this.isEnoughMoney = this.playerService.addBusinessUnit(
 			{
 				unitId: id,

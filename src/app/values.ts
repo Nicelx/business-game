@@ -32,7 +32,7 @@ export const values = {
 			{
 				type: "apples" as unitType,
 				amount: 0.4,
-				amplifierEffect: 0.3,
+				amplifierEffect: 1,
 			},
 		],
 	},

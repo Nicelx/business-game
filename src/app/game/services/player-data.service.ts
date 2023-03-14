@@ -109,12 +109,12 @@ export class PlayerDataService {
 			type.forEach((singleUnitType: unitType) => {
 				this.marketService.changeAmplifier(singleUnitType, sellingType, -1);
 
-				this.marketService.changeAmplifier(singleUnitType, "market", 1);
+				// this.marketService.changeAmplifier(singleUnitType, "market", 1);
 				let needs = this.businessUnitsService.getRetailNeeds(singleUnitType);
 				this._handleNeedsAmplifiers(needs);
 			});
 
-			return true;
+			return;
 		}
 
 		if (sellingType === "market") {
@@ -124,8 +124,6 @@ export class PlayerDataService {
 			this._handleNeedsAmplifiers(needs);
 		}
 	}
-
-	private _handleRemoveAmlifiers() {}
 
 	public addBusinessUnit(
 		unit: BusinessUnit,
@@ -141,10 +139,10 @@ export class PlayerDataService {
 		this.playersData[playerId].businessUnits.push(unit);
 
 		this._handleAmplifiers({ type, sellingType });
-
+		
 		return true;
 	}
-
+	
 	public deleteBusinessUnit(unitId: number) {
 		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
 			if (bizUnit.unitId === unitId) {
@@ -156,7 +154,7 @@ export class PlayerDataService {
 					if (Array.isArray(bizUnit.type)) return;
 					this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType, amount);
 				}
-
+				
 				if (bizUnit.sellingType === "retail") {
 					if (!Array.isArray(bizUnit.type)) return;
 					bizUnit.type.forEach((type) => {
@@ -166,15 +164,16 @@ export class PlayerDataService {
 			}
 		});
 	}
-
+	
 	public expandBusinessUnit(bizUnit: BusinessUnit, playerId: number) {
-		const { unitId, type } = bizUnit;
-
+		const { unitId, type, sellingType } = bizUnit;
+		
 		if (bizUnit.unitId === undefined) throw new Error("unitId is undifined");
+		
+		if (!this._isEnoughMoneyToBuild(type, playerId)) return false;
 
-		// this._isEnoughMoneyToBuild(type, playerId);
-
+		this._handleAmplifiers({ type, sellingType });
 		this.playersData[playerId].businessUnits[unitId].amount++;
-		// this.playersData[playerId].
+		return true;
 	}
 }

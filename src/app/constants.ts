@@ -1,1 +1,1 @@
-export const GAME_SPEED = 1600;
+export const GAME_SPEED = 800;
