@@ -16,7 +16,7 @@ export class PlayerDataService {
 		{
 			playerId: 0,
 			playerName: "player",
-			money: 100,
+			money: 1000,
 			businessUnits: [
 				{
 					unitId: 0,
@@ -172,8 +172,11 @@ export class PlayerDataService {
 		
 		if (!this._isEnoughMoneyToBuild(type, playerId)) return false;
 
+		
 		this._handleAmplifiers({ type, sellingType });
-		this.playersData[playerId].businessUnits[unitId].amount++;
+		console.log(this.playersData[playerId])
+		console.log(unitId)
+		this.playersData[playerId].businessUnits[+unitId].amount++;
 		return true;
 	}
 }

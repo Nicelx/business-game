@@ -31,7 +31,7 @@ export const values = {
 			},
 			{
 				type: "apples" as unitType,
-				amount: 0.4,
+				amount: 1,
 				amplifierEffect: 1,
 			},
 		],
@@ -49,7 +49,18 @@ export const values = {
 		expenseCoefficient: 10,
 		buildingCost: 150,
 		amplifierWeight: 1200,
-		production: [],
+		production: [
+			{
+				type: "salary" as unitType,
+				amount: 7,
+				amplifierEffect: 1,
+			},
+			{
+				type: "rent" as unitType,
+				amount: 7,
+				amplifierEffect: 1,
+			},
+		],
 		retail: [],
 	},
 	salary: {

@@ -66,9 +66,9 @@ export class MarketService {
 
 			this.market[index].amplifier = this.fadeAmplifier(marketPiece.amplifier);
 			// retail
-			console.log('update market before retail', marketPiece)
+			// console.log('update market before retail', marketPiece)
 			if ((marketPiece.retailPrice !== undefined) && (marketPiece.retailAmplifier !== undefined)) {
-				console.log('update market after check')
+				// console.log('update market after check')
 				this.market[index].retailAmplifier = this.fadeAmplifier(
 					marketPiece.retailAmplifier
 				);
