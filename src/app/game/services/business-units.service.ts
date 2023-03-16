@@ -73,8 +73,16 @@ export class BusinessUnitsService {
 		}
 	}
 
-	public getBuildingCost(type: unitType) {
+	static getBuildingCost(type: unitType | unitType[]) {
+		if (Array.isArray(type)) {
+			let overallCost = 0;
+			type.forEach(singleType => {
+				overallCost += values[singleType].buildingCost
+			})
+			return overallCost;
+		}
 		if (!values[type]) return 0;
+
 		return values[type].buildingCost;
 	}
 

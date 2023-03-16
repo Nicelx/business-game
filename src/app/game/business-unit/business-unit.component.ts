@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BusinessUnit } from "../interfaces/game.interfaces";
+import { BusinessUnitsService } from "../services/business-units.service";
 import { PlayerDataService } from './../services/player-data.service';
 
 @Component({
@@ -18,20 +19,25 @@ export class BusinessUnitComponent implements OnInit {
 		expensePerTick: 0,
 		revenuePerTick: 0
 	};
-
+	expandCost = 0;
 	constructor(private playerService: PlayerDataService) {}
-
+	
+	
+	
 	checkEarnedColorClass() {
 		if (this.businessUnit.earned > 0) return "business-unit__income--green";
 		else return "business-unit__income--red";
 	}
-
+	
 	checkIncomeColorClass() {
 		if (this.businessUnit.incomePerTick > 0) return "business-unit__income--green";
 		else return "business-unit__income--red";
 	}
+	
+	ngOnInit(): void {
+		this.expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);
 
-	ngOnInit(): void {}
+	}
 
 	onExpand() {
 		this.playerService.expandBusinessUnit(this.businessUnit, 0);

@@ -18,26 +18,7 @@ export class PlayerDataService {
 			playerName: "player",
 			money: 1000,
 			businessUnits: [
-				{
-					unitId: 0,
-					type: ["apples"],
-					amount: 1,
-					sellingType: "retail",
-					earned: 0,
-					incomePerTick: 0,
-					expensePerTick: 0,
-					revenuePerTick: 0,
-				},
-				{
-					unitId: 1,
-					type: ["apples"],
-					amount: 1,
-					sellingType: "market",
-					earned: 0,
-					incomePerTick: 0,
-					expensePerTick: 0,
-					revenuePerTick: 0,
-				},
+				
 			],
 			playerIncomePerTick: 0,
 		},
@@ -78,9 +59,10 @@ export class PlayerDataService {
 	private _isEnoughMoneyToBuild(type: unitType[], playerId: number) {
 		let overallCost = 0;
 		type.forEach((singleType) => {
-			let typeCost = this.businessUnitsService.getBuildingCost(singleType);
-			if (typeCost) overallCost+= typeCost;
-		})
+			// let typeCost = this.businessUnitsService.getBuildingCost(singleType);
+			let typeCost = BusinessUnitsService.getBuildingCost(singleType);
+			if (typeCost) overallCost += typeCost;
+		});
 		if (overallCost > this.playersData[playerId].money) {
 			return false;
 		}
@@ -96,13 +78,11 @@ export class PlayerDataService {
 		});
 	}
 
-	private _handleAmplifiers(
-		options: {
-			type: unitType[];
-			sellingType: sellingType;
-			case?: string;
-		}
-	) {
+	private _handleAmplifiers(options: {
+		type: unitType[];
+		sellingType: sellingType;
+		case?: string;
+	}) {
 		const { type, sellingType } = options;
 
 		if (sellingType === "retail") {
@@ -125,11 +105,8 @@ export class PlayerDataService {
 		}
 	}
 
-	public addBusinessUnit(
-		unit: BusinessUnit,
-		playerId: number,
-	): boolean {
-		const {type, sellingType} = unit;
+	public addBusinessUnit(unit: BusinessUnit, playerId: number): boolean {
+		const { type, sellingType } = unit;
 
 		if (!this._isEnoughMoneyToBuild(type, playerId)) {
 			console.log("not enough money");
@@ -139,10 +116,10 @@ export class PlayerDataService {
 		this.playersData[playerId].businessUnits.push(unit);
 
 		this._handleAmplifiers({ type, sellingType });
-		
+
 		return true;
 	}
-	
+
 	public deleteBusinessUnit(unitId: number) {
 		this.playersData[0].businessUnits.forEach((bizUnit, index) => {
 			if (bizUnit.unitId === unitId) {
@@ -154,7 +131,7 @@ export class PlayerDataService {
 					if (Array.isArray(bizUnit.type)) return;
 					this.marketService.decreaseAmplifier(bizUnit.type, bizUnit.sellingType, amount);
 				}
-				
+
 				if (bizUnit.sellingType === "retail") {
 					if (!Array.isArray(bizUnit.type)) return;
 					bizUnit.type.forEach((type) => {
@@ -164,19 +141,26 @@ export class PlayerDataService {
 			}
 		});
 	}
-	
+
 	public expandBusinessUnit(bizUnit: BusinessUnit, playerId: number) {
 		const { unitId, type, sellingType } = bizUnit;
-		
+
 		if (bizUnit.unitId === undefined) throw new Error("unitId is undifined");
-		
+
 		if (!this._isEnoughMoneyToBuild(type, playerId)) return false;
 
-		
 		this._handleAmplifiers({ type, sellingType });
-		console.log(this.playersData[playerId])
-		console.log(unitId)
-		this.playersData[playerId].businessUnits[+unitId].amount++;
+		console.log(this.playersData[playerId]);
+		console.log(unitId);
+
+		// Bug here. accesing index, while need id
+		// this.playersData[playerId].businessUnits[+unitId].amount++;
+		// this.playersData[playerId].businessUnits.find((bizUnit) => 
+		// 	return bizUnit.unitId === unitId;
+		// ).amount++;
+		bizUnit.amount++;
+
+
 		return true;
 	}
 }

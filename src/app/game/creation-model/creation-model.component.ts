@@ -29,7 +29,7 @@ export class CreationModelComponent implements OnInit {
 	ngOnInit(): void {
 		this.selectedType = "apples";
 		this.sellingType = "retail";
-		this.buildingCost = this.businessUnitService.getBuildingCost("apples");
+		this.buildingCost = BusinessUnitsService.getBuildingCost("apples");
 	}
 
 	ngOnChanges() {
@@ -66,7 +66,7 @@ export class CreationModelComponent implements OnInit {
 		if (!(value === "apples" || value === "iron" || value === "salary" || value === "rent"))
 			return;
 		this.selectedType = value;
-		this.buildingCost = this.businessUnitService.getBuildingCost(value);
+		this.buildingCost = BusinessUnitsService.getBuildingCost(value);
 	}
 
 	onSellingTypeSelection(value: string) {

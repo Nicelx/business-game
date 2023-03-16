@@ -29,7 +29,7 @@ export class MarketService {
 		{ name: "rent", price: 1, amplifier: 0 },
 		{
 			name: "apples",
-			price: 3,
+			price: 2,
 			amplifier: 0,
 			productionPrice: 1,
 			retailAmplifier: 0,
