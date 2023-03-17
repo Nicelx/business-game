@@ -20,6 +20,7 @@ export class BusinessUnitComponent implements OnInit {
 		revenuePerTick: 0
 	};
 	expandCost = 0;
+	isExtendVisible = false;
 	constructor(private playerService: PlayerDataService) {}
 	
 	
@@ -36,8 +37,14 @@ export class BusinessUnitComponent implements OnInit {
 	
 	ngOnInit(): void {
 		this.expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);
-
 	}
+
+	onShowExtendDetails(b:boolean) {
+		this.isExtendVisible = b;
+	}
+	
+
+
 
 	onExpand() {
 		this.playerService.expandBusinessUnit(this.businessUnit, 0);

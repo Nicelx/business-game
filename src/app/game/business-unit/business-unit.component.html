@@ -24,7 +24,12 @@
 			>
 		</div>
 
+		<div class = "business-unit__retail-extend-block">
+			<button (click)="onShowExtendDetails(true)">extend</button>
+		</div>
+
 		<div class="business-unit__interface-block">
+
 			<div class="business-unit__button-block">
 				<button class="business-unit__interface-button" (click)="onExpand()">expand</button>
 				<span class = "business-unit__interface-money"> {{ expandCost }}$ </span>
@@ -34,5 +39,15 @@
 				<span class = "business-unit__interface-money"> {{ expandCost }}$ </span>
 			</div>
 		</div>
+	</div>
+
+	<div class = "extend" *ngIf="isExtendVisible">
+		<select class = "select" 
+		#selection 
+		>
+			<option selected value="apples">Apples</option>
+			<option value="iron">Iron</option>
+		</select>
+		<button (click)="onShowExtendDetails(false)">close extend details</button>
 	</div>
 </div>
