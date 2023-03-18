@@ -36,6 +36,46 @@ export const values = {
 			},
 		],
 	},
+	juice: {
+		incomeCoefficient: 2,
+		expenseCoefficient: 2,
+		buildingCost: 75,
+		amplifierWeight: 1000,
+		production: [
+			{
+				type: "salary" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+			{
+				type: "rent" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+			{
+				type: "apples" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+		],
+		retail: [
+			{
+				type: "salary" as unitType,
+				amount: 0.3,
+				amplifierEffect: 0.3,
+			},
+			{
+				type: "rent" as unitType,
+				amount: 0.3,
+				amplifierEffect: 0.3,
+			},
+			{
+				type: "juice" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+		],
+	},
 	rent: {
 		incomeCoefficient: 2,
 		expenseCoefficient: 0.8,

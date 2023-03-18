@@ -17,7 +17,7 @@ export interface BusinessUnit {
 	revenuePerTick: number;
 }
 
-export type unitType = "apples" | "iron" | "salary" | "rent"
+export type unitType = "apples" | "iron" | "salary" | "rent" | 'juice'
 
 export type sellingType = "retail" | "market"
 

@@ -1,6 +1,7 @@
 import { unitType } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./business-units.service";
-import { Injectable } from "@angular/core";
+
+export const retailTypes = ['apples', 'juice', 'iron']
 
 export interface RetailPiece {
 	name: unitType;
