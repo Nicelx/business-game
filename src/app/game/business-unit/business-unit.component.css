@@ -91,3 +91,19 @@
 	display: flex;
 	flex-direction: column;
 }
+
+
+.extend{
+	height: 30px;
+	display: flex;
+	justify-content: stretch;
+}
+.extend__select {
+
+}
+.extend__button {
+
+}
+.extend__add {
+
+}

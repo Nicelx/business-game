@@ -42,12 +42,13 @@
 	</div>
 
 	<div class = "extend" *ngIf="isExtendVisible">
-		<select class = "select" 
+		<select class = "extend__select" 
 		#selection 
 		>
 			<option *ngFor="let type of retailTypes" value="apples">{{type}}</option>
 			<!-- <option value="iron">Iron</option> -->
 		</select>
-		<button (click)="onShowExtendDetails(false)">close extend details</button>
+		<button class = "extend__button extend__add">add type</button>
+		<button class = "extend__button"(click)="onShowExtendDetails(false)">close extend details</button>
 	</div>
 </div>

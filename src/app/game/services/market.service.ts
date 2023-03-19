@@ -1,7 +1,7 @@
 import { unitType } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./business-units.service";
 
-export const retailTypes = ['apples', 'juice', 'iron']
+export const retailTypes: unitType[] = ['apples', 'juice', 'iron']
 
 export interface RetailPiece {
 	name: unitType;
@@ -37,6 +37,7 @@ export class MarketService {
 			retailPrice: 5,
 		},
 		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5 },
+		{ name: "juice", price: 5, amplifier: 0, productionPrice: 5, retailPrice: 7.2, retailAmplifier: 0 },
 	];
 
 	public getPrices() {

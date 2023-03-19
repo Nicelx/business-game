@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BusinessUnit } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "../services/business-units.service";
-import { retailTypes } from "../services/market.service";
+import { retailTypes as rt } from "../services/market.service";
 import { PlayerDataService } from './../services/player-data.service';
 
 @Component({
@@ -22,7 +22,9 @@ export class BusinessUnitComponent implements OnInit {
 	};
 	expandCost = 0;
 	isExtendVisible = false;
-	retailTypes = retailTypes;
+	retailTypes = this.businessUnit.type.map(type => {
+		rt.filter()
+	});
 	constructor(private playerService: PlayerDataService) {
 		
 	}
@@ -48,7 +50,15 @@ export class BusinessUnitComponent implements OnInit {
 	}
 	
 
+	filterRetail() {
+		const arr = [...rt];
 
+		let arr1 = this.businessUnit.type.forEach(buSingleType => {
+			rt.filter(typ)
+		})
+
+		console.log(arr1);
+	}
 
 	onExpand() {
 		this.playerService.expandBusinessUnit(this.businessUnit, 0);
