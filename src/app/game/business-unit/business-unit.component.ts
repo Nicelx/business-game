@@ -22,11 +22,13 @@ export class BusinessUnitComponent implements OnInit {
 	};
 	expandCost = 0;
 	isExtendVisible = false;
-	retailTypes = this.businessUnit.type.map(type => {
-		rt.filter()
-	});
+	retailTypes = rt;
+	// retailTypes = this.filterRetail();
+	// retailTypes = this.businessUnit.type.map(type => {
+	// 	rt.filter()
+	// });
 	constructor(private playerService: PlayerDataService) {
-		
+		this.filterRetail();		
 	}
 	
 	
@@ -51,13 +53,17 @@ export class BusinessUnitComponent implements OnInit {
 	
 
 	filterRetail() {
-		const arr = [...rt];
+		// const arr = [...rt];
+		let arr = [...rt]
+		// const rArr = ['two', 'three']
 
-		let arr1 = this.businessUnit.type.forEach(buSingleType => {
-			rt.filter(typ)
+		this.businessUnit.type.forEach(singleRarr => {
+			arr = arr.filter(singleArr => singleArr !== singleRarr)
 		})
 
-		console.log(arr1);
+		this.businessUnit.type
+
+		console.log(arr);
 	}
 
 	onExpand() {
