@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, OnChanges } from "@angular/core";
-import { MarketService } from "../services/market.service";
+import { MarketService, retailTypes, marketProdTypes } from "../services/market.service";
 import { PlayerDataService } from "../services/player-data.service";
 import { PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./../services/business-units.service";
@@ -14,6 +14,8 @@ export class CreationModelComponent implements OnInit {
 	selectedType: unitType | null = null;
 	sellingType: sellingType | null = null;
 	buildingCost: number = 0;
+	retailTypes = retailTypes;
+	marketProdTypes = marketProdTypes;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
@@ -30,6 +32,7 @@ export class CreationModelComponent implements OnInit {
 		this.selectedType = "apples";
 		this.sellingType = "retail";
 		this.buildingCost = BusinessUnitsService.getBuildingCost("apples");
+		
 	}
 
 	ngOnChanges() {

@@ -2,6 +2,7 @@ import { unitType } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./business-units.service";
 
 export const retailTypes: unitType[] = ['apples', 'juice', 'iron']
+export const marketProdTypes: unitType[] = ['apples', 'juice', 'iron']
 
 export interface RetailPiece {
 	name: unitType;
