@@ -28,7 +28,7 @@ export class BusinessUnitComponent implements OnInit {
 	// 	rt.filter()
 	// });
 	constructor(private playerService: PlayerDataService) {
-		this.filterRetail();		
+		// this.filterRetail();		
 	}
 	
 	
@@ -53,17 +53,13 @@ export class BusinessUnitComponent implements OnInit {
 	
 
 	filterRetail() {
-		// const arr = [...rt];
 		let arr = [...rt]
-		// const rArr = ['two', 'three']
 
 		this.businessUnit.type.forEach(singleRarr => {
 			arr = arr.filter(singleArr => singleArr !== singleRarr)
 		})
 
 		this.businessUnit.type
-
-		console.log(arr);
 	}
 
 	onExpand() {

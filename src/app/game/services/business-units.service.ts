@@ -30,7 +30,6 @@ export class BusinessUnitsService {
 		const { sellingType, type } = unit;
 
 
-		// console.log('calculateIncomeAfter findedMarketPiece')
 
 		if (sellingType === "market") {
 			const findedMarketPiece = prices.find((marketPiece) => {
@@ -52,20 +51,27 @@ export class BusinessUnitsService {
 				const findedRetailPiece = prices.find((marketPiece) => {
 					return marketPiece.name === singleRetailType;
 				})
+				console.log('findedRetailPrice', findedRetailPiece)
 				if (!findedRetailPiece) throw new Error('findedRetailPiece wasnt finded in prices') 
 				if (!findedRetailPiece.retailPrice) throw new Error('findedRetailPiece doesnt have retailPrice')
 				if (!findedRetailPiece.price) throw new Error('findedRetailPiece doesnt have price')
 
 				sellingPrice += findedRetailPiece.retailPrice;
-				supplyPrice += findedRetailPiece.price + this.calculateRetailProduction(singleRetailType)
+				// supplyPrice += findedRetailPiece.price + this.calculateRetailProduction(singleRetailType)
+				supplyPrice += this.calculateRetailProduction(singleRetailType)
+
+				console.log('sp', supplyPrice)
 			});
 		}
 
+		// console.log('supplyPrice', supplyPrice)
+		// to do fix supplyPrice
 		let revenue = sellingPrice * incomeModifier * incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
 		let income = revenue - expense;
 
 		// return revenue - expense;
+		
 		return {
 			revenue: revenue,
 			expense: expense,
@@ -105,6 +111,7 @@ export class BusinessUnitsService {
 				sumCalc += p * prodNeeds.amount;
 			}
 		});
+		console.log('sumCalc' , sumCalc)
 		return sumCalc;
 	}
 
@@ -120,7 +127,7 @@ export class BusinessUnitsService {
 	}
 
 	static getAmplifierWeight(type: unitType): number {
-		if (type === "apples" || type === "rent" || type === "iron" || type === "salary") {
+		if (type === "apples" || type === "rent" || type === "iron" || type === "salary" || type === 'juice') {
 			const weight = values[type].amplifierWeight;
 			return weight;
 		} else return 1;

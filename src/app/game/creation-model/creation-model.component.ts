@@ -61,12 +61,12 @@ export class CreationModelComponent implements OnInit {
 			},
 			0
 		);
+		console.log(this.selectedType, this.sellingType)
 		// need outsource it .addBusinessUnit()
-		console.log(this.playerService.getMainPlayer());
 	}
 
 	onOptionSelected(value: unitType | string) {
-		if (!(value === "apples" || value === "iron" || value === "salary" || value === "rent"))
+		if (!(value === "apples" || value === "iron" || value === "salary" || value === "rent"|| value ==='juice'))
 			return;
 		this.selectedType = value;
 		this.buildingCost = BusinessUnitsService.getBuildingCost(value);
