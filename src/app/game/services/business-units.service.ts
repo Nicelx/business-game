@@ -57,7 +57,6 @@ export class BusinessUnitsService {
 				if (!findedRetailPiece.price) throw new Error('findedRetailPiece doesnt have price')
 
 				sellingPrice += findedRetailPiece.retailPrice;
-				// supplyPrice += findedRetailPiece.price + this.calculateRetailProduction(singleRetailType)
 				supplyPrice += this.calculateRetailProduction(singleRetailType)
 
 				console.log('sp', supplyPrice)

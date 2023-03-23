@@ -40,7 +40,7 @@ export const values = {
 		incomeCoefficient: 2,
 		expenseCoefficient: 1,
 		buildingCost: 75,
-		amplifierWeight: 10000,
+		amplifierWeight: 1000,
 		production: [
 			{
 				type: "salary" as unitType,

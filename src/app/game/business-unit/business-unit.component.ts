@@ -62,6 +62,13 @@ export class BusinessUnitComponent implements OnInit {
 		this.businessUnit.type
 	}
 
+	onAddType() {
+		if (this.businessUnit.sellingType !== 'retail') throw new Error('wrong unit type')
+		this.businessUnit.type.find(singleType => {
+			if (singleType === this.businessUnit.selectedType)
+		})
+	}
+
 	onExpand() {
 		this.playerService.expandBusinessUnit(this.businessUnit, 0);
 	}
