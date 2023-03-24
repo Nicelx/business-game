@@ -62,10 +62,15 @@ export class BusinessUnitComponent implements OnInit {
 		this.businessUnit.type
 	}
 
+	onExtendSelection(selection: any) {
+		if (!selection) return;
+		console.log(selection)
+	}
+
 	onAddType() {
 		if (this.businessUnit.sellingType !== 'retail') throw new Error('wrong unit type')
 		this.businessUnit.type.find(singleType => {
-			if (singleType === this.businessUnit.selectedType)
+			// if (singleType === this.businessUnit.selectedType)
 		})
 	}
 

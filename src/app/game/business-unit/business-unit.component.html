@@ -43,9 +43,9 @@
 
 	<div class = "extend" *ngIf="isExtendVisible">
 		<select class = "extend__select" 
-		#selection 
+		#selection (change)="onExtendSelection(selection.value)"
 		>
-			<option *ngFor="let type of retailTypes" value="apples">{{type}}</option>
+			<option *ngFor="let type of retailTypes" value={{type}}>{{type}}</option>
 			<!-- <option value="iron">Iron</option> -->
 		</select>
 		<button class = "extend__button extend__add">add type</button>

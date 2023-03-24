@@ -51,7 +51,6 @@ export class BusinessUnitsService {
 				const findedRetailPiece = prices.find((marketPiece) => {
 					return marketPiece.name === singleRetailType;
 				})
-				console.log('findedRetailPrice', findedRetailPiece)
 				if (!findedRetailPiece) throw new Error('findedRetailPiece wasnt finded in prices') 
 				if (!findedRetailPiece.retailPrice) throw new Error('findedRetailPiece doesnt have retailPrice')
 				if (!findedRetailPiece.price) throw new Error('findedRetailPiece doesnt have price')
@@ -59,7 +58,6 @@ export class BusinessUnitsService {
 				sellingPrice += findedRetailPiece.retailPrice;
 				supplyPrice += this.calculateRetailProduction(singleRetailType)
 
-				console.log('sp', supplyPrice)
 			});
 		}
 
