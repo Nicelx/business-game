@@ -22,6 +22,7 @@ export class BusinessUnitComponent implements OnInit {
 	};
 	expandCost = 0;
 	isExtendVisible = false;
+	selectedTypeToExtend = rt[0];
 	retailTypes = rt;
 	// retailTypes = this.filterRetail();
 	// retailTypes = this.businessUnit.type.map(type => {
@@ -64,14 +65,17 @@ export class BusinessUnitComponent implements OnInit {
 
 	onExtendSelection(selection: any) {
 		if (!selection) return;
-		console.log(selection)
+		this.selectedTypeToExtend = selection;
 	}
 
 	onAddType() {
+		if (this.selectedTypeToExtend === null) throw new Error('selectedTypeToextend is null')
 		if (this.businessUnit.sellingType !== 'retail') throw new Error('wrong unit type')
 		this.businessUnit.type.find(singleType => {
-			// if (singleType === this.businessUnit.selectedType)
+			if (singleType === this.selectedTypeToExtend) throw new Error('same type to add to retail unit')
 		})
+		this.businessUnit.type.push(this.selectedTypeToExtend);
+		console.log('checking', this.businessUnit);
 	}
 
 	onExpand() {

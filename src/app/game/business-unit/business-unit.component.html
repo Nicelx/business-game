@@ -48,7 +48,7 @@
 			<option *ngFor="let type of retailTypes" value={{type}}>{{type}}</option>
 			<!-- <option value="iron">Iron</option> -->
 		</select>
-		<button class = "extend__button extend__add">add type</button>
+		<button class = "extend__button extend__add" (click)="onAddType()">add type</button>
 		<button class = "extend__button"(click)="onShowExtendDetails(false)">close extend details</button>
 	</div>
 </div>

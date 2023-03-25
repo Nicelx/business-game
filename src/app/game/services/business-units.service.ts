@@ -108,7 +108,6 @@ export class BusinessUnitsService {
 				sumCalc += p * prodNeeds.amount;
 			}
 		});
-		console.log('sumCalc' , sumCalc)
 		return sumCalc;
 	}
 
