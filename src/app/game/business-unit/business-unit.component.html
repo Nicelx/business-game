@@ -24,7 +24,7 @@
 			>
 		</div>
 
-		<div class = "business-unit__retail-extend-block">
+		<div *ngIf = 'isRetail' class = "business-unit__retail-extend-block">
 			<button (click)="onShowExtendDetails(true)">extend</button>
 		</div>
 

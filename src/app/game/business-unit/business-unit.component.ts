@@ -22,14 +22,11 @@ export class BusinessUnitComponent implements OnInit {
 	};
 	expandCost = 0;
 	isExtendVisible = false;
+	isRetail = false;
 	selectedTypeToExtend = rt[0];
 	retailTypes = rt;
-	// retailTypes = this.filterRetail();
-	// retailTypes = this.businessUnit.type.map(type => {
-	// 	rt.filter()
-	// });
+
 	constructor(private playerService: PlayerDataService) {
-		// this.filterRetail();		
 	}
 	
 	
@@ -46,6 +43,9 @@ export class BusinessUnitComponent implements OnInit {
 	
 	ngOnInit(): void {
 		this.expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);
+		if (this.businessUnit.sellingType=== 'retail') {
+			this.isRetail = true;
+		} ;
 	}
 
 	onShowExtendDetails(b:boolean) {
