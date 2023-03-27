@@ -1,4 +1,4 @@
-import { BusinessUnit, sellingType, unitType } from "../interfaces/game.interfaces";
+import { BusinessUnit, isUnitType, sellingType, unitType } from "../interfaces/game.interfaces";
 import { MarketService } from "./market.service";
 import { Injectable } from "@angular/core";
 import { values } from './../../values';
@@ -14,7 +14,6 @@ export class BusinessUnitsService {
 	constructor(private marketService: MarketService) {}
 
 	public calculateIncome(unit: BusinessUnit) {
-		// console.log('calculateIncome', unit);
 		
 		// prior calculation. must be flexible and simple formula. i want it operate with parameters and constant only!!!
 		let sellingPrice: number = 1;
@@ -37,7 +36,6 @@ export class BusinessUnitsService {
 			});
 			if (!findedMarketPiece) throw new Error('findedMarketPiece = false')  
 			sellingPrice = findedMarketPiece?.price;
-			// supplyPrice = findedMarketPiece.productionPrice || 1;
 			supplyPrice = this.calculateProduction(unit.type[0] as unitType);
 		}
 		
@@ -61,13 +59,10 @@ export class BusinessUnitsService {
 			});
 		}
 
-		// console.log('supplyPrice', supplyPrice)
-		// to do fix supplyPrice
 		let revenue = sellingPrice * incomeModifier * incomeCoefficient;
 		let expense = supplyPrice * expenseModifier * expenseCoefficient;
 		let income = revenue - expense;
 
-		// return revenue - expense;
 		
 		return {
 			revenue: revenue,
@@ -123,9 +118,8 @@ export class BusinessUnitsService {
 	}
 
 	static getAmplifierWeight(type: unitType): number {
-		if (type === "apples" || type === "rent" || type === "iron" || type === "salary" || type === 'juice') {
-			const weight = values[type].amplifierWeight;
-			return weight;
-		} else return 1;
+		if (!isUnitType(type)) throw new Error('not a unit type')
+
+		return values[type].amplifierWeight
 	}
 }

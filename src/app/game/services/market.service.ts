@@ -37,7 +37,7 @@ export class MarketService {
 			retailAmplifier: 0,
 			retailPrice: 5,
 		},
-		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5 },
+		{ name: "iron", price: 20, amplifier: 0, productionPrice: 5, retailPrice: 40, retailAmplifier: 0 },
 		{ name: "juice", price: 5, amplifier: 0, productionPrice: 5, retailPrice: 7.2, retailAmplifier: 0 },
 	];
 

@@ -19,6 +19,12 @@ export interface BusinessUnit {
 
 export type unitType = "apples" | "iron" | "salary" | "rent" | 'juice'
 
+export const isUnitType = (type: any) => {
+	if (type === "apples" || type === "rent" || type === "iron" || type === "salary" || type === 'juice') {
+		return true
+	} else return false;
+}
+
 export type sellingType = "retail" | "market"
 
 // export type unitKey = keyof unitType;

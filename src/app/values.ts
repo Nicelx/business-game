@@ -101,7 +101,23 @@ export const values = {
 				amplifierEffect: 1,
 			},
 		],
-		retail: [],
+		retail: [
+			{
+				type: "salary" as unitType,
+				amount: 0.4,
+				amplifierEffect: 0.4,
+			},
+			{
+				type: "rent" as unitType,
+				amount: 0.4,
+				amplifierEffect: 0.4,
+			},
+			{
+				type: "iron" as unitType,
+				amount: 1,
+				amplifierEffect: 1,
+			},
+		],
 	},
 	salary: {
 		incomeCoefficient: 0,

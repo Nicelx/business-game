@@ -20,11 +20,13 @@ export class BusinessUnitComponent implements OnInit {
 		expensePerTick: 0,
 		revenuePerTick: 0
 	};
-	expandCost = 0;
+	expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);;
 	isExtendVisible = false;
 	isRetail = false;
 	selectedTypeToExtend = rt[0];
 	retailTypes = rt;
+
+	
 
 	constructor(private playerService: PlayerDataService) {
 	}
