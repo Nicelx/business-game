@@ -150,14 +150,7 @@ export class PlayerDataService {
 		if (!this._isEnoughMoneyToBuild(type, playerId)) return false;
 
 		this._handleAmplifiers({ type, sellingType });
-		console.log(this.playersData[playerId]);
-		console.log(unitId);
 
-		// Bug here. accesing index, while need id
-		// this.playersData[playerId].businessUnits[+unitId].amount++;
-		// this.playersData[playerId].businessUnits.find((bizUnit) => 
-		// 	return bizUnit.unitId === unitId;
-		// ).amount++;
 		bizUnit.amount++;
 
 
