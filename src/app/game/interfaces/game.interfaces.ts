@@ -4,6 +4,7 @@ export interface PlayerData {
 	money: number;
 	businessUnits: BusinessUnit[];
 	playerIncomePerTick: number;
+	traits: Trait[]
 }
 
 export interface BusinessUnit {
@@ -17,7 +18,16 @@ export interface BusinessUnit {
 	revenuePerTick: number;
 }
 
+export interface Trait {
+	name: traitString;
+	level: number;
+}
+
+export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";
 export type unitType = "apples" | "iron" | "salary" | "rent" | 'juice'
+export const traitStringArray: traitString[] = ["RevenuePlus", "ExpensesPlus", "IncomePlus"];
+
+
 
 export const isUnitType = (type: any) => {
 	if (type === "apples" || type === "rent" || type === "iron" || type === "salary" || type === 'juice') {

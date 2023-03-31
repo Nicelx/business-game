@@ -1,13 +1,13 @@
-import { unitType, sellingType } from "../interfaces/game.interfaces";
+import { unitType, sellingType, traitString } from "../interfaces/game.interfaces";
+import { Trait } from './../interfaces/game.interfaces';
 
-type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";
-const traitStringArray: traitString[] = ["RevenuePlus", "ExpensesPlus", "IncomePlus"];
+
 
 const traitValues = {
 	RevenuePlus: {
-		cost: [1000],
+		cost: [1000, 1000, 1000, 1000, 1000],
 		levels: 10,
-		effects: [],
+		effects: [2, 3, 4, 5, 10, 1.4, 1.5, 2, 3, 10],
 	},
 	ExpensesPlus: {
 		const: [1000],
@@ -21,13 +21,12 @@ const traitValues = {
 	},
 };
 
-interface Trait {
-	name: traitString;
-	level: number;
-}
 
-export class TratService {
-	constructor() {}
+
+export class TraitService {
+	constructor(traits: Trait[]) {
+		this.traits = traits
+	}
 
 	private traits: Trait[] = [];
 

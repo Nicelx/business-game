@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BusinessUnit, PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
 import { BusinessUnitsService, ProductionNeeds } from "./business-units.service";
 import { MarketService } from "./market.service";
+import { TraitService } from "./traits.service";
 
 @Injectable({
 	providedIn: "root",
@@ -9,7 +10,8 @@ import { MarketService } from "./market.service";
 export class PlayerDataService {
 	constructor(
 		private marketService: MarketService,
-		private businessUnitsService: BusinessUnitsService
+		private businessUnitsService: BusinessUnitsService,
+		private traitService: TraitService
 	) {}
 
 	playersData: PlayerData[] = [
@@ -17,10 +19,12 @@ export class PlayerDataService {
 			playerId: 0,
 			playerName: "player",
 			money: 1000,
-			businessUnits: [
-				
-			],
+			businessUnits: [],
 			playerIncomePerTick: 0,
+			traits: [{
+				name: 'RevenuePlus',
+				level: 1
+			}]
 		},
 	];
 	moneyChanges: number = 0;
