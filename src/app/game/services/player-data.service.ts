@@ -21,10 +21,7 @@ export class PlayerDataService {
 			money: 1000,
 			businessUnits: [],
 			playerIncomePerTick: 0,
-			traits: [{
-				name: 'RevenuePlus',
-				level: 1
-			}]
+			traits: this.traitService.getTraits()
 		},
 	];
 	moneyChanges: number = 0;
@@ -36,9 +33,7 @@ export class PlayerDataService {
 	}
 
 	public getMainPlayer() {
-		return {
-			...this.playersData[0],
-		};
+		return this.playersData[0]
 	}
 
 	updatePlayerMoney() {

@@ -2,21 +2,29 @@
 <div>
 	<app-price-info></app-price-info>
 
-	<div class="business" *ngFor="let businessUnit of activePlayer.businessUnits" >
-		<app-business-unit [bizUnit] = "businessUnit"></app-business-unit>
+	<div class="business" *ngFor="let businessUnit of activePlayer.businessUnits">
+		<app-business-unit [bizUnit]="businessUnit"></app-business-unit>
 	</div>
 
 	<div class="categories">
 		<ul class="categories__list">
 			<li class="categories__item">
-				<button class="categories__button game-button" (click)="onGatherOpen()">добыча</button>
+				<button class="categories__button game-button" (click)="onGatherOpen()">
+					добыча
+				</button>
 			</li>
 			<li class="categories__item">
 				<button class="categories__button game-button">переработка</button>
 			</li>
-			<li class="categories__item "><button class="categories__button game-button">ритэйл</button></li>
-			<li class="categories__item "><button class="categories__button game-button">сервисы</button></li>
-			<li class="categories__item "><button class="categories__button game-button">удалить</button></li>
+			<li class="categories__item">
+				<button class="categories__button game-button">ритэйл</button>
+			</li>
+			<li class="categories__item">
+				<button class="categories__button game-button">сервисы</button>
+			</li>
+			<li class="categories__item">
+				<button class="categories__button game-button">удалить</button>
+			</li>
 		</ul>
 	</div>
 	<div class="competitors">
@@ -24,6 +32,13 @@
 		конкуренты тут
 	</div>
 
-	<app-creation-model *ngIf = "isModalVisible" (close)="onClose()"></app-creation-model>
+	<div>
+		traits
+		<br>
+		<span *ngFor="let singleTrait of this.activePlayer.traits"
+			>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
+		>
+	</div>
 
+	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>
 </div>

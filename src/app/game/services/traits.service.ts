@@ -1,5 +1,6 @@
 import { unitType, sellingType, traitString } from "../interfaces/game.interfaces";
 import { Trait } from './../interfaces/game.interfaces';
+import { Injectable } from '@angular/core';
 
 
 
@@ -22,15 +23,26 @@ const traitValues = {
 };
 
 
-
+@Injectable({
+	providedIn: "root",
+})
 export class TraitService {
-	constructor(traits: Trait[]) {
-		this.traits = traits
+	// constructor(traits: Trait[]) {
+	// 	this.traits = traits
+	// }
+
+	private traits: Trait[] = [{
+		name: 'RevenuePlus',
+		level: 1
+	}];
+
+	public addTrait(trait: Trait) {
+		this.traits.push(trait);
 	}
 
-	private traits: Trait[] = [];
-
-	public addTrait() {}
+	public getTraits() {
+		return this.traits
+	}
 
 	public calculateTraitIncome(
 		unitType: unitType,
