@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MarketService } from "./services/market.service";
 import { PlayerDataService } from "./services/player-data.service";
-import { PlayerData } from "./interfaces/game.interfaces";
+import { PlayerData, traitString } from "./interfaces/game.interfaces";
 
 @Component({
 	selector: "app-game",
@@ -43,6 +43,13 @@ export class GameComponent implements OnInit {
 	}
 	onClose() {
 		this.isModalVisible = false;
+	}
+
+	onAddTrait(traitString: traitString) {
+		this.activePlayer.traits.push({
+			name : traitString,
+			level: 1
+		})		
 	}
 
 }

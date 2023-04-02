@@ -38,6 +38,8 @@
 		<span *ngFor="let singleTrait of this.activePlayer.traits"
 			>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
 		>
+
+		<button (click)="onAddTrait('IncomePlus')">add trait</button>
 	</div>
 
 	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>

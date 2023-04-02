@@ -27,9 +27,7 @@ const traitValues = {
 	providedIn: "root",
 })
 export class TraitService {
-	// constructor(traits: Trait[]) {
-	// 	this.traits = traits
-	// }
+	constructor() {}
 
 	private traits: Trait[] = [{
 		name: 'RevenuePlus',
