@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MarketService } from "./services/market.service";
 import { PlayerDataService } from "./services/player-data.service";
-import { PlayerData, traitString } from "./interfaces/game.interfaces";
+import { PlayerData, Trait, isTraitType, traitString } from "./interfaces/game.interfaces";
+import { arrayMinusArray } from "./../functions";
+import { traitStringArray } from "./interfaces/game.interfaces";
 
 @Component({
 	selector: "app-game",
@@ -20,8 +22,10 @@ export class GameComponent implements OnInit {
 		money: 0,
 		businessUnits: [],
 		playerIncomePerTick: 0,
-		traits: []
+		traits: [],
 	};
+	traitSelected = "";
+	availableTraits = [];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -34,7 +38,8 @@ export class GameComponent implements OnInit {
 	ngOnInit(): void {
 		const routeParams = this.route.snapshot.paramMap;
 		this.gameId = Number(routeParams.get("gameId"));
-    this.activePlayer = this.playerService.getMainPlayer();
+		this.activePlayer = this.playerService.getMainPlayer();
+		this.availableTraits = arrayMinusArray(traitStringArray, this.activePlayer.traits);
 	}
 
 	onGatherOpen() {
@@ -45,11 +50,18 @@ export class GameComponent implements OnInit {
 		this.isModalVisible = false;
 	}
 
+	onTraitSelection(value: traitString) {}
+
+	// filterTraits(fullArray: Trait[], toReduceArray: Trait[]) {
+	// 	if (!isTraitType(fullArray) || !isTraitType(toReduceArray)) throw new Error('wrong array type here')
+
+	// 	return arrayMinusArray(fullArray, toReduceArray)
+	// }
 	onAddTrait(traitString: traitString) {
 		this.activePlayer.traits.push({
-			name : traitString,
-			level: 1
-		})		
+			name: traitString,
+			level: 1,
+		});
+		arrayMinusArray(["One", "Two", "Three"], ["Two"]);
 	}
-
 }

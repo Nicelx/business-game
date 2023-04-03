@@ -1,13 +1,10 @@
 export function arrayMinusArray(fullArray: string[], toReduceArray: string[]) {
 	let result = [...fullArray];
 
-	fullArray.forEach(fullArraySingleString => {
+	toReduceArray.forEach(fullArraySingleString => {
 		result = result.filter(toReduceArraySingleString => fullArraySingleString !== toReduceArraySingleString)
 	})
 
 	console.log(result);
+	return result
 } 
-
-
-
-arrayMinusArray(['One' , 'Two' , 'Three'], ['Two'])

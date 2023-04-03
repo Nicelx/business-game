@@ -39,6 +39,12 @@
 			>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
 		>
 
+		<select class = "extend__select" 
+		#selection (change)="onTraitSelection(selection.value)"
+		>
+			<option *ngFor="let type of retailTypes" value={{type}}>{{type}}</option>
+			<!-- <option value="iron">Iron</option> -->
+		</select>
 		<button (click)="onAddTrait('IncomePlus')">add trait</button>
 	</div>
 

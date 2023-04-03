@@ -1,15 +1,15 @@
 export interface PlayerData {
 	playerId: number;
-	playerName : string;
+	playerName: string;
 	money: number;
 	businessUnits: BusinessUnit[];
 	playerIncomePerTick: number;
-	traits: Trait[]
+	traits: Trait[];
 }
 
 export interface BusinessUnit {
-	unitId : number;
-	amount: number
+	unitId: number;
+	amount: number;
 	type: unitType[];
 	sellingType: sellingType;
 	earned: number;
@@ -24,17 +24,26 @@ export interface Trait {
 }
 
 export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";
-export type unitType = "apples" | "iron" | "salary" | "rent" | 'juice'
+export type unitType = "apples" | "iron" | "salary" | "rent" | "juice";
 export const traitStringArray: traitString[] = ["RevenuePlus", "ExpensesPlus", "IncomePlus"];
 
-
+export const isTraitType = (type: any) => {
+	if (type === "RevenuePlus" || type === "ExpensesPlus" || type === "IncomePlus") return true;
+	else return false;
+};
 
 export const isUnitType = (type: any) => {
-	if (type === "apples" || type === "rent" || type === "iron" || type === "salary" || type === 'juice') {
-		return true
+	if (
+		type === "apples" ||
+		type === "rent" ||
+		type === "iron" ||
+		type === "salary" ||
+		type === "juice"
+	) {
+		return true;
 	} else return false;
-}
+};
 
-export type sellingType = "retail" | "market"
+export type sellingType = "retail" | "market";
 
 // export type unitKey = keyof unitType;
