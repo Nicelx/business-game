@@ -25,8 +25,8 @@ export class GameComponent implements OnInit {
 		traits: [],
 	};
 	traitSelected = "";
-	availableTraits = [];
-
+	availableTraits : traitString[] = [];
+	
 	constructor(
 		private route: ActivatedRoute,
 		private marketService: MarketService,
@@ -39,7 +39,7 @@ export class GameComponent implements OnInit {
 		const routeParams = this.route.snapshot.paramMap;
 		this.gameId = Number(routeParams.get("gameId"));
 		this.activePlayer = this.playerService.getMainPlayer();
-		this.availableTraits = arrayMinusArray(traitStringArray, this.activePlayer.traits);
+		this.availableTraits = [...traitStringArray];
 	}
 
 	onGatherOpen() {
