@@ -24,7 +24,7 @@ export class GameComponent implements OnInit {
 		playerIncomePerTick: 0,
 		traits: [],
 	};
-	traitSelected = "";
+	traitSelected = traitStringArray[0];
 	availableTraits : traitString[] = [];
 	
 	constructor(
@@ -50,18 +50,26 @@ export class GameComponent implements OnInit {
 		this.isModalVisible = false;
 	}
 
-	onTraitSelection(value: traitString) {}
+	onTraitSelection(value: any) {
+		this.traitSelected = value;
+		console.log('selected', value)
+		console.log('traitSelected', this.traitSelected)
+	}
 
 	// filterTraits(fullArray: Trait[], toReduceArray: Trait[]) {
 	// 	if (!isTraitType(fullArray) || !isTraitType(toReduceArray)) throw new Error('wrong array type here')
 
 	// 	return arrayMinusArray(fullArray, toReduceArray)
 	// }
-	onAddTrait(traitString: traitString) {
+	onAddTrait() {
 		this.activePlayer.traits.push({
-			name: traitString,
+			name: this.traitSelected,
 			level: 1,
 		});
-		arrayMinusArray(["One", "Two", "Three"], ["Two"]);
+		
+		this.availableTraits.findIndex()
+		this.availableTraits.slice
+		// arrayMinusArray(["One", "Two", "Three"], ["Two"]);
+		console.log(this.activePlayer);
 	}
 }

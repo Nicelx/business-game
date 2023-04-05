@@ -29,10 +29,7 @@ const traitValues = {
 export class TraitService {
 	constructor() {}
 
-	private traits: Trait[] = [{
-		name: 'RevenuePlus',
-		level: 1
-	}];
+	private traits: Trait[] = [];
 
 	public addTrait(trait: Trait) {
 		this.traits.push(trait);

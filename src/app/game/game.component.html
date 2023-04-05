@@ -42,10 +42,10 @@
 		<select class = "extend__select" 
 		#selection (change)="onTraitSelection(selection.value)"
 		>
-			<option *ngFor="let type of retailTypes" value={{type}}>{{type}}</option>
+			<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
 			<!-- <option value="iron">Iron</option> -->
 		</select>
-		<button (click)="onAddTrait('IncomePlus')">add trait</button>
+		<button (click)="onAddTrait()">add trait</button>
 	</div>
 
 	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>
