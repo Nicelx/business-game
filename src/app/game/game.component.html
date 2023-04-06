@@ -43,7 +43,6 @@
 		#selection (change)="onTraitSelection(selection.value)"
 		>
 			<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
-			<!-- <option value="iron">Iron</option> -->
 		</select>
 		<button (click)="onAddTrait()">add trait</button>
 	</div>

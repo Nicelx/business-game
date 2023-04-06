@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MarketService } from "./services/market.service";
 import { PlayerDataService } from "./services/player-data.service";
-import { PlayerData, Trait, isTraitType, traitString } from "./interfaces/game.interfaces";
-import { arrayMinusArray } from "./../functions";
+import { PlayerData, traitString } from "./interfaces/game.interfaces";
 import { traitStringArray } from "./interfaces/game.interfaces";
 
 @Component({
@@ -25,8 +24,8 @@ export class GameComponent implements OnInit {
 		traits: [],
 	};
 	traitSelected = traitStringArray[0];
-	availableTraits : traitString[] = [];
-	
+	availableTraits: traitString[] = [];
+
 	constructor(
 		private route: ActivatedRoute,
 		private marketService: MarketService,
@@ -52,24 +51,18 @@ export class GameComponent implements OnInit {
 
 	onTraitSelection(value: any) {
 		this.traitSelected = value;
-		console.log('selected', value)
-		console.log('traitSelected', this.traitSelected)
 	}
 
-	// filterTraits(fullArray: Trait[], toReduceArray: Trait[]) {
-	// 	if (!isTraitType(fullArray) || !isTraitType(toReduceArray)) throw new Error('wrong array type here')
-
-	// 	return arrayMinusArray(fullArray, toReduceArray)
-	// }
 	onAddTrait() {
 		this.activePlayer.traits.push({
 			name: this.traitSelected,
 			level: 1,
 		});
-		
-		this.availableTraits.findIndex()
-		this.availableTraits.slice
-		// arrayMinusArray(["One", "Two", "Three"], ["Two"]);
-		console.log(this.activePlayer);
+
+		const traitIndex = this.availableTraits.findIndex(
+			(element) => element === this.traitSelected
+		);
+		this.availableTraits.splice(traitIndex, 1);
+		console.log(this.activePlayer)
 	}
 }
