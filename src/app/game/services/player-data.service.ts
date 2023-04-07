@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BusinessUnit, PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
+import { BusinessUnit, PlayerData, sellingType, traitString, unitType } from "./../interfaces/game.interfaces";
 import { BusinessUnitsService, ProductionNeeds } from "./business-units.service";
 import { MarketService } from "./market.service";
 import { TraitService } from "./traits.service";
@@ -88,7 +88,6 @@ export class PlayerDataService {
 			type.forEach((singleUnitType: unitType) => {
 				this.marketService.changeAmplifier(singleUnitType, sellingType, -1);
 
-				// this.marketService.changeAmplifier(singleUnitType, "market", 1);
 				let needs = this.businessUnitsService.getRetailNeeds(singleUnitType);
 				this._handleNeedsAmplifiers(needs);
 			});
@@ -154,5 +153,9 @@ export class PlayerDataService {
 
 
 		return true;
+	}
+
+	public buyTrait(trait: traitString) {
+		console.log(this.traitService.getTraitCost('ExpensesPlus', 1))
 	}
 }

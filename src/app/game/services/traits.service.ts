@@ -11,12 +11,12 @@ const traitValues = {
 		effects: [2, 3, 4, 5, 10, 1.4, 1.5, 2, 3, 10],
 	},
 	ExpensesPlus: {
-		const: [1000],
+		cost: [5000],
 		levels: 10,
 		effects: [],
 	},
 	IncomePlus: {
-		const: [1000],
+		cost: [7000],
 		levels: 10,
 		effects: [],
 	},
@@ -53,7 +53,14 @@ export class TraitService {
 
 	public checkTrait(traitString: traitString) {
 		this.traits.find((lookedTrait) => {
-			if (lookedTrait.name === traitString) return;
+			if (lookedTrait.name === traitString) return 
 		});
+	}
+
+	public getTraitCost(traitString: traitString, level: number) {
+		if (!traitValues[traitString]) throw new Error('traitString is not exist in traitValues object')
+		const cost = traitValues[traitString].cost[level - 1]
+		if (!cost) throw new Error('no cost')
+		return cost;
 	}
 }

@@ -59,6 +59,8 @@ export class GameComponent implements OnInit {
 			level: 1,
 		});
 
+		this.playerService.buyTrait(this.traitSelected);
+
 		const traitIndex = this.availableTraits.findIndex(
 			(element) => element === this.traitSelected
 		);
