@@ -11,12 +11,12 @@ const traitValues = {
 		effects: [2, 3, 4, 5, 10, 1.4, 1.5, 2, 3, 10],
 	},
 	ExpensesPlus: {
-		cost: [5000],
+		cost: [1200],
 		levels: 10,
 		effects: [],
 	},
 	IncomePlus: {
-		cost: [7000],
+		cost: [1300],
 		levels: 10,
 		effects: [],
 	},
@@ -62,5 +62,9 @@ export class TraitService {
 		const cost = traitValues[traitString].cost[level - 1]
 		if (!cost) throw new Error('no cost')
 		return cost;
+	}
+
+	public isPossibleToBuy(playerBank: number, traitString: traitString) {
+		console.log('checkTrait', this.checkTrait(traitString))
 	}
 }
