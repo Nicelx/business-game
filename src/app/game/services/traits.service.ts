@@ -1,3 +1,4 @@
+import { traitStringArray } from "../interfaces/game.interfaces";
 import { unitType, sellingType, traitString } from "../interfaces/game.interfaces";
 import { Trait } from './../interfaces/game.interfaces';
 import { Injectable } from '@angular/core';
@@ -29,7 +30,12 @@ const traitValues = {
 export class TraitService {
 	constructor() {}
 
-	private traits: Trait[] = [];
+	private traits: Trait[] = [
+		{
+			level: 1,
+			name: "IncomePlus"
+		}
+	];
 
 	public addTrait(trait: Trait) {
 		this.traits.push(trait);
@@ -52,6 +58,10 @@ export class TraitService {
 	public increaseCost() {}
 
 	public checkTrait(traitString: traitString) {
+		traitStringArray.find(traitStringInArray => {
+			traitStringInArray ==
+		})
+
 		this.traits.find((lookedTrait) => {
 			if (lookedTrait.name === traitString) return 
 		});

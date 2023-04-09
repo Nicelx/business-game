@@ -157,7 +157,7 @@ export class PlayerDataService {
 
 	public buyTrait(trait: traitString) {
 		let traitCost = this.traitService.getTraitCost(trait, 1)
-		this.traitService.isPossibleToBuy(this.active)
+		console.log('buy Trait fun ', this.traitService.isPossibleToBuy(10000, "RevenuePlus"))
 
 
 	}
