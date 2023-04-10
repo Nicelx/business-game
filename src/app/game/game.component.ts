@@ -55,11 +55,6 @@ export class GameComponent implements OnInit {
 	}
 
 	onAddTrait() {
-		// this.activePlayer.traits.push({
-		// 	name: this.traitSelected,
-		// 	level: 1,
-		// });
-
 		this.playerService.buyTrait(this.traitSelected);
 
 		const traitIndex = this.availableTraits.findIndex(

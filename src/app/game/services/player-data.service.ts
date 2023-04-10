@@ -156,8 +156,11 @@ export class PlayerDataService {
 	}
 
 	public buyTrait(trait: traitString) {
+		console.log('buyTrait trait', trait)
+		console.log('buyTrait this.playerData', this.playersData)
 		let traitCost = this.traitService.getTraitCost(trait, 1)
 		console.log('buy Trait fun ', this.traitService.isPossibleToBuy(10000, "RevenuePlus"))
+		console.log('traitService in player-Data service', this.traitService)
 
 
 	}

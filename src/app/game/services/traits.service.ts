@@ -34,6 +34,10 @@ export class TraitService {
 		{
 			level: 1,
 			name: "IncomePlus"
+		},
+		{
+			level: 1,
+			name: "RevenuePlus"
 		}
 	];
 
@@ -57,14 +61,24 @@ export class TraitService {
 
 	public increaseCost() {}
 
-	public checkTrait(traitString: traitString) {
-		traitStringArray.find(traitStringInArray => {
-			traitStringInArray ==
-		})
+	private getTraitInfo(traitString: traitString) {
+		if (!traitStringArray.find(traitStringInArray => {
+			return traitStringInArray === traitString 
+		})) throw new Error('trait doesnt exist at all')
+	}
 
-		this.traits.find((lookedTrait) => {
-			if (lookedTrait.name === traitString) return 
+	public checkTrait(traitString: traitString) {
+		if (!traitStringArray.find(traitStringInArray => {
+			return traitStringInArray === traitString 
+		})) throw new Error('trait doesnt exist at all')
+
+		console.log('checkTrait this.traits ',this.traits)
+		return this.traits.find((lookedTrait) => {
+			console.log(lookedTrait)
+			return lookedTrait.name ===traitString;
 		});
+
+
 	}
 
 	public getTraitCost(traitString: traitString, level: number) {
