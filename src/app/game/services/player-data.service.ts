@@ -155,13 +155,17 @@ export class PlayerDataService {
 		return true;
 	}
 
-	public buyTrait(trait: traitString) {
-		console.log('buyTrait trait', trait)
-		console.log('buyTrait this.playerData', this.playersData)
-		let traitCost = this.traitService.getTraitCost(trait, 1)
-		console.log('buy Trait fun ', this.traitService.isPossibleToBuy(10000, "RevenuePlus"))
-		console.log('traitService in player-Data service', this.traitService)
-
+	public buyTrait(trait: traitString, playerId : number) {
+		let isPossibleObj = this.traitService.isPossibleToBuy({
+			traitString : trait,
+			level: 1,
+			playerMoney: this.playersData[playerId].money
+		})
+		if (isPossibleObj.isPossible) {
+			this.playersData[playerId].money - isPossibleObj.cost; 
+			this.playersData[playerId].traits.push
+			console.log('bought for ', isPossibleObj.cost)
+}
 
 	}
 }

@@ -45,6 +45,11 @@ export class TraitService {
 		this.traits.push(trait);
 	}
 
+	public upgradeTrait(traitString: traitString) {
+		const finded = this.checkTrait(traitString);
+		if (finded) finded.level++;
+	}
+
 	public getTraits() {
 		return this.traits
 	}
@@ -61,10 +66,12 @@ export class TraitService {
 
 	public increaseCost() {}
 
-	private getTraitInfo(traitString: traitString) {
+	private getTraitValues(traitString: traitString) {
 		if (!traitStringArray.find(traitStringInArray => {
 			return traitStringInArray === traitString 
 		})) throw new Error('trait doesnt exist at all')
+
+		return traitValues[traitString];
 	}
 
 	public checkTrait(traitString: traitString) {
@@ -81,14 +88,26 @@ export class TraitService {
 
 	}
 
-	public getTraitCost(traitString: traitString, level: number) {
-		if (!traitValues[traitString]) throw new Error('traitString is not exist in traitValues object')
-		const cost = traitValues[traitString].cost[level - 1]
-		if (!cost) throw new Error('no cost')
-		return cost;
-	}
+	// public getTraitCost(traitString: traitString, level: number) {
+	// 	if (!traitValues[traitString]) throw new Error('traitString is not exist in traitValues object')
+	// 	const cost = traitValues[traitString].cost[level - 1]
+	// 	if (!cost) throw new Error('no cost')
+	// 	return cost;
+	// }
 
-	public isPossibleToBuy(playerBank: number, traitString: traitString) {
-		console.log('checkTrait', this.checkTrait(traitString))
+	public isPossibleToBuy(options: {
+		traitString: traitString,
+		level: number,
+		playerMoney: number,
+	}) {
+		if (!options) throw new Error('no options passed')
+		const {traitString, level, playerMoney} = options;
+		if (!traitString || !level || !playerMoney) throw new Error('one of the options property is incorect')
+
+		const findedTraitValue = this.getTraitValues(traitString)
+		if (findedTraitValue.levels < level) throw new Error('passed level is higher than existed')
+		
+		if (playerMoney > findedTraitValue.cost[level - 1]) return {isPossible : true, cost : findedTraitValue.cost[level - 1]};
+		return {isPossible: false, cost : findedTraitValue.cost[level - 1]};
 	}
 }
