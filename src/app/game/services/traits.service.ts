@@ -7,17 +7,17 @@ import { Injectable } from '@angular/core';
 
 const traitValues = {
 	RevenuePlus: {
-		cost: [1000, 1000, 1000, 1000, 1000],
+		cost: [100, 200, 300, 500, 600],
 		levels: 10,
 		effects: [2, 3, 4, 5, 10, 1.4, 1.5, 2, 3, 10],
 	},
 	ExpensesPlus: {
-		cost: [1200],
+		cost: [400],
 		levels: 10,
 		effects: [],
 	},
 	IncomePlus: {
-		cost: [1300],
+		cost: [600],
 		levels: 10,
 		effects: [],
 	},
@@ -31,14 +31,14 @@ export class TraitService {
 	constructor() {}
 
 	private traits: Trait[] = [
-		{
-			level: 1,
-			name: "IncomePlus"
-		},
-		{
-			level: 1,
-			name: "RevenuePlus"
-		}
+		// {
+		// 	level: 1,
+		// 	name: "IncomePlus"
+		// },
+		// {
+		// 	level: 1,
+		// 	name: "RevenuePlus"
+		// }
 	];
 
 	public addTrait(trait: Trait) {

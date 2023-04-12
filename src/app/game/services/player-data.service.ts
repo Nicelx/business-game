@@ -156,14 +156,18 @@ export class PlayerDataService {
 	}
 
 	public buyTrait(trait: traitString, playerId : number) {
+		let player = this.getPlayer(playerId);
 		let isPossibleObj = this.traitService.isPossibleToBuy({
 			traitString : trait,
 			level: 1,
-			playerMoney: this.playersData[playerId].money
+			playerMoney: player.money
 		})
 		if (isPossibleObj.isPossible) {
-			this.playersData[playerId].money - isPossibleObj.cost; 
-			this.playersData[playerId].traits.push
+			player.money -= isPossibleObj.cost; 
+			this.traitService.addTrait({
+				name : trait,
+				level: 1
+			})
 			console.log('bought for ', isPossibleObj.cost)
 }
 

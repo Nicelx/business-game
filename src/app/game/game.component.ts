@@ -55,8 +55,9 @@ export class GameComponent implements OnInit {
 	}
 
 	onAddTrait() {
-		this.playerService.buyTrait(this.traitSelected);
+		this.playerService.buyTrait(this.traitSelected, 0);
 
+		console.log(this.playerService.getPlayer(0))
 		const traitIndex = this.availableTraits.findIndex(
 			(element) => element === this.traitSelected
 		);
