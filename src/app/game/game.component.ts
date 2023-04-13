@@ -39,7 +39,7 @@ export class GameComponent implements OnInit {
 		this.gameId = Number(routeParams.get("gameId"));
 		this.activePlayer = this.playerService.getMainPlayer();
 		this.availableTraits = [...traitStringArray];
-		console.log(this.traitSelected)
+		console.log(this.traitSelected);
 	}
 
 	onGatherOpen() {
@@ -55,13 +55,15 @@ export class GameComponent implements OnInit {
 	}
 
 	onAddTrait() {
-		this.playerService.buyTrait(this.traitSelected, 0);
+		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0);
 
-		console.log(this.playerService.getPlayer(0))
-		const traitIndex = this.availableTraits.findIndex(
-			(element) => element === this.traitSelected
-		);
-		this.availableTraits.splice(traitIndex, 1);
-		this.traitSelected = this.availableTraits[0]
+		if (buyingBool) {
+			const traitIndex = this.availableTraits.findIndex(
+				(element) => element === this.traitSelected
+			);
+			this.availableTraits.splice(traitIndex, 1);
+			this.traitSelected = this.availableTraits[0];
+		}
+		console.log(this.playerService.getPlayer(0));
 	}
 }

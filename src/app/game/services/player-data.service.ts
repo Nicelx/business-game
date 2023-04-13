@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { BusinessUnit, PlayerData, sellingType, traitString, unitType } from "./../interfaces/game.interfaces";
+import {
+	BusinessUnit,
+	PlayerData,
+	sellingType,
+	traitString,
+	unitType,
+} from "./../interfaces/game.interfaces";
 import { BusinessUnitsService, ProductionNeeds } from "./business-units.service";
 import { MarketService } from "./market.service";
 import { TraitService } from "./traits.service";
@@ -21,7 +27,7 @@ export class PlayerDataService {
 			money: 1000,
 			businessUnits: [],
 			playerIncomePerTick: 0,
-			traits: this.traitService.getTraits()
+			traits: this.traitService.getTraits(),
 		},
 	];
 	moneyChanges: number = 0;
@@ -33,7 +39,7 @@ export class PlayerDataService {
 	}
 
 	public getMainPlayer() {
-		return this.playersData[0]
+		return this.playersData[0];
 	}
 
 	updatePlayerMoney() {
@@ -151,25 +157,24 @@ export class PlayerDataService {
 
 		bizUnit.amount++;
 
-
 		return true;
 	}
 
-	public buyTrait(trait: traitString, playerId : number) {
+	public buyTrait(trait: traitString, playerId: number) {
 		let player = this.getPlayer(playerId);
 		let isPossibleObj = this.traitService.isPossibleToBuy({
-			traitString : trait,
+			traitString: trait,
 			level: 1,
-			playerMoney: player.money
-		})
+			playerMoney: player.money,
+		});
 		if (isPossibleObj.isPossible) {
-			player.money -= isPossibleObj.cost; 
+			player.money -= isPossibleObj.cost;
 			this.traitService.addTrait({
-				name : trait,
-				level: 1
-			})
-			console.log('bought for ', isPossibleObj.cost)
-}
-
+				name: trait,
+				level: 1,
+			});
+			console.log("bought for ", isPossibleObj.cost);
+			return true;
+		} else return false;
 	}
 }
