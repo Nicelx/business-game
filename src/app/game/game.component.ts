@@ -55,15 +55,18 @@ export class GameComponent implements OnInit {
 	}
 
 	onAddTrait() {
-		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0);
+		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0, 1);
 
-		if (buyingBool) {
-			const traitIndex = this.availableTraits.findIndex(
-				(element) => element === this.traitSelected
-			);
-			this.availableTraits.splice(traitIndex, 1);
-			this.traitSelected = this.availableTraits[0];
-		}
+		// if (buyingBool) {
+		// 	const traitIndex = this.availableTraits.findIndex(
+		// 		(element) => element === this.traitSelected
+		// 	);
+		// 	this.availableTraits.splice(traitIndex, 1);
+		// 	this.traitSelected = this.availableTraits[0];
+		// }
 		console.log(this.playerService.getPlayer(0));
+	}
+	onImproveTrait() {
+		this.playerService.buyTrait(this.traitSelected, 0, 2);
 	}
 }

@@ -160,15 +160,20 @@ export class PlayerDataService {
 		return true;
 	}
 
-	public buyTrait(trait: traitString, playerId: number) {
+	public buyTrait(trait: traitString, playerId: number, level?: number) {
 		let player = this.getPlayer(playerId);
 		let isPossibleObj = this.traitService.isPossibleToBuy({
 			traitString: trait,
-			level: 1,
+			level: level ? level : 1,
 			playerMoney: player.money,
 		});
 		if (isPossibleObj.isPossible) {
 			player.money -= isPossibleObj.cost;
+
+			if (level && level > 1) {
+				this.traitService.upgradeTrait(trait);
+				return true;
+			}
 			this.traitService.addTrait({
 				name: trait,
 				level: 1,
