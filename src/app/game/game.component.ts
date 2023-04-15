@@ -4,6 +4,7 @@ import { MarketService } from "./services/market.service";
 import { PlayerDataService } from "./services/player-data.service";
 import { PlayerData, traitString } from "./interfaces/game.interfaces";
 import { traitStringArray } from "./interfaces/game.interfaces";
+import { TraitService } from './services/traits.service';
 
 @Component({
 	selector: "app-game",
@@ -29,7 +30,8 @@ export class GameComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private marketService: MarketService,
-		private playerService: PlayerDataService
+		private playerService: PlayerDataService,
+		private traitService: TraitService,
 	) {
 		playerService.updatePlayerMoney();
 	}
@@ -67,6 +69,10 @@ export class GameComponent implements OnInit {
 		console.log(this.playerService.getPlayer(0));
 	}
 	onImproveTrait() {
-		this.playerService.buyTrait(this.traitSelected, 0, 2);
+		// to do change passed level
+		let trait = this.traitService.checkTrait(this.traitSelected);
+		console.log('onImproveTrait() ', trait)
+		if (!trait) return;
+		this.playerService.buyTrait(this.traitSelected, 0, trait.level+1);
 	}
 }

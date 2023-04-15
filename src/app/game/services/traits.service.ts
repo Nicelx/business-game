@@ -79,9 +79,7 @@ export class TraitService {
 			return traitStringInArray === traitString 
 		})) throw new Error('trait doesnt exist at all')
 
-		console.log('checkTrait this.traits ',this.traits)
 		return this.traits.find((lookedTrait) => {
-			console.log(lookedTrait)
 			return lookedTrait.name ===traitString;
 		});
 
