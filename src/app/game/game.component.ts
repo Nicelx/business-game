@@ -26,6 +26,7 @@ export class GameComponent implements OnInit {
 	};
 	traitSelected = traitStringArray[0];
 	availableTraits: traitString[] = [];
+	traitCost : number = 0;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -54,11 +55,12 @@ export class GameComponent implements OnInit {
 
 	onTraitSelection(value: any) {
 		this.traitSelected = value;
+		this.traitCost = this.traitService.getTraitCost(this.traitSelected)
 	}
 
 	onAddTrait() {
 		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0, 1);
-
+		if (buyingBool) this.traitCost = this.traitService.getTraitCost(this.traitSelected)
 		// if (buyingBool) {
 		// 	const traitIndex = this.availableTraits.findIndex(
 		// 		(element) => element === this.traitSelected
@@ -74,5 +76,6 @@ export class GameComponent implements OnInit {
 		console.log('onImproveTrait() ', trait)
 		if (!trait) return;
 		this.playerService.buyTrait(this.traitSelected, 0, trait.level+1);
+		this.traitCost = this.traitService.getTraitCost(this.traitSelected)
 	}
 }

@@ -46,6 +46,7 @@
 		</select>
 		<button (click)="onAddTrait()">add trait</button>
 		<button (click)="onImproveTrait()">improve trait</button>
+		<span> trait cost {{traitCost}}</span>
 	</div>
 
 	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>

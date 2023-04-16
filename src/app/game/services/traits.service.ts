@@ -1,9 +1,7 @@
 import { traitStringArray } from "../interfaces/game.interfaces";
 import { unitType, sellingType, traitString } from "../interfaces/game.interfaces";
-import { Trait } from './../interfaces/game.interfaces';
-import { Injectable } from '@angular/core';
-
-
+import { Trait } from "./../interfaces/game.interfaces";
+import { Injectable } from "@angular/core";
 
 const traitValues = {
 	RevenuePlus: {
@@ -22,7 +20,6 @@ const traitValues = {
 		effects: [],
 	},
 };
-
 
 @Injectable({
 	providedIn: "root",
@@ -51,7 +48,7 @@ export class TraitService {
 	}
 
 	public getTraits() {
-		return this.traits
+		return this.traits;
 	}
 
 	public calculateTraitIncome(
@@ -67,45 +64,65 @@ export class TraitService {
 	public increaseCost() {}
 
 	private getTraitValues(traitString: traitString) {
-		if (!traitStringArray.find(traitStringInArray => {
-			return traitStringInArray === traitString 
-		})) throw new Error('trait doesnt exist at all')
+		if (
+			!traitStringArray.find((traitStringInArray) => {
+				return traitStringInArray === traitString;
+			})
+		)
+			throw new Error("trait doesnt exist at all");
 
 		return traitValues[traitString];
 	}
 
 	public checkTrait(traitString: traitString) {
-		if (!traitStringArray.find(traitStringInArray => {
-			return traitStringInArray === traitString 
-		})) throw new Error('trait doesnt exist at all')
+		if (
+			!traitStringArray.find((traitStringInArray) => {
+				return traitStringInArray === traitString;
+			})
+		)
+			throw new Error("trait doesnt exist at all");
 
 		return this.traits.find((lookedTrait) => {
-			return lookedTrait.name ===traitString;
+			return lookedTrait.name === traitString;
 		});
-
-
 	}
 
-	// public getTraitCost(traitString: traitString, level: number) {
-	// 	if (!traitValues[traitString]) throw new Error('traitString is not exist in traitValues object')
-	// 	const cost = traitValues[traitString].cost[level - 1]
-	// 	if (!cost) throw new Error('no cost')
-	// 	return cost;
+	public getTraitCost(traitString: traitString) {
+		if (!traitValues[traitString])
+			throw new Error("traitString is not exist in traitValues object");
+
+		let lookedTrait = this.checkTrait(traitString);
+		let level = 1;
+		if (lookedTrait) {
+			level = lookedTrait.level;
+		}
+
+		const cost = traitValues[traitString].cost[level];
+		if (!cost) throw new Error("no cost");
+		return cost;
+	}
+
+	// public getTraitLevel(traitString: traitString) {
+	// 	let findedTrait = this.traits.find(trait => {
+
+	// 	})
 	// }
 
 	public isPossibleToBuy(options: {
-		traitString: traitString,
-		level: number,
-		playerMoney: number,
+		traitString: traitString;
+		level: number;
+		playerMoney: number;
 	}) {
-		if (!options) throw new Error('no options passed')
-		const {traitString, level, playerMoney} = options;
-		if (!traitString || !level || !playerMoney) throw new Error('one of the options property is incorect')
+		if (!options) throw new Error("no options passed");
+		const { traitString, level, playerMoney } = options;
+		if (!traitString || !level || !playerMoney)
+			throw new Error("one of the options property is incorect");
 
-		const findedTraitValue = this.getTraitValues(traitString)
-		if (findedTraitValue.levels < level) throw new Error('passed level is higher than existed')
-		
-		if (playerMoney > findedTraitValue.cost[level - 1]) return {isPossible : true, cost : findedTraitValue.cost[level - 1]};
-		return {isPossible: false, cost : findedTraitValue.cost[level - 1]};
+		const findedTraitValue = this.getTraitValues(traitString);
+		if (findedTraitValue.levels < level) throw new Error("passed level is higher than existed");
+
+		if (playerMoney > findedTraitValue.cost[level - 1])
+			return { isPossible: true, cost: findedTraitValue.cost[level - 1] };
+		return { isPossible: false, cost: findedTraitValue.cost[level - 1] };
 	}
 }

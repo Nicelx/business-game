@@ -24,7 +24,7 @@ export class PlayerDataService {
 		{
 			playerId: 0,
 			playerName: "player",
-			money: 1000,
+			money: 4000,
 			businessUnits: [],
 			playerIncomePerTick: 0,
 			traits: this.traitService.getTraits(),
