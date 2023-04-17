@@ -5,18 +5,18 @@ import { Injectable } from "@angular/core";
 
 const traitValues = {
 	RevenuePlus: {
-		cost: [100, 200, 300, 500, 600],
+		cost: [101, 202, 303, 504, 605],
 		levels: 10,
 		effects: [2, 3, 4, 5, 10, 1.4, 1.5, 2, 3, 10],
 	},
 	ExpensesPlus: {
-		cost: [400],
-		levels: 10,
+		cost: [400, 402, 403, 404, 405, ],
+		levels: 5,
 		effects: [],
 	},
 	IncomePlus: {
-		cost: [600],
-		levels: 10,
+		cost: [301, 302, 303],
+		levels: 3,
 		effects: [],
 	},
 };
@@ -92,7 +92,7 @@ export class TraitService {
 			throw new Error("traitString is not exist in traitValues object");
 
 		let lookedTrait = this.checkTrait(traitString);
-		let level = 1;
+		let level = 0;
 		if (lookedTrait) {
 			level = lookedTrait.level;
 		}

@@ -42,7 +42,7 @@ export class GameComponent implements OnInit {
 		this.gameId = Number(routeParams.get("gameId"));
 		this.activePlayer = this.playerService.getMainPlayer();
 		this.availableTraits = [...traitStringArray];
-		console.log(this.traitSelected);
+		this.traitCost = this.traitService.getTraitCost( this.availableTraits[0])
 	}
 
 	onGatherOpen() {
