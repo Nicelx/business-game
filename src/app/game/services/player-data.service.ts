@@ -168,6 +168,9 @@ export class PlayerDataService {
 			playerMoney: player.money,
 		});
 		if (isPossibleObj.isPossible) {
+			if (level === 1 && this.traitService.checkTrait(trait)) {
+				throw new Error('trait already exist')
+			}
 			player.money -= isPossibleObj.cost;
 
 			if (level && level > 1) {
