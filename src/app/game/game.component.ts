@@ -4,7 +4,7 @@ import { MarketService } from "./services/market.service";
 import { PlayerDataService } from "./services/player-data.service";
 import { PlayerData, traitString } from "./interfaces/game.interfaces";
 import { traitStringArray } from "./interfaces/game.interfaces";
-import { TraitService } from './services/traits.service';
+import { TraitService } from "./services/traits.service";
 
 @Component({
 	selector: "app-game",
@@ -26,13 +26,15 @@ export class GameComponent implements OnInit {
 	};
 	traitSelected = traitStringArray[0];
 	availableTraits: traitString[] = [];
-	traitCost : number = 0;
+	traitCost: number = 0;
+	isDisabled = false;
+	isImproveDisabled = true;
 
 	constructor(
 		private route: ActivatedRoute,
 		private marketService: MarketService,
 		private playerService: PlayerDataService,
-		private traitService: TraitService,
+		private traitService: TraitService
 	) {
 		playerService.updatePlayerMoney();
 	}
@@ -42,7 +44,7 @@ export class GameComponent implements OnInit {
 		this.gameId = Number(routeParams.get("gameId"));
 		this.activePlayer = this.playerService.getMainPlayer();
 		this.availableTraits = [...traitStringArray];
-		this.traitCost = this.traitService.getTraitCost( this.availableTraits[0])
+		this.traitCost = this.traitService.getTraitCost(this.availableTraits[0]);
 	}
 
 	onGatherOpen() {
@@ -55,27 +57,27 @@ export class GameComponent implements OnInit {
 
 	onTraitSelection(value: any) {
 		this.traitSelected = value;
-		this.traitCost = this.traitService.getTraitCost(this.traitSelected)
+		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
+		if (this.traitService.checkTrait(this.traitSelected)) {
+			this.isDisabled = true;
+			this.isImproveDisabled = false;
+		} else {
+			this.isDisabled = false;
+			this.isImproveDisabled = true;
+		}
 	}
 
 	onAddTrait() {
 		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0, 1);
-		if (buyingBool) this.traitCost = this.traitService.getTraitCost(this.traitSelected)
-		// if (buyingBool) {
-		// 	const traitIndex = this.availableTraits.findIndex(
-		// 		(element) => element === this.traitSelected
-		// 	);
-		// 	this.availableTraits.splice(traitIndex, 1);
-		// 	this.traitSelected = this.availableTraits[0];
-		// }
-		console.log(this.playerService.getPlayer(0));
+		if (buyingBool) this.traitCost = this.traitService.getTraitCost(this.traitSelected);
+
+		this.isDisabled = true;
+		this.isImproveDisabled = false;
 	}
 	onImproveTrait() {
-		// to do change passed level
 		let trait = this.traitService.checkTrait(this.traitSelected);
-		console.log('onImproveTrait() ', trait)
 		if (!trait) return;
-		this.playerService.buyTrait(this.traitSelected, 0, trait.level+1);
-		this.traitCost = this.traitService.getTraitCost(this.traitSelected)
+		this.playerService.buyTrait(this.traitSelected, 0, trait.level + 1);
+		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
 	}
 }

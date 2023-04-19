@@ -44,8 +44,8 @@
 		>
 			<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
 		</select>
-		<button (click)="onAddTrait()">add trait</button>
-		<button (click)="onImproveTrait()">improve trait</button>
+		<button (click)="onAddTrait()" [disabled]="isDisabled">add trait</button>
+		<button (click)="onImproveTrait()" [disabled]="isImproveDisabled">improve trait</button>
 		<span> trait cost {{traitCost}}</span>
 	</div>
 
