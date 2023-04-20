@@ -14,6 +14,7 @@ import { PlayerDataService } from './game/services/player-data.service';
 import { BusinessUnitsService } from './game/services/business-units.service';
 import { CreationModelComponent } from './game/creation-model/creation-model.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TraitManagementComponent } from './game/trait-management/trait-management.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PriceInfoComponent,
     GameHeaderComponent,
     CreationModelComponent,
+    TraitManagementComponent,
   ],
   imports: [
     BrowserModule,

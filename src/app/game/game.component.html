@@ -44,10 +44,12 @@
 		>
 			<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
 		</select>
-		<button (click)="onAddTrait()" [disabled]="isDisabled">add trait</button>
-		<button (click)="onImproveTrait()" [disabled]="isImproveDisabled">improve trait</button>
+		<button *ngIf = '!isAddCheck' (click)="onAddTrait()">add trait</button>
+		<button *ngIf = 'isAddCheck' (click)="onImproveTrait()">improve trait</button>
 		<span> trait cost {{traitCost}}</span>
 	</div>
+
+	<app-trait-management></app-trait-management>
 
 	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>
 </div>

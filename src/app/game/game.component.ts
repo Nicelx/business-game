@@ -27,8 +27,8 @@ export class GameComponent implements OnInit {
 	traitSelected = traitStringArray[0];
 	availableTraits: traitString[] = [];
 	traitCost: number = 0;
-	isDisabled = false;
-	isImproveDisabled = true;
+	isAddCheck = false;
+	
 
 	constructor(
 		private route: ActivatedRoute,
@@ -59,11 +59,9 @@ export class GameComponent implements OnInit {
 		this.traitSelected = value;
 		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
 		if (this.traitService.checkTrait(this.traitSelected)) {
-			this.isDisabled = true;
-			this.isImproveDisabled = false;
+			this.isAddCheck = true;
 		} else {
-			this.isDisabled = false;
-			this.isImproveDisabled = true;
+			this.isAddCheck = false;
 		}
 	}
 
@@ -71,8 +69,8 @@ export class GameComponent implements OnInit {
 		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0, 1);
 		if (buyingBool) this.traitCost = this.traitService.getTraitCost(this.traitSelected);
 
-		this.isDisabled = true;
-		this.isImproveDisabled = false;
+		// to do implement check
+		this.isAddCheck = true;
 	}
 	onImproveTrait() {
 		let trait = this.traitService.checkTrait(this.traitSelected);
