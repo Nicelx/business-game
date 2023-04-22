@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { PlayerDataService } from "../services/player-data.service";
+import { TraitService } from "../services/traits.service";
+import { traitStringArray } from "../interfaces/game.interfaces";
+import { Trait } from "../interfaces/game.interfaces";
 
 @Component({
 	selector: "app-trait-management",
@@ -6,11 +10,20 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./trait-management.component.css"],
 })
 export class TraitManagementComponent implements OnInit {
-	traits = [];
+	traits : Trait[]= [];
+	isAddCheck = false;
+	traitCost = 0;
+	traitSelected = traitStringArray[0]
+	availableTraits = traitStringArray;
 
-	constructor() {}
+	constructor(private playerService: PlayerDataService, private traitService: TraitService) {
+		
+	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.traits = this.traitService.getTraits();
+		this.traitCost = this.traitService.getTraitCost(this.availableTraits[0]);
+	}
 
 	onAddTrait() {
 		let buyingBool = this.playerService.buyTrait(this.traitSelected, 0, 1);
