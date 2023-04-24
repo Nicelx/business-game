@@ -177,10 +177,7 @@ export class PlayerDataService {
 				this.traitService.upgradeTrait(trait);
 				return true;
 			}
-			this.traitService.addTrait({
-				name: trait,
-				level: 1,
-			});
+			this.traitService.addTrait(trait);
 			console.log("bought for ", isPossibleObj.cost);
 			return true;
 		} else return false;

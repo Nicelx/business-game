@@ -21,6 +21,7 @@ export interface BusinessUnit {
 export interface Trait {
 	name: traitString;
 	level: number;
+	effect: number;
 }
 
 export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";

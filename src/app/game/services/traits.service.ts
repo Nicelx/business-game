@@ -29,13 +29,25 @@ export class TraitService {
 
 	private traits: Trait[] = [];
 
-	public addTrait(trait: Trait) {
-		this.traits.push(trait);
+	public addTrait(trait: traitString) {
+		const effect = this.getTraitValues(trait).effects[0]
+		this.traits.push({
+			name: trait,
+			level: 1,
+			effect: effect
+		});
+		console.log(this.traits)
 	}
 
 	public upgradeTrait(traitString: traitString) {
 		const finded = this.checkTrait(traitString);
-		if (finded) finded.level++;
+		if (finded) {
+			const effect = this.getTraitValues(traitString).effects[finded.level]
+
+			finded.level++;
+			finded.effect = effect
+		}
+		console.log(this.traits)
 	}
 
 	public getTraits() {

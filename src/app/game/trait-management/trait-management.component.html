@@ -4,6 +4,9 @@
 	<span *ngFor="let singleTrait of traits"
 		>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
 	>
+	<div>
+		
+	</div>
 
 	<select class = "extend__select" 
 	#selection (change)="onTraitSelection(selection.value)"
