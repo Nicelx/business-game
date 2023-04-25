@@ -50,15 +50,37 @@ export class PlayerDataService {
 				if (!incomeObj) return;
 				let { income, expense, revenue } = incomeObj;
 
+				this.handleTraits(revenue, income, expense);
+			
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
 				bizUnit.expensePerTick = +expense.toFixed(2);
 				bizUnit.revenuePerTick = +revenue.toFixed(2);
+				
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
+
+				
 			});
 			player.money = +(player.money + moneyChange).toFixed(2);
 			player.playerIncomePerTick = +moneyChange.toFixed(2);
 		});
+	}
+
+	private handleTraits(revenue: number, income: number, expenses: number) {
+		let rv = this.traitService.checkTrait('RevenuePlus')
+		let icn = this.traitService.checkTrait('IncomePlus')
+		let exp = this.traitService.checkTrait('ExpensesPlus')
+		
+		if (rv) {
+			revenue = revenue + revenue * rv.effect/100
+			console.log('revenue if', revenue)
+		}
+
+		return {
+			revenue: revenue,
+			income: income,
+			expenses: expenses,
+		}
 	}
 
 	private _isEnoughMoneyToBuild(type: unitType[], playerId: number) {
