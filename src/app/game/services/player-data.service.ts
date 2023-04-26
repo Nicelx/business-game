@@ -50,12 +50,12 @@ export class PlayerDataService {
 				if (!incomeObj) return;
 				let { income, expense, revenue } = incomeObj;
 
-				this.handleTraits(revenue, income, expense);
+				let adjIncomeObj = this.handleTraits(revenue, income, expense);
 			
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
 				bizUnit.expensePerTick = +expense.toFixed(2);
-				bizUnit.revenuePerTick = +revenue.toFixed(2);
+				bizUnit.revenuePerTick = +adjIncomeObj.revenue.toFixed(2);
 				
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 
