@@ -48,14 +48,14 @@ export class PlayerDataService {
 			player.businessUnits.forEach((bizUnit, index) => {
 				const incomeObj = this.businessUnitsService.calculateIncome(bizUnit);
 				if (!incomeObj) return;
-				let { income, expense, revenue } = incomeObj;
+				// let { income, expense, revenue } = incomeObj;
 
-				let adjIncomeObj = this.handleTraits(revenue, income, expense);
+				let { income, expense, revenue }  = this.handleTraits(incomeObj.revenue, incomeObj.income, incomeObj.expense);
 			
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
 				bizUnit.expensePerTick = +expense.toFixed(2);
-				bizUnit.revenuePerTick = +adjIncomeObj.revenue.toFixed(2);
+				bizUnit.revenuePerTick = +revenue.toFixed(2);
 				
 				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 
@@ -68,18 +68,31 @@ export class PlayerDataService {
 
 	private handleTraits(revenue: number, income: number, expenses: number) {
 		let rv = this.traitService.checkTrait('RevenuePlus')
-		let icn = this.traitService.checkTrait('IncomePlus')
+		let inc = this.traitService.checkTrait('IncomePlus')
 		let exp = this.traitService.checkTrait('ExpensesPlus')
-		
+		let incomeCorrection = 0;
+
 		if (rv) {
-			revenue = revenue + revenue * rv.effect/100
-			console.log('revenue if', revenue)
+			let bonus = revenue * rv.effect/100
+			income += bonus;
+			revenue += bonus
 		}
+		if (exp) {
+			let bonus = expenses * exp.effect/100
+			income += bonus;
+			expenses -= bonus
+		}
+
+		if (inc) {
+			let bonus = income * inc.effect/100;
+			income += bonus;
+		}
+
 
 		return {
 			revenue: revenue,
 			income: income,
-			expenses: expenses,
+			expense: expenses,
 		}
 	}
 
