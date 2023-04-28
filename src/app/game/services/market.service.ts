@@ -1,3 +1,4 @@
+import { IS_DYNAMIC_MARKET } from "src/app/constants";
 import { unitType } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./business-units.service";
 
@@ -85,11 +86,14 @@ export class MarketService {
 	}
 
 	fadeAmplifier(amplifier: number) {
+		if (!IS_DYNAMIC_MARKET) return amplifier;
 		return amplifier * 0.99;
 	}
 
 	// gradually increasing retail price aka inflation.
 	prosperMarket(piece: MarketPiece) {
+		if (!IS_DYNAMIC_MARKET) return;
+
 		if (piece.retailAmplifier === undefined || piece.retailPrice=== undefined) return;
 		if (piece.retailAmplifier < 0) {
 			piece.retailPrice += piece.retailPrice * 0.003;
@@ -100,11 +104,15 @@ export class MarketService {
 
 	// we need balance rent and salary, to stop them infinitely growing.
 	_correction() {
+		if (!IS_DYNAMIC_MARKET) return;
+
 		this.market[0].price -= this.market[0].price * 0.0008;
 		this.market[1].price -= this.market[1].price * 0.0002;
 	}
 
 	public changeAmplifier(type: unitType, sellingType: string, amount: number) {
+		if (!IS_DYNAMIC_MARKET) return;
+
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (!marketPiece) return;
 
@@ -118,6 +126,8 @@ export class MarketService {
 	}
 
 	public decreaseAmplifier(type: unitType, sellingType: string, amount? : number) {
+		if (!IS_DYNAMIC_MARKET) return;
+
 		if (amount === undefined) amount = 1;
 		let marketPiece = this.market.find((element) => element.name === type);
 		if (marketPiece === undefined) return;

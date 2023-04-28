@@ -1,12 +1,10 @@
 <div>
 	traits
 	<br>
-	<span *ngFor="let singleTrait of traits"
-		>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
+	<div *ngFor="let singleTrait of traits"
+		>{{ singleTrait.name }} - {{ singleTrait.level }} level, effect : {{singleTrait.effect}}%</div
 	>
-	<div>
-		
-	</div>
+
 
 	<select class = "extend__select" 
 	#selection (change)="onTraitSelection(selection.value)"

@@ -8,16 +8,19 @@ const traitValues = {
 		cost: [101, 202, 303, 504, 605],
 		levels: 5,
 		effects: [10, 20, 25, 30, 40],
+		description: 'improve revenue output of all of your units'
 	},
 	ExpensesPlus: {
 		cost: [400, 402, 403, 404, 405, ],
 		levels: 5,
 		effects: [10, 20, 25, 30, 40],
+		description: 'reduce expenses of all of your units'
 	},
 	IncomePlus: {
 		cost: [301, 302, 303],
 		levels: 3,
 		effects: [10, 20, 25],
+		description: 'improve income output of all of your units'
 	},
 };
 
@@ -127,5 +130,10 @@ export class TraitService {
 		if (playerMoney > findedTraitValue.cost[level - 1])
 			return { isPossible: true, cost: findedTraitValue.cost[level - 1] };
 		return { isPossible: false, cost: findedTraitValue.cost[level - 1] };
+	}
+
+	static showDescription(traitString: traitString) {
+		console.log('show description fired');
+		return 'adsfasdf'
 	}
 }
