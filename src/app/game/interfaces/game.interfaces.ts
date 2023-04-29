@@ -22,6 +22,7 @@ export interface Trait {
 	name: traitString;
 	level: number;
 	effect: number;
+	description: string;
 }
 
 export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";

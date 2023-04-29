@@ -33,11 +33,13 @@ export class TraitService {
 	private traits: Trait[] = [];
 
 	public addTrait(trait: traitString) {
-		const effect = this.getTraitValues(trait).effects[0]
+		const effect = this.getTraitValues(trait).effects[0];
+		const desc = traitValues[trait].description;
 		this.traits.push({
 			name: trait,
 			level: 1,
-			effect: effect
+			effect: effect,
+			description: desc? desc : 'no description',
 		});
 		console.log(this.traits)
 	}
@@ -133,7 +135,9 @@ export class TraitService {
 	}
 
 	static showDescription(traitString: traitString) {
-		console.log('show description fired');
-		return 'adsfasdf'
+		let desc = traitValues[traitString];
+		console.log('log showDescription()')
+		if (!desc) return 'description error'
+		return desc;
 	}
 }

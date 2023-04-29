@@ -1,17 +1,15 @@
 <div>
 	traits
-	<br>
-	<div *ngFor="let singleTrait of traits"
-		>{{ singleTrait.name }} - {{ singleTrait.level }} level, effect : {{singleTrait.effect}}%</div
-	>
+	<br />
+	<div *ngFor="let singleTrait of traits">
+		{{ singleTrait.name }} - {{ singleTrait.level }} level, effect : {{ singleTrait.effect }}%
+		trait description - {{singleTrait.description}}
+	</div>
 
-
-	<select class = "extend__select" 
-	#selection (change)="onTraitSelection(selection.value)"
-	>
-		<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
+	<select class="extend__select" #selection (change)="onTraitSelection(selection.value)">
+		<option *ngFor="let trait of availableTraits" value="{{ trait }}">{{ trait }}</option>
 	</select>
-	<button *ngIf = '!isAddCheck' (click)="onAddTrait()">add trait</button>
-	<button *ngIf = 'isAddCheck' (click)="onImproveTrait()">improve trait</button>
-	<span> trait cost {{traitCost}}</span>
+	<button *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
+	<button *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
+	<span> trait cost {{ traitCost }}</span>
 </div>
