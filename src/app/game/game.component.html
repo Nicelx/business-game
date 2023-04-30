@@ -32,24 +32,7 @@
 		конкуренты тут
 	</div>
 
-	<!-- <div>
-		traits
-		<br>
-		<span *ngFor="let singleTrait of this.activePlayer.traits"
-			>{{ singleTrait.name }} - {{ singleTrait.level }} level</span
-		>
-
-		<select class = "extend__select" 
-		#selection (change)="onTraitSelection(selection.value)"
-		>
-			<option *ngFor="let trait of availableTraits" value={{trait}}>{{trait}}</option>
-		</select>
-		<button *ngIf = '!isAddCheck' (click)="onAddTrait()">add trait</button>
-		<button *ngIf = 'isAddCheck' (click)="onImproveTrait()">improve trait</button>
-		<span> trait cost {{traitCost}}</span>
-	</div> -->
-
 	<app-trait-management></app-trait-management>
 
-	<app-creation-model *ngIf="isModalVisible" (close)="onClose()"></app-creation-model>
+	<app-creation-model *ngIf="isModalVisible && modalType === 'createModal'" (close)="onClose()"></app-creation-model>
 </div>

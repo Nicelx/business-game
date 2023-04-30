@@ -13,7 +13,7 @@ import { TraitService } from "./services/traits.service";
 })
 export class GameComponent implements OnInit {
 	isModalVisible = false;
-	modalType: string = "";
+	modalType: 'createModal' | 'traits' | '' = "";
 	creatingCost: number = 1;
 	gameId: number | null = null;
 	activePlayer: PlayerData = {
@@ -49,7 +49,11 @@ export class GameComponent implements OnInit {
 
 	onGatherOpen() {
 		this.isModalVisible = true;
-		this.modalType = "Добыча";
+		this.modalType = "createModal";
+	}
+	onTraitOpen() {
+		this.isModalVisible = true;
+		this.modalType = 'traits'
 	}
 	onClose() {
 		this.isModalVisible = false;

@@ -1,10 +1,10 @@
 :root {
 	--dark: #1a1616;
-	--light : #f9e4cb; 
+	--light: #f9e4cb;
 	--dark-gray: #594036;
 	--main: #c85c1b;
 	--secondary: #bf7d51;
-  }
+}
 
 body {
 	padding: 0;
@@ -21,7 +21,8 @@ body {
 	color: var(--light);
 	border-radius: 1px;
 	font-weight: 800;
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+		Geneva, Verdana, sans-serif;
 	cursor: pointer;
 	border: none;
 }
@@ -33,6 +34,23 @@ body {
 	width: 300px;
 	height: 40px;
 	font-size: 20px;
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+		Geneva, Verdana, sans-serif;
+}
 
+.model-frame {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 400px;
+	height: 350px;
+	background-color: salmon;
+	color: white;
+	box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	padding: 25px 20px 20px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
