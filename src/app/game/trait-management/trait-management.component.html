@@ -6,10 +6,10 @@
 		trait description - {{ singleTrait.description }}
 	</div>
 
-	<select class="extend__select" #selection (change)="onTraitSelection(selection.value)">
+	<select class="trait-model__select select" #selection (change)="onTraitSelection(selection.value)">
 		<option *ngFor="let trait of availableTraits" value="{{ trait }}">{{ trait }}</option>
 	</select>
-	<button *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
-	<button *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
-	<span> trait cost {{ traitCost }}</span>
+	<button class = "game-button" *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
+	<button class = "game-button" *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
+	<span class = "trait-model__cost"> trait cost {{ traitCost }}</span>
 </div>
