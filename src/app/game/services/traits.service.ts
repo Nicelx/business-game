@@ -135,8 +135,8 @@ export class TraitService {
 	}
 
 	static showDescription(traitString: traitString) {
-		let desc = traitValues[traitString];
-		console.log('log showDescription()')
+		let desc = traitValues[traitString].description;
+		console.log('log showDescription()', traitString, desc)
 		if (!desc) return 'description error'
 		return desc;
 	}

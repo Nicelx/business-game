@@ -9,7 +9,12 @@
 	<select class="trait-model__select select" #selection (change)="onTraitSelection(selection.value)">
 		<option *ngFor="let trait of availableTraits" value="{{ trait }}">{{ trait }}</option>
 	</select>
+	<span >{{description}}</span>
 	<button class = "game-button" *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
 	<button class = "game-button" *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
 	<span class = "trait-model__cost"> trait cost {{ traitCost }}</span>
+	<div class = 'create-model__close' (click)="onModalCancel()">
+		<span>Cancel</span>	
+		<span class = "create-model__close-icon"></span>
+	</div>
 </div>

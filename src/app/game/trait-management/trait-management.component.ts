@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { PlayerDataService } from "../services/player-data.service";
 import { TraitService } from "../services/traits.service";
 import { traitStringArray } from "../interfaces/game.interfaces";
@@ -15,7 +15,9 @@ export class TraitManagementComponent implements OnInit {
 	traitCost = 0;
 	traitSelected = traitStringArray[0]
 	availableTraits = traitStringArray;
-
+	description: string = TraitService.showDescription(this.traitSelected);
+	
+	@Output() close: EventEmitter<any> = new EventEmitter();
 	constructor(private playerService: PlayerDataService, private traitService: TraitService) {
 		
 	}
@@ -41,11 +43,16 @@ export class TraitManagementComponent implements OnInit {
 
 	onTraitSelection(value: any) {
 		this.traitSelected = value;
+		this.description = TraitService.showDescription(this.traitSelected);
 		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
 		if (this.traitService.checkTrait(this.traitSelected)) {
 			this.isAddCheck = true;
 		} else {
 			this.isAddCheck = false;
 		}
+	}
+
+	onModalCancel() {
+		this.close.emit(true);
 	}
 }
