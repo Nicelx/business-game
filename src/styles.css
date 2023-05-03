@@ -38,7 +38,7 @@ body {
 		Geneva, Verdana, sans-serif;
 }
 
-.model-frame {
+.modal-frame {
 	position: absolute;
 	display: flex;
 	flex-direction: column;

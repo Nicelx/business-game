@@ -1,0 +1,16 @@
+.tr
+
+.trait-modal__close {
+	position: absolute;
+	cursor: pointer;
+	top: 5px;
+	right: 15px;
+	width: 36px;
+}
+.trait-modal__header {
+	margin-bottom: 25px;
+}
+
+.trait-modal__select {
+	margin-bottom: 10px;
+}
