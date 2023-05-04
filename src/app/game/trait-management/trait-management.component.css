@@ -14,3 +14,25 @@
 .trait-modal__select {
 	margin-bottom: 10px;
 }
+.trait-modal__description {
+	margin-bottom: 20px;
+}
+.trait-modal__cost {
+	margin-bottom: 15px;
+}
+.trait-modal__button {
+	margin-bottom: 10px;
+}
+
+.trait-modal__close {
+	position: absolute;
+	cursor: pointer;
+	top: 5px;
+	right: 15px;
+	width: 36px;
+}
+.trait-modal__trait-info {
+	margin-bottom: 5px;
+	border-bottom: 2px solid white;
+	width: 100%;
+}

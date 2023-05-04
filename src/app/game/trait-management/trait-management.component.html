@@ -5,14 +5,15 @@
 		<option *ngFor="let trait of availableTraits" value="{{ trait }}">{{ trait }}</option>
 	</select>
 	<span class = "trait-modal__description">{{description}}</span>
-	<button class = "game-button" *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
-	<button class = "game-button" *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
+	<button class = "trait-modal__button game-button" *ngIf="!isAddCheck" (click)="onAddTrait()">add trait</button>
+	<button class = "trait-modal__button game-button" *ngIf="isAddCheck" (click)="onImproveTrait()">improve trait</button>
 	<span class = "trait-modal__cost"> trait cost {{ traitCost }}</span>
 
 
-	<div class  *ngFor="let singleTrait of traits">
+	<div class = "trait-modal__trait-info"  *ngFor="let singleTrait of traits">
 		{{ singleTrait.name }} - {{ singleTrait.level }} level, effect : {{ singleTrait.effect }}%
-		trait description - {{ singleTrait.description }}
+		<br/>
+		<span>{{ singleTrait.description }}</span>
 	</div>
 
 
