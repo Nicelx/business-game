@@ -25,9 +25,9 @@ export interface Trait {
 	description: string;
 }
 
-export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus";
+export type traitString = "RevenuePlus" | "ExpensesPlus" | "IncomePlus" | "CheapBuilding";
 export type unitType = "apples" | "iron" | "salary" | "rent" | "juice";
-export const traitStringArray: traitString[] = ["RevenuePlus", "ExpensesPlus", "IncomePlus"];
+export const traitStringArray: traitString[] = ["RevenuePlus", "ExpensesPlus", "IncomePlus", 'CheapBuilding'];
 
 export const isTraitType = (type: any) => {
 	if (type === "RevenuePlus" || type === "ExpensesPlus" || type === "IncomePlus") return true;

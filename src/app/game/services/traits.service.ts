@@ -22,6 +22,12 @@ const traitValues = {
 		effects: [10, 20, 25],
 		description: 'improve income output of all of your units'
 	},
+	CheapBuilding : {
+		cost: [101, 202, 303],
+		levels: 3,
+		effects: [5, 10, 20],
+		description: 'reduce cost of building'
+	}
 };
 
 @Injectable({
