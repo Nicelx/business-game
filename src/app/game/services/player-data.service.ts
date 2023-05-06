@@ -31,6 +31,7 @@ export class PlayerDataService {
 		},
 	];
 	moneyChanges: number = 0;
+	discount: number = 0;
 
 	getPlayer(playerId: number) {
 		const player = this.playersData.find((item) => item.playerId === playerId);
@@ -50,16 +51,18 @@ export class PlayerDataService {
 				if (!incomeObj) return;
 				// let { income, expense, revenue } = incomeObj;
 
-				let { income, expense, revenue }  = this.handleTraits(incomeObj.revenue, incomeObj.income, incomeObj.expense);
-			
+				let { income, expense, revenue } = this.handleTraits(
+					incomeObj.revenue,
+					incomeObj.income,
+					incomeObj.expense
+				);
+
 				moneyChange += income;
 				bizUnit.incomePerTick = +income.toFixed(2);
 				bizUnit.expensePerTick = +expense.toFixed(2);
 				bizUnit.revenuePerTick = +revenue.toFixed(2);
-				
-				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 
-				
+				bizUnit.earned = +(bizUnit.earned + income).toFixed(2);
 			});
 			player.money = +(player.money + moneyChange).toFixed(2);
 			player.playerIncomePerTick = +moneyChange.toFixed(2);
@@ -67,33 +70,40 @@ export class PlayerDataService {
 	}
 
 	private handleTraits(revenue: number, income: number, expenses: number) {
-		let rv = this.traitService.checkTrait('RevenuePlus')
-		let inc = this.traitService.checkTrait('IncomePlus')
-		let exp = this.traitService.checkTrait('ExpensesPlus')
+		let rv = this.traitService.checkTrait("RevenuePlus");
+		let inc = this.traitService.checkTrait("IncomePlus");
+		let exp = this.traitService.checkTrait("ExpensesPlus");
 		let incomeCorrection = 0;
 
 		if (rv) {
-			let bonus = revenue * rv.effect/100
+			let bonus = (revenue * rv.effect) / 100;
 			income += bonus;
-			revenue += bonus
+			revenue += bonus;
 		}
 		if (exp) {
-			let bonus = expenses * exp.effect/100
+			let bonus = (expenses * exp.effect) / 100;
 			income += bonus;
-			expenses -= bonus
+			expenses -= bonus;
 		}
 
 		if (inc) {
-			let bonus = income * inc.effect/100;
+			let bonus = (income * inc.effect) / 100;
 			income += bonus;
 		}
-
 
 		return {
 			revenue: revenue,
 			income: income,
 			expense: expenses,
-		}
+		};
+	}
+
+	private handleCheapBuildingTrait() {
+		let checkedTrait = this.traitService.checkTrait("CheapBuilding");
+		if (checkedTrait) {
+			console.log(checkedTrait?.effect);
+			return checkedTrait.effect;
+		} else return 0;
 	}
 
 	private _isEnoughMoneyToBuild(type: unitType[], playerId: number) {
@@ -101,7 +111,11 @@ export class PlayerDataService {
 		type.forEach((singleType) => {
 			// let typeCost = this.businessUnitsService.getBuildingCost(singleType);
 			let typeCost = BusinessUnitsService.getBuildingCost(singleType);
-			if (typeCost) overallCost += typeCost;
+			if (typeCost){
+				let discount = this.handleCheapBuildingTrait()
+				console.log(discount);
+				overallCost += (typeCost - typeCost * discount/100);
+			} 
 		});
 		if (overallCost > this.playersData[playerId].money) {
 			return false;
@@ -204,7 +218,7 @@ export class PlayerDataService {
 		});
 		if (isPossibleObj.isPossible) {
 			if (level === 1 && this.traitService.checkTrait(trait)) {
-				throw new Error('trait already exist')
+				throw new Error("trait already exist");
 			}
 			player.money -= isPossibleObj.cost;
 
