@@ -3,6 +3,7 @@ import { MarketService, retailTypes, marketProdTypes } from "../services/market.
 import { PlayerDataService } from "../services/player-data.service";
 import { PlayerData, sellingType, unitType } from "./../interfaces/game.interfaces";
 import { BusinessUnitsService } from "./../services/business-units.service";
+import { TraitService } from './../services/traits.service';
 
 @Component({
 	selector: "app-creation-model",
@@ -22,16 +23,19 @@ export class CreationModelComponent implements OnInit {
 	constructor(
 		private playerService: PlayerDataService,
 		private marketService: MarketService,
-		private businessUnitService: BusinessUnitsService
+		private businessUnitService: BusinessUnitsService,
+		private traitService: TraitService
 	) {}
 
 	isEnoughMoney = true;
 	playerMoney = this.playerService.getMainPlayer().money;
 
 	ngOnInit(): void {
+	
+
 		this.selectedType = "apples";
 		this.sellingType = "retail";
-		this.buildingCost = BusinessUnitsService.getBuildingCost("apples");
+		this.buildingCost = BusinessUnitsService.getBuildingCost("apples") - this.traitService.getCheapBuildingEffect();
 		
 	}
 

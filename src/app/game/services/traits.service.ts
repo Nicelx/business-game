@@ -25,7 +25,7 @@ const traitValues = {
 	CheapBuilding : {
 		cost: [101, 202, 303],
 		levels: 3,
-		effects: [5, 10, 20],
+		effects: [25, 50, 100],
 		description: 'reduce cost of building'
 	}
 };
@@ -99,6 +99,14 @@ export class TraitService {
 		return this.traits.find((lookedTrait) => {
 			return lookedTrait.name === traitString;
 		});
+	}
+
+	public getCheapBuildingEffect() {
+		let checkedTrait = this.checkTrait("CheapBuilding");
+		if (checkedTrait) {
+			console.log(checkedTrait?.effect);
+			return checkedTrait.effect;
+		} else return 0;
 	}
 
 	public getTraitCost(traitString: traitString) {

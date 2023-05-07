@@ -98,23 +98,17 @@ export class PlayerDataService {
 		};
 	}
 
-	private handleCheapBuildingTrait() {
-		let checkedTrait = this.traitService.checkTrait("CheapBuilding");
-		if (checkedTrait) {
-			console.log(checkedTrait?.effect);
-			return checkedTrait.effect;
-		} else return 0;
-	}
 
 	private _isEnoughMoneyToBuild(type: unitType[], playerId: number) {
 		let overallCost = 0;
 		type.forEach((singleType) => {
 			// let typeCost = this.businessUnitsService.getBuildingCost(singleType);
-			let typeCost = BusinessUnitsService.getBuildingCost(singleType);
+			this.discount = this.traitService.getCheapBuildingEffect();
+			let typeCost = BusinessUnitsService.getBuildingCost(singleType, this.discount);
 			if (typeCost){
-				let discount = this.handleCheapBuildingTrait()
-				console.log(discount);
-				overallCost += (typeCost - typeCost * discount/100);
+				console.log(this.discount);
+				overallCost += typeCost;
+				console.log('overallCost', overallCost)
 			} 
 		});
 		if (overallCost > this.playersData[playerId].money) {

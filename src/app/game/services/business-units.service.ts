@@ -29,7 +29,6 @@ export class BusinessUnitsService {
 		const { sellingType, type } = unit;
 
 
-
 		if (sellingType === "market") {
 			const findedMarketPiece = prices.find((marketPiece) => {
 				 return marketPiece.name === unit.type[0];
@@ -71,17 +70,18 @@ export class BusinessUnitsService {
 		}
 	}
 
-	static getBuildingCost(type: unitType | unitType[]) {
+	// multiple types because of retail
+	static getBuildingCost(type: unitType | unitType[], effect : number = 0) {
 		if (Array.isArray(type)) {
 			let overallCost = 0;
 			type.forEach(singleType => {
 				overallCost += values[singleType].buildingCost
 			})
-			return overallCost;
+			return overallCost - effect/100*overallCost;
 		}
 		if (!values[type]) return 0;
 
-		return values[type].buildingCost;
+		return values[type].buildingCost - values[type].buildingCost*effect/100;
 	}
 
 	calculateProduction(type: unitType) {
