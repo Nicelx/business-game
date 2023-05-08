@@ -3,6 +3,7 @@ import { BusinessUnit } from "../interfaces/game.interfaces";
 import { BusinessUnitsService } from "../services/business-units.service";
 import { retailTypes as rt } from "../services/market.service";
 import { PlayerDataService } from './../services/player-data.service';
+import { TraitService } from "../services/traits.service";
 
 @Component({
 	selector: "app-business-unit",
@@ -20,7 +21,7 @@ export class BusinessUnitComponent implements OnInit {
 		expensePerTick: 0,
 		revenuePerTick: 0
 	};
-	expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);;
+	expandCost = 0;
 	isExtendVisible = false;
 	isRetail = false;
 	selectedTypeToExtend = rt[0];
@@ -28,7 +29,7 @@ export class BusinessUnitComponent implements OnInit {
 
 	
 
-	constructor(private playerService: PlayerDataService) {
+	constructor(private playerService: PlayerDataService, private buService: BusinessUnitsService) {
 	}
 	
 	
@@ -44,7 +45,7 @@ export class BusinessUnitComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		this.expandCost = BusinessUnitsService.getBuildingCost(this.businessUnit.type);
+		this.expandCost = this.buService.getBuildingCost(this.businessUnit.type);
 		if (this.businessUnit.sellingType=== 'retail') {
 			this.isRetail = true;
 		} ;

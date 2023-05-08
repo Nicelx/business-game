@@ -31,7 +31,6 @@ export class PlayerDataService {
 		},
 	];
 	moneyChanges: number = 0;
-	discount: number = 0;
 
 	getPlayer(playerId: number) {
 		const player = this.playersData.find((item) => item.playerId === playerId);
@@ -103,10 +102,8 @@ export class PlayerDataService {
 		let overallCost = 0;
 		type.forEach((singleType) => {
 			// let typeCost = this.businessUnitsService.getBuildingCost(singleType);
-			this.discount = this.traitService.getCheapBuildingEffect();
-			let typeCost = BusinessUnitsService.getBuildingCost(singleType, this.discount);
+			let typeCost = this.businessUnitsService.getBuildingCost(singleType);
 			if (typeCost){
-				console.log(this.discount);
 				overallCost += typeCost;
 				console.log('overallCost', overallCost)
 			} 

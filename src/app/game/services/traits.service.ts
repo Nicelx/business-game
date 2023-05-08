@@ -88,7 +88,7 @@ export class TraitService {
 		return traitValues[traitString];
 	}
 
-	public checkTrait(traitString: traitString) {
+	public checkTrait(traitString: traitString | unitType) {
 		if (
 			!traitStringArray.find((traitStringInArray) => {
 				return traitStringInArray === traitString;

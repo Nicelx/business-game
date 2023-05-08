@@ -2,6 +2,7 @@ import { BusinessUnit, isUnitType, sellingType, unitType } from "../interfaces/g
 import { MarketService } from "./market.service";
 import { Injectable } from "@angular/core";
 import { values } from './../../values';
+import { TraitService } from "./traits.service";
 
 export interface ProductionNeeds {
 	type: unitType;
@@ -11,7 +12,7 @@ export interface ProductionNeeds {
 
 @Injectable()
 export class BusinessUnitsService {
-	constructor(private marketService: MarketService) {}
+	constructor(private marketService: MarketService, private traitService: TraitService) {}
 
 	public calculateIncome(unit: BusinessUnit) {
 		
@@ -71,7 +72,8 @@ export class BusinessUnitsService {
 	}
 
 	// multiple types because of retail
-	static getBuildingCost(type: unitType | unitType[], effect : number = 0) {
+	public getBuildingCost(type: unitType | unitType[]) {
+		let effect = this.traitService.getCheapBuildingEffect();
 		if (Array.isArray(type)) {
 			let overallCost = 0;
 			type.forEach(singleType => {

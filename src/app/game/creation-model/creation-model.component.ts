@@ -31,11 +31,9 @@ export class CreationModelComponent implements OnInit {
 	playerMoney = this.playerService.getMainPlayer().money;
 
 	ngOnInit(): void {
-	
-
 		this.selectedType = "apples";
 		this.sellingType = "retail";
-		this.buildingCost = BusinessUnitsService.getBuildingCost("apples") - this.traitService.getCheapBuildingEffect();
+		this.buildingCost = this.businessUnitService.getBuildingCost("apples");
 		
 	}
 
@@ -73,7 +71,7 @@ export class CreationModelComponent implements OnInit {
 		if (!(value === "apples" || value === "iron" || value === "salary" || value === "rent"|| value ==='juice'))
 			return;
 		this.selectedType = value;
-		this.buildingCost = BusinessUnitsService.getBuildingCost(value);
+		this.buildingCost = this.businessUnitService.getBuildingCost(value);
 	}
 
 	onSellingTypeSelection(value: string) {
