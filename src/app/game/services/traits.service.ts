@@ -65,16 +65,6 @@ export class TraitService {
 		return this.traits;
 	}
 
-	public calculateTraitIncome(
-		unitType: unitType,
-		sellingType: sellingType,
-		options?: {}
-	): number {
-		return 1;
-	}
-
-	public calculateTraitExpenses(unitType: unitType, sellingType: sellingType, options?: {}) {}
-
 	public increaseCost() {}
 
 	private getTraitValues(traitString: traitString) {

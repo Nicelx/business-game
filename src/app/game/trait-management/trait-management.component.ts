@@ -18,6 +18,7 @@ export class TraitManagementComponent implements OnInit {
 	description: string = TraitService.showDescription(this.traitSelected);
 	
 	@Output() close: EventEmitter<any> = new EventEmitter();
+	@Output() cheapTraitUpgrade: EventEmitter<any> = new EventEmitter();
 	constructor(private playerService: PlayerDataService, private traitService: TraitService) {
 		
 	}
@@ -33,12 +34,20 @@ export class TraitManagementComponent implements OnInit {
 
 		// to do implement check
 		this.isAddCheck = true;
+		if (this.traitSelected === "CheapBuilding") {
+			this.cheapTraitUpgrade.emit(true);
+			console.log('emitting cheap Building upgrade')
+		}
 	}
 	onImproveTrait() {
 		let trait = this.traitService.checkTrait(this.traitSelected);
 		if (!trait) return;
 		this.playerService.buyTrait(this.traitSelected, 0, trait.level + 1);
 		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
+		if (this.traitSelected === "CheapBuilding") {
+			this.cheapTraitUpgrade.emit(true);
+			console.log('emitting cheap Building upgrade')
+		}
 	}
 
 	onTraitSelection(value: any) {

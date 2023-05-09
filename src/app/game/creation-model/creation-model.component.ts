@@ -63,7 +63,6 @@ export class CreationModelComponent implements OnInit {
 			},
 			0
 		);
-		console.log(this.selectedType, this.sellingType)
 		// need outsource it .addBusinessUnit()
 	}
 

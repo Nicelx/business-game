@@ -51,6 +51,10 @@ export class BusinessUnitComponent implements OnInit {
 		} ;
 	}
 
+	expandCostUpgrade() {
+		
+	}
+
 	onShowExtendDetails(b:boolean) {
 		this.isExtendVisible = b;
 	}
@@ -78,7 +82,7 @@ export class BusinessUnitComponent implements OnInit {
 			if (singleType === this.selectedTypeToExtend) throw new Error('same type to add to retail unit')
 		})
 		this.businessUnit.type.push(this.selectedTypeToExtend);
-		console.log('checking', this.businessUnit);
+		this.expandCost = this.buService.getBuildingCost(this.businessUnit.type)
 	}
 
 	onExpand() {
