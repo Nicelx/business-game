@@ -35,7 +35,7 @@ export class TraitManagementComponent implements OnInit {
 		// to do implement check
 		this.isAddCheck = true;
 		if (this.traitSelected === "CheapBuilding") {
-			this.cheapTraitUpgrade.emit(true);
+			this.cheapTraitUpgrade.emit();
 			console.log('emitting cheap Building upgrade')
 		}
 	}
@@ -45,7 +45,7 @@ export class TraitManagementComponent implements OnInit {
 		this.playerService.buyTrait(this.traitSelected, 0, trait.level + 1);
 		this.traitCost = this.traitService.getTraitCost(this.traitSelected);
 		if (this.traitSelected === "CheapBuilding") {
-			this.cheapTraitUpgrade.emit(true);
+			this.cheapTraitUpgrade.emit();
 			console.log('emitting cheap Building upgrade')
 		}
 	}
