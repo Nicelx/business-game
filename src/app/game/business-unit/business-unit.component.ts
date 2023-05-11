@@ -49,8 +49,14 @@ export class BusinessUnitComponent implements OnInit {
 		}
 	}
 
-	expandCostUpgrade() {
+	// TO DO change this in future. mega uncool thing
+	ngDoCheck() {
 		this.expandCost = this.buService.getBuildingCost(this.businessUnit.type);
+		console.log('ngDoCheck')
+	}
+	
+	//TO DO and do it here with event emitting probably
+	expandCostUpgrade() {
 		console.log('expandCostUpgrade()')
 	}
 
