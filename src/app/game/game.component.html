@@ -27,10 +27,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="competitors">
-		id = {{ gameId }}
-		конкуренты тут
-	</div>
+	<app-bots-info></app-bots-info>
 
 	<app-trait-management *ngIf="isModalVisible && modalType === 'traits'" (close)="onClose()"></app-trait-management>
 

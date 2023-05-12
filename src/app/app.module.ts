@@ -15,6 +15,7 @@ import { BusinessUnitsService } from './game/services/business-units.service';
 import { CreationModelComponent } from './game/creation-model/creation-model.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TraitManagementComponent } from './game/trait-management/trait-management.component';
+import { BotsInfoComponent } from './game/bots-info/bots-info.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TraitManagementComponent } from './game/trait-management/trait-manageme
     GameHeaderComponent,
     CreationModelComponent,
     TraitManagementComponent,
+    BotsInfoComponent,
   ],
   imports: [
     BrowserModule,
