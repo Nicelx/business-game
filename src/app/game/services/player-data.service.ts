@@ -9,6 +9,9 @@ import {
 import { BusinessUnitsService, ProductionNeeds } from "./business-units.service";
 import { MarketService } from "./market.service";
 import { TraitService } from "./traits.service";
+import { BotsService } from "./bots-service";
+
+
 
 @Injectable({
 	providedIn: "root",
@@ -17,7 +20,8 @@ export class PlayerDataService {
 	constructor(
 		private marketService: MarketService,
 		private businessUnitsService: BusinessUnitsService,
-		private traitService: TraitService
+		private traitService: TraitService,
+		private botService: BotsService
 	) {}
 
 	playersData: PlayerData[] = [
@@ -29,6 +33,7 @@ export class PlayerDataService {
 			playerIncomePerTick: 0,
 			traits: this.traitService.getTraits(),
 		},
+		...this.botService.getBots()
 	];
 	moneyChanges: number = 0;
 
@@ -36,6 +41,10 @@ export class PlayerDataService {
 		const player = this.playersData.find((item) => item.playerId === playerId);
 		if (!player) throw new Error("Player doesnt exist");
 		return player;
+	}
+
+	getAllPlayers() {
+		return this.playersData
 	}
 
 	public getMainPlayer() {
@@ -66,6 +75,7 @@ export class PlayerDataService {
 			player.money = +(player.money + moneyChange).toFixed(2);
 			player.playerIncomePerTick = +moneyChange.toFixed(2);
 		});
+		console.log(this.playersData)
 	}
 
 	private handleTraits(revenue: number, income: number, expenses: number) {
