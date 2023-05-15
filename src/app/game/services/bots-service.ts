@@ -5,41 +5,9 @@ import { unitType } from "../interfaces/game.interfaces";
 
 const variator = {
 	generalAi: {
-		
-
-		// types: [
-		// 	{
-		// 		type: "apples",
-		// 		chance: 1,
-		// 	},
-		// 	{
-		// 		type: "iron",
-		// 		chance: 1,
-		// 	},
-		// 	{
-		// 		type: "juice",
-		// 		chance: 1,
-		// 	},
-		// ],
-		// typesChancesSum: 3,
-		// traits: [
-		// 	{
-		// 		trait: "RevenuePlus",
-		// 		chance: 1,
-		// 	},
-		// 	{
-		// 		trait: "ExpensesPlus",
-		// 		chance: 1,
-		// 	},
-		// 	{
-		// 		trait: "IncomePlus",
-		// 		chance: 1,
-		// 	},
-		// 	{
-		// 		trait: "CheapBuilding",
-		// 		chance: 1,
-		// 	},
-		// ],
+		toChooseArray : ['buildRetail', 'buildProduction', 'upgrade', 'trait'],
+		toBuildArray: ['apples', 'apples', 'juice', 'iron'],
+		toUpgradeArray: ['apples', 'juice', 'iron']
 	},
 };
 
@@ -77,6 +45,14 @@ export class BotsService {
 		setInterval(() => {
 			this.bots[0].businessUnits[0].amount++;
 		}, 1000);
+	}
+
+	private chooseAction() {
+		Math.random()
+	}
+
+	private chooseType() {
+
 	}
 
 	public getBots() {
