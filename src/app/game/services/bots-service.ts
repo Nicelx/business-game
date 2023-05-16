@@ -42,17 +42,40 @@ export class BotsService {
 	];
 
 	private initBotsLogic() {
-		setInterval(() => {
-			this.bots[0].businessUnits[0].amount++;
-		}, 1000);
+		setInterval(this.chooseAction, 1000);
 	}
 
 	private chooseAction() {
-		Math.random()
+		let choosedNumber =Math.floor(Math.random()* 4)
+		switch(variator.generalAi.toChooseArray[choosedNumber]) {
+			case 'buildRetail' : console.log('buildRetail')
+			break;
+			case 'buildProduction' : console.log('buildProduction')
+			break;
+			case 'upgrade' : console.log('upgrade')
+			break;
+			case 'trait' : console.log('trait')
+			break;
+			default : console.log('default') 
+		}
 	}
 
-	private chooseType() {
+	private chooseType(option: string) {
+		const {toBuildArray, toUpgradeArray} = variator.generalAi;
+		if ('toBuildProduction') {
+			toBuildArray[Math.floor(Math.random()* toBuildArray.length)]
+		}
+		if ('toBuildRetail') {}
+		if ('upgrade') {}
+		console.log('chooseType log')
+	}
 
+	private chooseTrait() {
+
+	}
+
+	private AddBusinessUnit() {
+		
 	}
 
 	public getBots() {
