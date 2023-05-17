@@ -47,23 +47,17 @@ export class BotsService {
 
 	private chooseAction() {
 		let choosedNumber =Math.floor(Math.random()* 4)
-		switch(variator.generalAi.toChooseArray[choosedNumber]) {
-			case 'buildRetail' : console.log('buildRetail')
-			break;
-			case 'buildProduction' : console.log('buildProduction')
-			break;
-			case 'upgrade' : console.log('upgrade')
-			break;
-			case 'trait' : console.log('trait')
-			break;
-			default : console.log('default') 
+		let option = variator.generalAi.toChooseArray[choosedNumber]; 
+
+		if (option === 'buildRetail') {
+			this.chooseType('toBuildRetail')
 		}
 	}
 
-	private chooseType(option: string) {
+	chooseType(option: string) {
 		const {toBuildArray, toUpgradeArray} = variator.generalAi;
 		if ('toBuildProduction') {
-			toBuildArray[Math.floor(Math.random()* toBuildArray.length)]
+			console.log('chooseType', toBuildArray[Math.floor(Math.random()* toBuildArray.length)])
 		}
 		if ('toBuildRetail') {}
 		if ('upgrade') {}
