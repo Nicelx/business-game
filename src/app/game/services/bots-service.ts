@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PlayerDataService } from "./player-data.service";
-import { PlayerData } from "../interfaces/game.interfaces";
+import { BusinessUnit, PlayerData } from "../interfaces/game.interfaces";
 import { unitType } from "../interfaces/game.interfaces";
 
 const variator = {
@@ -42,7 +42,7 @@ export class BotsService {
 	];
 
 	private initBotsLogic() {
-		setInterval(this.chooseAction, 1000);
+		setInterval(this.chooseAction.bind(this), 2000);
 	}
 
 	private chooseAction() {
@@ -57,7 +57,9 @@ export class BotsService {
 	chooseType(option: string) {
 		const {toBuildArray, toUpgradeArray} = variator.generalAi;
 		if ('toBuildProduction') {
-			console.log('chooseType', toBuildArray[Math.floor(Math.random()* toBuildArray.length)])
+			let type = toBuildArray[Math.floor(Math.random()* toBuildArray.length)]
+			console.log('chooseType', type)
+			this.AddBusinessUnit(type as unitType)
 		}
 		if ('toBuildRetail') {}
 		if ('upgrade') {}
@@ -68,8 +70,17 @@ export class BotsService {
 
 	}
 
-	private AddBusinessUnit() {
-		
+	private AddBusinessUnit(type:unitType) {
+		this.bots[0].businessUnits.push({
+			amount : 1,
+			earned: 0,
+			expensePerTick: 0,
+			incomePerTick: 0,
+			revenuePerTick: 0,
+			sellingType: 'market',
+			unitId : Math.floor(Math.random()*100000),
+			type: [type]
+		})
 	}
 
 	public getBots() {

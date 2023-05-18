@@ -2,10 +2,16 @@
 	<h2>Ai Competitors</h2>
 	<div>
 		<div *ngFor="let bot of bots">solo bots-info here
-			--name,
-			--money,{{bot.money}}
-			--income,
-			--businesses
+			name {{bot.playerName}}
+			money ={{bot.money}}
+			income = {{bot.playerIncomePerTick}}
+			businesses:
+			<p *ngFor = 'let bu of bot.businessUnits'>
+				id = {{bu.unitId}} type = {{bu.type}} amount = {{bu.amount}} earned = {{bu.earned}}
+				sellingType = {{bu.sellingType}}
+				income = {{bu.incomePerTick}}
+				expense = {{bu.expensePerTick}}
+			</p>
 		</div>
 	</div>
 </div>
