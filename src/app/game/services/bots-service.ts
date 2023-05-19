@@ -2,10 +2,13 @@ import { Injectable } from "@angular/core";
 import { PlayerDataService } from "./player-data.service";
 import { BusinessUnit, PlayerData } from "../interfaces/game.interfaces";
 import { unitType } from "../interfaces/game.interfaces";
+import { randomArrayElement } from "src/app/functions";
+
+type chooseAction = 'buildRetail'| 'buildProduction' | 'upgrade' | 'trait' | 'none' | 'extend' | 'correction'
 
 const variator = {
 	generalAi: {
-		toChooseArray : ['buildRetail', 'buildProduction', 'upgrade', 'trait'],
+		toChooseArray : ['buildRetail', 'buildProduction', 'upgrade', 'upgrade', 'upgrade', 'upgrade', 'trait', 'none', 'extend', 'extend','extend','extend'],
 		toBuildArray: ['apples', 'apples', 'juice', 'iron'],
 		toUpgradeArray: ['apples', 'juice', 'iron']
 	},
@@ -46,23 +49,26 @@ export class BotsService {
 	}
 
 	private chooseAction() {
-		let choosedNumber =Math.floor(Math.random()* 4)
-		let option = variator.generalAi.toChooseArray[choosedNumber]; 
+		let option = randomArrayElement(variator.generalAi.toChooseArray);
 
-		if (option === 'buildRetail') {
-			this.chooseType('toBuildRetail')
+		if ((option === 'buildRetail') || (option === 'buildProduction') || (option === 'upgrade') ) {
+			this.chooseType(option)
 		}
 	}
 
-	chooseType(option: string) {
+	chooseType(option: chooseAction) {
 		const {toBuildArray, toUpgradeArray} = variator.generalAi;
-		if ('toBuildProduction') {
+		if ('buildProduction') {
 			let type = toBuildArray[Math.floor(Math.random()* toBuildArray.length)]
 			console.log('chooseType', type)
 			this.AddBusinessUnit(type as unitType)
 		}
-		if ('toBuildRetail') {}
-		if ('upgrade') {}
+		if ('buildRetail') {
+
+		}
+		if ('upgrade') {
+
+		}
 		console.log('chooseType log')
 	}
 
