@@ -1,16 +1,36 @@
 import { Injectable } from "@angular/core";
 import { PlayerDataService } from "./player-data.service";
-import { BusinessUnit, PlayerData } from "../interfaces/game.interfaces";
+import { BusinessUnit, PlayerData, sellingType } from "../interfaces/game.interfaces";
 import { unitType } from "../interfaces/game.interfaces";
 import { randomArrayElement } from "src/app/functions";
 
-type chooseAction = 'buildRetail'| 'buildProduction' | 'upgrade' | 'trait' | 'none' | 'extend' | 'correction'
+type chooseAction =
+	| "buildRetail"
+	| "buildProduction"
+	| "upgrade"
+	| "trait"
+	| "none"
+	| "extend"
+	| "correction";
 
 const variator = {
 	generalAi: {
-		toChooseArray : ['buildRetail', 'buildProduction', 'upgrade', 'upgrade', 'upgrade', 'upgrade', 'trait', 'none', 'extend', 'extend','extend','extend'],
-		toBuildArray: ['apples', 'apples', 'juice', 'iron'],
-		toUpgradeArray: ['apples', 'juice', 'iron']
+		toChooseArray: [
+			"buildRetail",
+			"buildProduction",
+			"upgrade",
+			"upgrade",
+			"upgrade",
+			"upgrade",
+			"trait",
+			"none",
+			"extend",
+			"extend",
+			"extend",
+			"extend",
+		],
+		toBuildArray: ["apples", "apples", "juice", "iron"],
+		toUpgradeArray: ["apples", "juice", "iron"],
 	},
 };
 
@@ -51,42 +71,39 @@ export class BotsService {
 	private chooseAction() {
 		let option = randomArrayElement(variator.generalAi.toChooseArray);
 
-		if ((option === 'buildRetail') || (option === 'buildProduction') || (option === 'upgrade') ) {
-			this.chooseType(option)
+		if (option === "buildRetail" || option === "buildProduction" || option === "upgrade") {
+			this.chooseType(option);
 		}
+		console.log('chooseAction option = ', option)
 	}
 
 	chooseType(option: chooseAction) {
-		const {toBuildArray, toUpgradeArray} = variator.generalAi;
-		if ('buildProduction') {
-			let type = toBuildArray[Math.floor(Math.random()* toBuildArray.length)]
-			console.log('chooseType', type)
-			this.AddBusinessUnit(type as unitType)
+		const { toBuildArray, toUpgradeArray } = variator.generalAi;
+		if (option === "buildProduction") {
+			let type = randomArrayElement(toBuildArray);
+			this.AddBusinessUnit(type as unitType, "market");
 		}
-		if ('buildRetail') {
-
+		if (option === "buildRetail") {
+			let type = randomArrayElement(toBuildArray);
+			this.AddBusinessUnit(type, "retail");
 		}
-		if ('upgrade') {
-
+		if ("upgrade") {
 		}
-		console.log('chooseType log')
 	}
 
-	private chooseTrait() {
+	private chooseTrait() {}
 
-	}
-
-	private AddBusinessUnit(type:unitType) {
+	private AddBusinessUnit(type: unitType, sellingType: sellingType) {
 		this.bots[0].businessUnits.push({
-			amount : 1,
+			amount: 1,
 			earned: 0,
 			expensePerTick: 0,
 			incomePerTick: 0,
 			revenuePerTick: 0,
-			sellingType: 'market',
-			unitId : Math.floor(Math.random()*100000),
-			type: [type]
-		})
+			sellingType: sellingType,
+			unitId: Math.floor(Math.random() * 100000),
+			type: [type],
+		});
 	}
 
 	public getBots() {
