@@ -81,6 +81,15 @@ export class BotsService {
 		const { toBuildArray, toUpgradeArray } = variator.generalAi;
 		if (option === "buildProduction") {
 			let type = randomArrayElement(toBuildArray);
+
+			let findedBusinessUnit = this.bots[0].businessUnits.find((businessUnit) => {
+				businessUnit.type ===type
+			})
+
+			if (findedBusinessUnit === undefined) {
+				this.chooseType(option)
+			}
+
 			this.AddBusinessUnit(type as unitType, "market");
 		}
 		if (option === "buildRetail") {
@@ -88,6 +97,8 @@ export class BotsService {
 			this.AddBusinessUnit(type, "retail");
 		}
 		if ("upgrade") {
+			let businessUnit = randomArrayElement(this.bots[0].businessUnits)
+			businessUnit.amount++
 		}
 	}
 
