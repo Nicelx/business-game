@@ -65,7 +65,7 @@ export class BotsService {
 	];
 
 	private initBotsLogic() {
-		setInterval(this.chooseAction.bind(this), 2000);
+		setInterval(this.chooseAction.bind(this), 500);
 	}
 
 	private chooseAction() {
@@ -83,17 +83,23 @@ export class BotsService {
 			let type = randomArrayElement(toBuildArray);
 
 			let findedBusinessUnit = this.bots[0].businessUnits.find((businessUnit) => {
-				businessUnit.type ===type
+				return ((businessUnit.type[0] === type) && (businessUnit.sellingType === 'market'))
 			})
 
-			if (findedBusinessUnit === undefined) {
-				this.chooseType(option)
-			}
+			if (findedBusinessUnit) return;
 
 			this.AddBusinessUnit(type as unitType, "market");
 		}
 		if (option === "buildRetail") {
 			let type = randomArrayElement(toBuildArray);
+
+			this.bots[0].businessUnits.find((businessUnit) => {
+				if (businessUnit.sellingType !== 'retail') return;
+				if  (businessUnit.type[0].includes(type)) return;
+			})
+
+			
+
 			this.AddBusinessUnit(type, "retail");
 		}
 		if ("upgrade") {
