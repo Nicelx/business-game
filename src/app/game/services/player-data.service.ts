@@ -75,7 +75,7 @@ export class PlayerDataService {
 			player.money = +(player.money + moneyChange).toFixed(2);
 			player.playerIncomePerTick = +moneyChange.toFixed(2);
 		});
-		console.log(this.playersData)
+		// console.log(this.playersData)
 	}
 
 	private handleTraits(revenue: number, income: number, expenses: number) {

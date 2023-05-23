@@ -79,8 +79,8 @@ export class BotsService {
 
 	chooseType(option: chooseAction) {
 		const { toBuildArray, toUpgradeArray } = variator.generalAi;
+		let type = randomArrayElement(toBuildArray);
 		if (option === "buildProduction") {
-			let type = randomArrayElement(toBuildArray);
 
 			let findedBusinessUnit = this.bots[0].businessUnits.find((businessUnit) => {
 				return ((businessUnit.type[0] === type) && (businessUnit.sellingType === 'market'))
@@ -91,14 +91,13 @@ export class BotsService {
 			this.AddBusinessUnit(type as unitType, "market");
 		}
 		if (option === "buildRetail") {
-			let type = randomArrayElement(toBuildArray);
-
-			this.bots[0].businessUnits.find((businessUnit) => {
+			let findedBU = this.bots[0].businessUnits.find((businessUnit) => {
 				if (businessUnit.sellingType !== 'retail') return;
-				if  (businessUnit.type[0].includes(type)) return;
+				if  (businessUnit.type[0].includes(type)) return true;
+				return false;
 			})
 
-			
+			if (findedBU) return;
 
 			this.AddBusinessUnit(type, "retail");
 		}
@@ -121,6 +120,7 @@ export class BotsService {
 			unitId: Math.floor(Math.random() * 100000),
 			type: [type],
 		});
+		this.bots[0].businessUnits.sort();
 	}
 
 	public getBots() {
