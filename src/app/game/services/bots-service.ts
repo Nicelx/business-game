@@ -105,6 +105,11 @@ export class BotsService {
 			let businessUnit = randomArrayElement(this.bots[0].businessUnits)
 			businessUnit.amount++
 		}
+
+		if ('extend') {
+			let retailUnit = randomArrayElement(this.bots[0].businessUnits.filter(unit => unit.sellingType === 'retail'))
+			BusinessUni
+		}
 	}
 
 	private chooseTrait() {}
