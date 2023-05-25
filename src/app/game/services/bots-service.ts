@@ -65,7 +65,7 @@ export class BotsService {
 	];
 
 	private initBotsLogic() {
-		setInterval(this.chooseAction.bind(this), 500);
+		setInterval(this.chooseAction.bind(this), 800);
 	}
 
 	private chooseAction() {
@@ -108,7 +108,10 @@ export class BotsService {
 
 		if ('extend') {
 			let retailUnit = randomArrayElement(this.bots[0].businessUnits.filter(unit => unit.sellingType === 'retail'))
-			BusinessUni
+			let checkExistingType = retailUnit.type.includes(type)
+
+			if (checkExistingType === true) return;
+			retailUnit.type.push(type)
 		}
 	}
 
