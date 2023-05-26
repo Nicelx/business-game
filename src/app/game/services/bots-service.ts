@@ -4,6 +4,8 @@ import { BusinessUnit, PlayerData, sellingType } from "../interfaces/game.interf
 import { unitType } from "../interfaces/game.interfaces";
 import { randomArrayElement } from "src/app/functions";
 
+const BOT_SPEED = 100;
+
 type chooseAction =
 	| "buildRetail"
 	| "buildProduction"
@@ -65,26 +67,30 @@ export class BotsService {
 	];
 
 	private initBotsLogic() {
-		setInterval(this.chooseAction.bind(this), 800);
+		setInterval(this.chooseAction.bind(this), BOT_SPEED);
 	}
 
 	private chooseAction() {
 		let option = randomArrayElement(variator.generalAi.toChooseArray);
 
-		if (option === "buildRetail" || option === "buildProduction" || option === "upgrade") {
+		if (
+			option === "buildRetail" ||
+			option === "buildProduction" ||
+			option === "upgrade" ||
+			option === "extend"
+		) {
 			this.chooseType(option);
 		}
-		console.log('chooseAction option = ', option)
+		console.log("chooseAction option = ", option);
 	}
 
 	chooseType(option: chooseAction) {
 		const { toBuildArray, toUpgradeArray } = variator.generalAi;
 		let type = randomArrayElement(toBuildArray);
 		if (option === "buildProduction") {
-
 			let findedBusinessUnit = this.bots[0].businessUnits.find((businessUnit) => {
-				return ((businessUnit.type[0] === type) && (businessUnit.sellingType === 'market'))
-			})
+				return businessUnit.type[0] === type && businessUnit.sellingType === "market";
+			});
 
 			if (findedBusinessUnit) return;
 
@@ -92,26 +98,29 @@ export class BotsService {
 		}
 		if (option === "buildRetail") {
 			let findedBU = this.bots[0].businessUnits.find((businessUnit) => {
-				if (businessUnit.sellingType !== 'retail') return;
-				if  (businessUnit.type[0].includes(type)) return true;
+				if (businessUnit.sellingType !== "retail") return;
+				if (businessUnit.type[0].includes(type)) return true;
 				return false;
-			})
+			});
 
 			if (findedBU) return;
 
 			this.AddBusinessUnit(type, "retail");
 		}
 		if ("upgrade") {
-			let businessUnit = randomArrayElement(this.bots[0].businessUnits)
-			businessUnit.amount++
+			let businessUnit = randomArrayElement(this.bots[0].businessUnits);
+			businessUnit.amount++;
 		}
 
-		if ('extend') {
-			let retailUnit = randomArrayElement(this.bots[0].businessUnits.filter(unit => unit.sellingType === 'retail'))
-			let checkExistingType = retailUnit.type.includes(type)
+		if ("extend") {
+			let filteredRetail = this.bots[0].businessUnits.filter(
+				(unit) => unit.sellingType === "retail"
+			);
+			let typeDuplicationBool = filteredRetail.some((unit) => unit.type.includes(type));
+			if (typeDuplicationBool) return;
+			let retailUnit = randomArrayElement(filteredRetail);
 
-			if (checkExistingType === true) return;
-			retailUnit.type.push(type)
+			retailUnit.type.push(type);
 		}
 	}
 
